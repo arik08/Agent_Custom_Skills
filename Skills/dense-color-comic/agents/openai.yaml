@@ -1,0 +1,7 @@
+interface:
+  display_name: "고밀도 컬러 만화"
+  short_description: "캐릭터 레퍼런스·컷 구도·대사 통합 생성과 검수를 포함한 컬러 코믹 제작"
+  default_prompt: "Use $dense-color-comic to create a dense full-color instructional comic with integrated Korean dialogue."
+
+policy:
+  allow_implicit_invocation: true

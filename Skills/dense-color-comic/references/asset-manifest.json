@@ -1,0 +1,140 @@
+[
+  {
+    "path": "assets/characters/character-cast-00-protagonist-humorous-face-refined-7_4head-approved-v3.png",
+    "source": "reference/inchangwon-character-cast/character-cast-00-protagonist-humorous-face-refined-7_4head-approved-v3.png",
+    "role": "identity reference",
+    "sha256": "beae76f44b3e924ad29a8e4f3ff025c5169419507b3d2f24cf024f943394d716"
+  },
+  {
+    "path": "assets/characters/character-cast-01-female-data-analyst-v2.png",
+    "source": "reference/inchangwon-character-cast/character-cast-01-female-data-analyst-v2.png",
+    "role": "identity reference",
+    "sha256": "683edda1e61a0316e11f8b7535c8c226fff5f702392c3dda771a44b71a1181a6"
+  },
+  {
+    "path": "assets/characters/character-cast-02-male-engineer-glasses-v1.png",
+    "source": "reference/inchangwon-character-cast/character-cast-02-male-engineer-glasses-v1.png",
+    "role": "identity reference",
+    "sha256": "d41203fceaee58ead8badf44a91eb392bff976534a854dbbfeaa907377e2725e"
+  },
+  {
+    "path": "assets/characters/character-cast-03-female-project-lead-v2.png",
+    "source": "reference/inchangwon-character-cast/character-cast-03-female-project-lead-v2.png",
+    "role": "identity reference",
+    "sha256": "9a20d3c6a69a99f8c1d46b1fcc5f3fee89aa497c00c2e2e1dc035129f1a426ce"
+  },
+  {
+    "path": "assets/characters/character-cast-04-male-technical-lead-v1.png",
+    "source": "reference/inchangwon-character-cast/character-cast-04-male-technical-lead-v1.png",
+    "role": "identity reference",
+    "sha256": "d93663960f5971718a067d8550eb2d3f21ea1996a68333d3af064db0da9ff722"
+  },
+  {
+    "path": "assets/characters/character-cast-05-female-operations-staff-v2.png",
+    "source": "reference/inchangwon-character-cast/character-cast-05-female-operations-staff-v2.png",
+    "role": "identity reference",
+    "sha256": "c1ac686a5fb349394697ff1a6dfcdcfbdd5fd9270382624a425a1f14e69bb296"
+  },
+  {
+    "path": "assets/characters/character-cast-06-male-research-analyst-v1.png",
+    "source": "reference/inchangwon-character-cast/character-cast-06-male-research-analyst-v1.png",
+    "role": "identity reference",
+    "sha256": "05f44990e0f894ae3e6be8c3feb56051182496b996fb7e52e8b55273da0be1a2"
+  },
+  {
+    "path": "assets/characters/character-cast-07-female-planning-staff-v2.png",
+    "source": "reference/inchangwon-character-cast/character-cast-07-female-planning-staff-v2.png",
+    "role": "identity reference",
+    "sha256": "ba8368718c3ffb4afdd262842af79524179fbbee53c71a3fb86fa5014ffbfd18"
+  },
+  {
+    "path": "assets/characters/character-cast-08-male-team-lead-mentor-v2.png",
+    "source": "reference/inchangwon-character-cast/character-cast-08-male-team-lead-mentor-v2.png",
+    "role": "identity reference",
+    "sha256": "3b7675a3765b9c5fc3f59111eacfbb9c5b306105a30448987b6d47954d6dd132"
+  },
+  {
+    "path": "assets/characters/character-cast-09-female-senior-mentor-v2.png",
+    "source": "reference/inchangwon-character-cast/character-cast-09-female-senior-mentor-v2.png",
+    "role": "identity reference",
+    "sha256": "1c07de6ccb636c62211bc08d11bae4ea8ad4ada8c3c5443d928ce10c6789a9bc"
+  },
+  {
+    "path": "assets/layout/fhd-two-page-balanced-grid-reference-v1.png",
+    "source": "reference/comic-layout/fhd-two-page-balanced-grid-reference-v1.png",
+    "role": "layout reference",
+    "sha256": "9843b82cfc8778d82ffbb573ecc912a3ca70f854cfacd5d5813161f6516262cf"
+  },
+  {
+    "path": "assets/layout/source-portrait-comic-reference.png",
+    "source": "reference/comic-layout/source-portrait-comic-reference.png",
+    "role": "dialogue rhythm reference",
+    "sha256": "70e245646bfd1e4ffa4291721cf8832c16562b1368f9e53b49774d5e3d3e1ea8"
+  },
+  {
+    "path": "assets/style/skill-creation-comic-source-montage-v9-color-dialogue.png",
+    "source": "output/skill-creation-comic/v9-color-dialogue/skill-creation-comic-source-montage-v9-color-dialogue.png",
+    "role": "style reference; not identity or factual source",
+    "sha256": "cb86ceaea3e12851d67c0191aea016ea97ac85f159bde74a3e38dfdb6e0411d1"
+  },
+  {
+    "path": "assets/style/skill-creation-comic-spread-01-v9-color-dialogue-source.png",
+    "source": "output/skill-creation-comic/v9-color-dialogue/skill-creation-comic-spread-01-v9-color-dialogue-source.png",
+    "role": "style reference; not identity or factual source",
+    "sha256": "be9edc1db6fba5335a543b078543d8af81836de0a9ebc80bffed1525fc5039eb"
+  },
+  {
+    "path": "assets/style/skill-creation-comic-spread-06-v9-color-dialogue-source.png",
+    "source": "output/skill-creation-comic/v9-color-dialogue/skill-creation-comic-spread-06-v9-color-dialogue-source.png",
+    "role": "style reference; not identity or factual source",
+    "sha256": "c4cd69ba2ccd6d3b4dae4f5c8634f8d156739aac9cc5874d51ac6f5d46507a6f"
+  },
+  {
+    "path": "assets/style/skill-creation-comic-spread-08-v9-color-dialogue-source.png",
+    "source": "output/skill-creation-comic/v9-color-dialogue/skill-creation-comic-spread-08-v9-color-dialogue-source.png",
+    "role": "style reference; not identity or factual source",
+    "sha256": "385c0443c404b36528e7e5e74ff104af3f0dc5e3141dd8485e3c80aba79c9c90"
+  },
+  {
+    "path": "assets/preferred/preferred-001-coding-agent-experiments.png",
+    "source": "reference/preferred-materials/slides/preferred-001-coding-agent-experiments.png",
+    "role": "user-selected visual reference",
+    "sha256": "b8735aa7913d8fee4332d7dc94775b36fea9caae30aacbf5d3b21c788f4f51c9"
+  },
+  {
+    "path": "assets/preferred/preferred-002-experiment-to-special-lecture.png",
+    "source": "reference/preferred-materials/slides/preferred-002-experiment-to-special-lecture.png",
+    "role": "user-selected visual reference",
+    "sha256": "ab3db517e04b66cc2890a33867fb6b10ed1a5376886f6a0f63f7e4a00ce5fe04"
+  },
+  {
+    "path": "assets/preferred/preferred-003-public-agent-structure.png",
+    "source": "reference/preferred-materials/slides/preferred-003-public-agent-structure.png",
+    "role": "user-selected visual reference",
+    "sha256": "787a3307985d02e6687b23842a57e55ed167b08eda16638d1f6582688387588f"
+  },
+  {
+    "path": "assets/preferred/preferred-004-one-day-prototype.png",
+    "source": "reference/preferred-materials/slides/preferred-004-one-day-prototype.png",
+    "role": "user-selected visual reference",
+    "sha256": "261a67c083980ce1da0dc776f22d33ba8301965f76ac175276eed0e40c503e46"
+  },
+  {
+    "path": "assets/preferred/preferred-005-feedback-loop.png",
+    "source": "reference/preferred-materials/slides/preferred-005-feedback-loop.png",
+    "role": "user-selected visual reference",
+    "sha256": "8126fba73cbf2b1574b0c17013f4720d90193c3968508c8e12760b265fd10ffb"
+  },
+  {
+    "path": "assets/preferred/preferred-006-prototype-to-ceo-report.png",
+    "source": "reference/preferred-materials/slides/preferred-006-prototype-to-ceo-report.png",
+    "role": "user-selected visual reference",
+    "sha256": "736171f0fd14b95f0ccf57c648ad300459399e71cce2aee0720b08f4a3c2d297"
+  },
+  {
+    "path": "assets/preferred/preferred-007-agent-business-profit-task.png",
+    "source": "reference/preferred-materials/slides/preferred-007-agent-business-profit-task.png",
+    "role": "user-selected visual reference",
+    "sha256": "2c92c286b02b9c0a8881df710706890f0b6a196803f7f60e6690ec2e1c19928c"
+  }
+]
