@@ -1,0 +1,10 @@
+{
+  "source_parse": "pass",
+  "commits": 10,
+  "merge_commits": 2,
+  "feature_branches": 2,
+  "aligned_build_steps": 3,
+  "separate_connectors": 2,
+  "browser_visual_check": "blocked by local URL security policy",
+  "pdf": "not regenerated"
+}

@@ -1,0 +1,11 @@
+{
+  "shared_css_embedded": true,
+  "overlaid_dotted_line_removed": true,
+  "affected_slides": [
+    7,
+    16,
+    27
+  ],
+  "browser_visual_check": "blocked by local-file URL policy",
+  "pdf": "unchanged; not regenerated"
+}
