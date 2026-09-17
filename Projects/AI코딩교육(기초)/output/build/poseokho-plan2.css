@@ -1,0 +1,19 @@
+/* The companion occupies a reserved header corner, outside interactive content. */
+.has-poseokho header{padding-right:270px}
+.has-poseokho .slide-body{position:static}
+.poseokho-companion{position:absolute;right:100px;top:65px;width:220px;height:255px;margin:0;pointer-events:none;transform-origin:50% 80%;z-index:2}
+.poseokho-companion img{width:100%;height:100%;object-fit:contain;display:block;transform-origin:50% 85%}
+.slide.is-active .poseokho-companion{animation:poseokho-arrive .65s cubic-bezier(.2,.8,.25,1) both}
+.slide.is-active .motion-bob img{animation:poseokho-bob 4.2s .65s ease-in-out infinite}
+.slide.is-active .motion-tilt img{animation:poseokho-tilt 5s .65s ease-in-out infinite}
+.slide.is-active .motion-sway img{animation:poseokho-sway 4.6s .65s ease-in-out infinite}
+.slide.is-active .motion-bounce img{animation:poseokho-bounce 4s .65s ease-in-out infinite}
+.slide.is-active .motion-pulse img{animation:poseokho-pulse 4.8s .65s ease-in-out infinite}
+@keyframes poseokho-arrive{from{opacity:0;transform:translateY(22px) rotate(-7deg) scale(.82)}to{opacity:1;transform:none}}
+@keyframes poseokho-bob{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+@keyframes poseokho-tilt{0%,65%,100%{transform:rotate(0)}25%,40%{transform:rotate(7deg) scale(1.035)}}
+@keyframes poseokho-sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg) translateY(-5px)}}
+@keyframes poseokho-bounce{0%,55%,100%{transform:none}15%{transform:translateY(-13px) rotate(-4deg) scale(1.04)}30%{transform:translateY(0) rotate(3deg)}42%{transform:translateY(-6px)}}
+@keyframes poseokho-pulse{0%,70%,100%{transform:scale(1)}30%{transform:scale(1.055) rotate(-2deg)}}
+@media(prefers-reduced-motion:reduce){.poseokho-companion,.poseokho-companion img{animation:none!important;transform:none!important}}
+@media print{.poseokho-companion,.poseokho-companion img{animation:none!important;transform:none!important}}

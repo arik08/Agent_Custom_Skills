@@ -1,0 +1,282 @@
+{
+  "companions": [
+    {
+      "slide": 8,
+      "pose": "checklist",
+      "loaded": true,
+      "bounds": {
+        "x": 1200,
+        "y": 48.75,
+        "width": 165,
+        "height": 191.25
+      },
+      "moving": "poseokho-pulse"
+    },
+    {
+      "slide": 18,
+      "pose": "laptop",
+      "loaded": true,
+      "bounds": {
+        "x": 1200,
+        "y": 48.75,
+        "width": 165,
+        "height": 191.25
+      },
+      "moving": "poseokho-bob"
+    },
+    {
+      "slide": 19,
+      "pose": "think",
+      "loaded": true,
+      "bounds": {
+        "x": 1200,
+        "y": 48.75,
+        "width": 165,
+        "height": 191.25
+      },
+      "moving": "poseokho-tilt"
+    },
+    {
+      "slide": 27,
+      "pose": "present",
+      "loaded": true,
+      "bounds": {
+        "x": 1200,
+        "y": 48.75,
+        "width": 165,
+        "height": 191.25
+      },
+      "moving": "poseokho-sway"
+    },
+    {
+      "slide": 31,
+      "pose": "celebrate",
+      "loaded": true,
+      "bounds": {
+        "x": 1200,
+        "y": 48.75,
+        "width": 165,
+        "height": 191.25
+      },
+      "moving": "poseokho-bounce"
+    }
+  ],
+  "errors": [],
+  "reduced_motion": "none",
+  "regression": {
+    "ok": true,
+    "total": 52,
+    "failures": [],
+    "checks": [
+      {
+        "name": "31 slides",
+        "ok": true
+      },
+      {
+        "name": "next ArrowRight",
+        "ok": true
+      },
+      {
+        "name": "next ArrowDown",
+        "ok": true
+      },
+      {
+        "name": "next PageDown",
+        "ok": true
+      },
+      {
+        "name": "next  ",
+        "ok": true
+      },
+      {
+        "name": "next Enter",
+        "ok": true
+      },
+      {
+        "name": "previous ArrowLeft",
+        "ok": true
+      },
+      {
+        "name": "previous ArrowUp",
+        "ok": true
+      },
+      {
+        "name": "previous PageUp",
+        "ok": true
+      },
+      {
+        "name": "previous Backspace",
+        "ok": true
+      },
+      {
+        "name": "shift space",
+        "ok": true
+      },
+      {
+        "name": "first boundary",
+        "ok": true
+      },
+      {
+        "name": "last boundary",
+        "ok": true
+      },
+      {
+        "name": "home",
+        "ok": true
+      },
+      {
+        "name": "rapid keys and repeat",
+        "ok": true
+      },
+      {
+        "name": "backward immediate content",
+        "ok": true
+      },
+      {
+        "name": "modifier shortcuts preserved",
+        "ok": true
+      },
+      {
+        "name": "large wheel exactly one 0 -1",
+        "ok": true
+      },
+      {
+        "name": "large wheel exactly one 0 1",
+        "ok": true
+      },
+      {
+        "name": "large wheel exactly one 1 -1",
+        "ok": true
+      },
+      {
+        "name": "large wheel exactly one 1 1",
+        "ok": true
+      },
+      {
+        "name": "large wheel exactly one 2 -1",
+        "ok": true
+      },
+      {
+        "name": "large wheel exactly one 2 1",
+        "ok": true
+      },
+      {
+        "name": "small wheel accumulation below threshold",
+        "ok": true
+      },
+      {
+        "name": "small wheel threshold",
+        "ok": true
+      },
+      {
+        "name": "wheel reversal",
+        "ok": true
+      },
+      {
+        "name": "rapid wheel",
+        "ok": true
+      },
+      {
+        "name": "zoom wheel preserved",
+        "ok": true
+      },
+      {
+        "name": "all slide content within safe area",
+        "ok": true,
+        "data": []
+      },
+      {
+        "name": "input keys preserved",
+        "ok": true
+      },
+      {
+        "name": "normal values",
+        "ok": true
+      },
+      {
+        "name": "missing deadline",
+        "ok": true
+      },
+      {
+        "name": "empty input",
+        "ok": true
+      },
+      {
+        "name": "new name task and fullwidth colon",
+        "ok": true
+      },
+      {
+        "name": "unlabelled input and HTML treated as data",
+        "ok": true
+      },
+      {
+        "name": "HTML only state",
+        "ok": true
+      },
+      {
+        "name": "CSS styled without action",
+        "ok": true
+      },
+      {
+        "name": "JavaScript action",
+        "ok": true
+      },
+      {
+        "name": "revised missing policy",
+        "ok": true
+      },
+      {
+        "name": "setup html",
+        "ok": true
+      },
+      {
+        "name": "setup python",
+        "ok": true
+      },
+      {
+        "name": "setup node",
+        "ok": true
+      },
+      {
+        "name": "expanded detail stays on slide",
+        "ok": true
+      },
+      {
+        "name": "expanded detail safe area",
+        "ok": true
+      },
+      {
+        "name": "focus tooltip",
+        "ok": true
+      },
+      {
+        "name": "tooltip viewport bounds",
+        "ok": true
+      },
+      {
+        "name": "escape tooltip",
+        "ok": true
+      },
+      {
+        "name": "hover tooltip",
+        "ok": true
+      },
+      {
+        "name": "pointer can enter tooltip",
+        "ok": true
+      },
+      {
+        "name": "slide change closes tooltip",
+        "ok": true
+      },
+      {
+        "name": "no network assets",
+        "ok": true
+      },
+      {
+        "name": "progress synced",
+        "ok": true
+      }
+    ]
+  }
+}

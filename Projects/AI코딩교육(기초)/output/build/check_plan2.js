@@ -1,0 +1,33 @@
+(async()=>{
+const checks=[],failures=[];function check(name,ok,data){checks.push({name,ok:!!ok,...(data?{data}: {})});if(!ok)failures.push(name);}
+const key=(k,more={})=>document.body.dispatchEvent(new KeyboardEvent('keydown',{key:k,bubbles:true,cancelable:true,...more}));
+const wheel=(deltaY,deltaMode=0,more={})=>document.body.dispatchEvent(new WheelEvent('wheel',{deltaY,deltaMode,bubbles:true,cancelable:true,...more}));
+await document.fonts.ready;const old=deck.current;
+check('31 slides',deck.count===31);
+for(const k of ['ArrowRight','ArrowDown','PageDown',' ','Enter']){deck.go(5);key(k);check('next '+k,deck.current===6);}
+for(const k of ['ArrowLeft','ArrowUp','PageUp','Backspace']){deck.go(5);key(k);check('previous '+k,deck.current===4);}
+deck.go(5);key(' ',{shiftKey:true});check('shift space',deck.current===4);
+key('Home');key('ArrowLeft');check('first boundary',deck.current===0);key('End');key('ArrowRight');check('last boundary',deck.current===30);key('Home');check('home',deck.current===0);
+deck.go(0);for(let i=0;i<10;i++)key('ArrowRight',{repeat:i>0});check('rapid keys and repeat',deck.current===10);key('ArrowLeft');check('backward immediate content',!document.querySelector('.is-active').classList.contains('enter'));
+deck.go(5);key('ArrowRight',{ctrlKey:true});key('ArrowRight',{altKey:true});key('ArrowRight',{metaKey:true});check('modifier shortcuts preserved',deck.current===5);
+for(const mode of [0,1,2])for(const sign of [-1,1]){deck.go(10);wheel(sign*100000,mode);check('large wheel exactly one '+mode+' '+sign,deck.current===10+sign);}
+deck.go(10);wheel(1);wheel(20);wheel(20);check('small wheel accumulation below threshold',deck.current===10);wheel(25);check('small wheel threshold',deck.current===11);wheel(-100);check('wheel reversal',deck.current===10);
+deck.go(2);for(let i=0;i<7;i++)wheel(100);check('rapid wheel',deck.current===9);wheel(100,0,{ctrlKey:true});check('zoom wheel preserved',deck.current===9);
+const layout=[];for(let i=0;i<deck.count;i++){deck.go(i);const sl=document.querySelector('.is-active'),sr=sl.getBoundingClientRect(),scale=sr.width/1920;let bad=[];for(const e of sl.querySelectorAll('h1,h3,p,pre,textarea,button,.flow,.ledger,.memo,.cover-end,.codebox,details')){if(e.closest('details:not([open])')&&!e.closest('summary'))continue;const r=e.getBoundingClientRect();if(r.width&&r.height&&(r.bottom>sr.top+1020*scale||r.right>sr.right-45*scale||r.left<sr.left+45*scale))bad.push({tag:e.tagName,cls:e.className,bottom:Math.round((r.bottom-sr.top)/scale)});}if(bad.length)layout.push({slide:i+1,bad});}
+check('all slide content within safe area',!layout.length,layout);
+deck.go(17);const input=document.querySelector('#request-input');input.focus();input.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));check('input keys preserved',deck.current===17);input.blur();
+function sample(name){document.querySelector('[data-sample='+name+']').click();}
+sample('normal');check('normal values',document.querySelector('#request-result').textContent.includes('9월 30일'));
+sample('missing');check('missing deadline',document.querySelector('#request-result').textContent.includes('확인 필요'));
+sample('empty');check('empty input',document.querySelector('#request-result').children.length===0&&document.querySelector('#copy-result').disabled);
+input.value='담당자： 도윤\n할 일: 신규 발주 검토\n기한: 10월 2일';input.dispatchEvent(new Event('input',{bubbles:true}));check('new name task and fullwidth colon',document.querySelector('#request-result').textContent.includes('도윤')&&document.querySelector('#request-result').textContent.includes('신규 발주 검토'));
+input.value='<img src=x onerror=alert(1)>';input.dispatchEvent(new Event('input',{bubbles:true}));check('unlabelled input and HTML treated as data',document.querySelector('#request-result').querySelectorAll('img').length===0&&document.querySelector('#request-result').textContent.includes('확인 필요'));sample('normal');
+deck.go(7);document.querySelector('[data-layer=html]').click();check('HTML only state',!document.querySelector('#web-preview').classList.contains('styled')&&document.querySelector('#preview-done').disabled);document.querySelector('[data-layer=css]').click();check('CSS styled without action',document.querySelector('#web-preview').classList.contains('styled')&&document.querySelector('#preview-done').disabled);document.querySelector('[data-layer=js]').click();document.querySelector('#preview-done').click();check('JavaScript action',document.querySelector('#preview-state').textContent==='완료');document.querySelector('#preview-done').click();
+deck.go(18);document.querySelector('[data-revision=after]').click();check('revised missing policy',document.querySelector('#deadline-result b').textContent==='확인 필요');document.querySelector('[data-revision=before]').click();
+deck.go(22);for(const name of ['html','python','node']){document.querySelector('[data-setup='+name+']').click();check('setup '+name,document.querySelectorAll('#setup-equipment .needed').length===(name==='node'?2:1));}document.querySelector('[data-setup=html]').click();
+deck.go(28);const details=document.querySelector('details');details.open=true;check('expanded detail stays on slide',deck.current===28);const rr=details.getBoundingClientRect(),sr=details.closest('.slide').getBoundingClientRect();check('expanded detail safe area',(rr.bottom-sr.top)/(sr.width/1920)<1020);details.open=false;
+deck.go(7);const term=document.querySelector('.is-active .term');term.focus();check('focus tooltip',!document.querySelector('#concept-tip').hidden&&term.getAttribute('aria-describedby')==='concept-tip');let tr=document.querySelector('#concept-tip').getBoundingClientRect();check('tooltip viewport bounds',tr.left>=0&&tr.top>=0&&tr.right<=innerWidth&&tr.bottom<=innerHeight);key('Escape');check('escape tooltip',document.querySelector('#concept-tip').hidden);term.dispatchEvent(new PointerEvent('pointerenter',{pointerType:'mouse'}));check('hover tooltip',!document.querySelector('#concept-tip').hidden);document.querySelector('#concept-tip').dispatchEvent(new PointerEvent('pointerenter',{pointerType:'mouse'}));check('pointer can enter tooltip',!document.querySelector('#concept-tip').hidden);deck.go(8);check('slide change closes tooltip',document.querySelector('#concept-tip').hidden);term.blur();
+check('no network assets',![...document.querySelectorAll('script[src],link[rel=stylesheet],img[src]')].some(e=>/https?:/.test(e.src||e.href)));
+check('progress synced',document.querySelector('#counter').textContent.startsWith('09'));
+deck.go(old);return {ok:failures.length===0,total:checks.length,failures,checks};
+})();
