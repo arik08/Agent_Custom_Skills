@@ -1,0 +1,9 @@
+{
+  "slides_checked": 25,
+  "updated": 22,
+  "checks": [
+    "Python syntax valid",
+    "All 25 titles and leads match final HTML, metadata, and build source"
+  ],
+  "visual_check": "Blocked by in-app browser local URL security policy; wrapping and layout not verified."
+}

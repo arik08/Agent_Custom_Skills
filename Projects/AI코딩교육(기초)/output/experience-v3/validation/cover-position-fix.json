@@ -1,0 +1,10 @@
+{
+  "cause": "First visit transform animation establishes a containing block on slide-body; revisits omit enter and formerly resolve the absolute iframe against slide instead.",
+  "fix": "Explicit position:relative on cover slide-body keeps the containing block stable for initial, revisit, and reduced-motion states.",
+  "checks": [
+    "Source CSS and delivered HTML contain identical fix",
+    "Existing iframe size and offsets preserved",
+    "First-visit-only animation branch inspected"
+  ],
+  "browser": "Not verified: prior in-app browser local URL security policy rejection remains applicable."
+}

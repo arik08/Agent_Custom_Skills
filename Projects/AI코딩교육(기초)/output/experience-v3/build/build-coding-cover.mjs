@@ -1,0 +1,10 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {build} from './coding-runtime/node_modules/esbuild/lib/main.js';
+import {fileURLToPath} from 'node:url';
+const base=fileURLToPath(new URL('.',import.meta.url));
+const html=await readFile(base+'cover-diorama.html','utf8');
+const result=await build({entryPoints:[base+'coding-stage.mjs'],bundle:true,write:false,minify:true,format:'iife',legalComments:'inline'});
+let index=0;const next=html.replace(/<script>([\s\S]*?)<\/script>/g,(whole,body)=>{index++;return index===2?'<script>'+result.outputFiles[0].text.replaceAll('</script','<\\/script')+'</script>':whole;});
+if(index!==3)throw Error('Expected assets, application and cover lifecycle scripts');
+await writeFile(base+'cover-diorama.html',next);
+console.log('Built coding cover');

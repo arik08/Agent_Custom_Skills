@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "name": "initial full addition index",
+      "lines": 11,
+      "ok": true
+    },
+    {
+      "name": "initial full addition style",
+      "lines": 12,
+      "ok": true
+    },
+    {
+      "name": "initial full addition game",
+      "lines": 15,
+      "ok": true
+    },
+    {
+      "name": "all upgrades reconstruct old and new file sources",
+      "ok": true
+    },
+    {
+      "name": "empty unchanged deletion duplicate and arbitrary lines",
+      "ok": true
+    },
+    {
+      "name": "renderer selects per-file computed diff",
+      "ok": true
+    },
+    {
+      "name": "sequential requests retain HTML CSS diffs; new build clears old records",
+      "ok": true
+    }
+  ],
+  "browser": "Not verified: local URL blocked by in-app browser policy"
+}

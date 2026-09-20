@@ -6,11 +6,24 @@ let current=-1, wheelSum=0, lastWheel=0, pending=[], visited=new Set();
 function later(fn,ms){const id=setTimeout(fn,reduced.matches?0:ms);pending.push(id);return id;}
 function resize(){const scale=Math.min(innerWidth/1920,innerHeight/1080);document.documentElement.style.setProperty('--scale',scale);stage.style.transform=`translate(-50%,-50%) scale(${scale})`;closeTerm();}
 function parseHash(){const m=/^#\/(\d+)$/.exec(location.hash);return m?Math.max(0,Math.min(slides.length-1,Number(m[1])-1)):0;}
+function setHighlight(slide,index){
+ const group=slide.querySelector('[data-step-highlight]');if(!group)return;
+ const cards=[...group.children];
+ const selected=Math.max(0,Math.min(cards.length-1,index));
+ group.dataset.highlightIndex=String(selected);
+ cards.forEach((card,i)=>{card.classList.toggle('is-current',i===selected);if(i===selected)card.setAttribute('aria-current','step');else card.removeAttribute('aria-current');});
+}
+function move(direction){
+ const group=slides[current]?.querySelector('[data-step-highlight]');
+ if(group){const next=Number(group.dataset.highlightIndex||0)+direction;if(next>=0&&next<group.children.length){setHighlight(slides[current],next);return;}}
+ const previous=current;go(current+direction);
+ if(current!==previous&&direction<0){const group=slides[current].querySelector('[data-step-highlight]');if(group)setHighlight(slides[current],group.children.length-1);}
+}
 function go(index){
  index=Math.max(0,Math.min(slides.length-1,index)); if(index===current)return;
  pending.forEach(clearTimeout);pending=[];closeTerm();
  if(current>=0&&slides[current].contains(document.activeElement))document.activeElement.blur();
- current=index;wheelSum=0;
+ current=index;wheelSum=0;setHighlight(slides[index],0);
  slides.forEach((s,i)=>{s.classList.toggle('is-active',i===index);s.classList.remove('enter');s.inert=i!==index;s.setAttribute('aria-hidden',String(i!==index));});
  if(!visited.has(index)&&!reduced.matches)slides[index].classList.add('enter');visited.add(index);
  $('#progress-fill').style.width=((index+1)/slides.length*100)+'%';
@@ -36,18 +49,23 @@ addEventListener('keydown',e=>{
  if(['ArrowRight','ArrowDown','PageDown','Enter'].includes(e.key)||(e.key===' '&&!e.shiftKey))dest=current+1;
  if(['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(e.key)||(e.key===' '&&e.shiftKey))dest=current-1;
  if(e.key==='Home'){visited.delete(0);dest=0;}if(e.key==='End')dest=slides.length-1;
- if(dest!==undefined){e.preventDefault();go(dest);}
+ if(dest!==undefined){e.preventDefault();if(e.key==='Home'||e.key==='End')go(dest);else move(Math.sign(dest-current));}
 });
 addEventListener('wheel',e=>{
- if(e.ctrlKey||e.altKey||e.metaKey||e.target.closest('input,textarea,select,#term-panel,[data-scroll]'))return;
+ if(e.ctrlKey||e.altKey||e.metaKey||e.target.closest('input,select,#term-panel'))return;
+ // Reserve the wheel only for regions with actual vertical overflow.
+ for(let node=e.target;node&&node!==stage;node=node.parentElement){
+  const overflow=getComputedStyle(node).overflowY;
+  if((overflow==='auto'||overflow==='scroll')&&node.scrollHeight>node.clientHeight+1){wheelSum=0;return;}
+ }
  if(!e.deltaY)return;e.preventDefault();
  const d=e.deltaY*(e.deltaMode===1?20:e.deltaMode===2?innerHeight:1),now=performance.now();
  if(now-lastWheel>220||Math.sign(d)!==Math.sign(wheelSum))wheelSum=0;
- lastWheel=now;wheelSum+=d;if(Math.abs(wheelSum)>=55){const step=Math.sign(wheelSum);wheelSum=0;go(current+step);}
+ lastWheel=now;wheelSum+=d;if(Math.abs(wheelSum)>=55){const step=Math.sign(wheelSum);wheelSum=0;move(step);}
 },{passive:false});
 let touchStart=null;
 stage.addEventListener('touchstart',e=>{if(e.target.closest('button,input,textarea,select'))return;touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
-stage.addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy))go(current+(dx<0?1:-1));},{passive:true});
+stage.addEventListener('touchend',e=>{if(!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy))move(dx<0?1:-1);},{passive:true});
 
 // Give the first occurrence of additional beginner vocabulary a detailed explanation.
 for(const slide of slides){

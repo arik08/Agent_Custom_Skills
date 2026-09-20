@@ -24,120 +24,128 @@ def item(title,body):
 def btn(text, attrs='', cls=''):
     return f'<button class="action {cls}" {attrs}>{text}</button>'
 
-add('체험', '말로 만들고,<br><em>알고 다듬는 코딩</em>', 'AI 기반 Vibe Coding · 입문 워크숍',
-    cols('<p class="hero-copy">처음에는 만드는 감각을.<br>다음에는 구조와 보는 안목을.<br>마지막에는 직접 만드는 경험을.</p><p class="date">9월 29일 · 16:00–17:00</p>',art('workshop','사람이 목적을 정하고 AI와 함께 게임 화면을 만드는 장면')),
+add('체험', '아이디어에서 실행까지,<br><em>AI와 함께하는 코딩</em>', 'AI 기반 Vibe Coding · 입문 워크숍',
+    cols('<p class="hero-copy">작은 프로그램 하나를<br>직접 만들고 고쳐보며<br>코딩의 기본을 익힙니다.</p><p class="date">9월 29일 · 16:00–17:00</p><p class="presenter">경영기획본부 경영기획DX추진TF팀 오명철 과장</p>','<iframe id="cover-diorama" title="사람의 요청에 따라 AI가 코드를 수정하고 실행하는 3D 코딩 작업실" tabindex="-1" sandbox="allow-scripts"></iframe>'),
     '누구나 시작할 수 있습니다. 지식과 안목이 더 좋은 결과를 만듭니다.', 'cover')
 
 def ide(page):
     template=(ROOT/'build/ide-workshop.html').read_text(encoding='utf-8')
+    icon_dir=ROOT.parents[1]/'input/vscode-icons'
+    template=template.replace('__CODEX_ICON__',(icon_dir/'codex-blossom.svg').read_text(encoding='utf-8'))
+    logo=base64.b64encode((icon_dir/'code-stable.png').read_bytes()).decode()
+    template=template.replace('__VSCODE_LOGO__','<img src="data:image/png;base64,'+logo+'" alt="">')
+    for name in ['files','search','source-control','debug-alt','extensions','chevron-down']:
+        svg=(icon_dir/(name+'.svg')).read_text(encoding='utf-8')
+        template=template.replace('__ICON_'+name+'__',svg)
     initial=page==2
     values={
         '__PAGE__':str(page),
         '__CHAT_TITLE__':'테트리스 첫 버전' if initial else '같은 게임을 하나씩 개선합니다',
         '__CHAT_INTRO__':'먼저 돌아가는 게임을 만듭니다. 자동 플레이는 처음부터 빠르게 실행합니다.' if initial else '색과 화면, 점수판, 착지 효과를 차례로 요청해 보세요. 게임판은 이어집니다.',
         '__CONTEXT__':'tetris-workshop/' if initial else '@tetris.js · @style.css',
-        '__PROMPT__':'브라우저에서 실행하는 테트리스를 만들어줘. 처음에는 단순하게 만들고, 자동 플레이를 처음부터 빠르게 넣어줘.' if initial else '블록마다 색을 다르게 하고, 화면을 게임답게 꾸며줘.',
-        '__SUGGESTIONS__':'' if initial else '<div class="codex-suggestions"><button data-preset="color">① 블록 색과 화면 디자인</button><button data-preset="hud">② 큰 점수판과 다음 블록</button><button data-preset="effects">③ 착지 위치와 줄 삭제 효과</button></div>'
+        '__PROMPT__':'',
+        '__SUGGESTIONS__':'<div class="codex-suggestions"><button data-preset="build">테트리스 첫 버전 만들기</button></div>' if initial else '<div class="codex-suggestions"><button data-preset="color">① 블록 색과 화면 디자인</button><button data-preset="hud">② 큰 점수판과 다음 블록</button><button data-preset="effects">③ 착지 위치와 줄 삭제 효과</button></div>'
     }
     for key,value in values.items(): template=template.replace(key,value)
     return '\n'.join(line.rstrip() for line in template.splitlines())
 
-add('체험','Codex에 테트리스를 만들어 달라고 해봅니다','VS Code에서 요청하고, 생긴 파일과 실행 결과를 함께 확인하는 흐름입니다.',
+add('체험','AI 에이전트에 요청해 테트리스 만들기','게임 만들기를 요청하고, 에이전트가 만든 파일과 실행된 게임을 확인합니다.',
     ide(2), '첫 버전은 투박해도 됩니다. 자동으로 움직이는 결과를 보고 다음 요청을 정합니다.', 'ide-slide')
 
-add('체험','같은 게임도, 요청할수록 달라집니다','화면 디자인, 점수판, 착지 효과를 하나씩 더하며 전후 차이를 확인합니다.',
-    ide(3), '사람이 개선 방향을 정하면 Codex가 파일을 수정합니다. 실행 결과를 보며 다시 판단합니다.', 'ide-slide')
+add('체험','추가 요청으로 테트리스 기능 개선하기','화면 디자인, 점수판, 착지 효과를 차례로 요청하고 게임이 어떻게 달라지는지 비교합니다.',
+    ide(3), '사람이 개선 방향을 정하면 AI 에이전트가 파일을 수정합니다. 실행 결과를 보며 다시 판단합니다.', 'ide-slide')
 
-add('사람의 역할','사람의 판단이 작업의 방향을 정합니다','방금 사람이 한 일은 코드를 쓰는 것보다, 원하는 경험을 설명하는 일이었습니다.',
-    '<div class="roles"><div><span class="role-number">01</span><h3>목적을 정합니다</h3><p>“쉽게 즐길 수 있는 게임”<br>무엇을 만들지 결정합니다.</p></div><div class="role-ai"><span class="role-number">02</span><h3>AI가 구현합니다</h3><p>허용된 도구로 파일을 만들고<br>수정하며 실행을 돕습니다.</p></div><div><span class="role-number">03</span><h3>결과를 판단합니다</h3><p>“빠르다”, “잘 안 보인다”<br>사용 경험과 정답을 확인합니다.</p></div></div><div class="wide-quote">요청하는 것도 사람의 일.<br><em>무엇을 고칠지 알아보는 것도 사람의 일.</em></div>',
-    'AI의 답변이 실제 파일 작업으로 이어지는 이유도 살펴봅니다.')
+add('사람의 역할','AI가 코딩할 때, 사람은 무엇을 할까요?','사람은 만들 목적을 정하고, AI가 구현한 결과를 보며 다음에 고칠 부분을 판단합니다.',
+    '<div class="roles" data-step-highlight><div class="is-current" aria-current="step"><span class="role-number">01</span><h3>목적 정하기</h3><p>“쉽게 즐길 수 있는 게임”<br>무엇을 만들지 결정합니다.</p></div><div><span class="role-number">02</span><h3>AI의 구현</h3><p>허용된 도구로 파일을 만들고<br>수정하며 실행을 돕습니다.</p></div><div><span class="role-number">03</span><h3>결과 판단하기</h3><p>“빠르다”, “잘 안 보인다”<br>사용 경험과 정답을 확인합니다.</p></div></div><div class="wide-quote"><strong>AI가 개발을 맡으면, 사람은 그 개발을 이끄는 리더가 됩니다.</strong><br><span class="leader-description">무엇을 왜 만들지 설명하고, 우선순위를 정하고,<br>결과가 목적에 맞는지 확인하며 다음 개선을 이끕니다.</span></div>',
+    '이제 같은 기능을 두 방식으로 만들어 보겠습니다.', 'roles-slide')
+slides[-1]['body'] = slides[-1]['body'].replace('<div class="wide-quote">', '<div class="roles-bottom"><div class="wide-quote">') + art('workshop','사람이 목적을 정하고 AI와 함께 게임 화면을 만드는 장면','roles-art') + '</div>'
 
-add('사람의 역할','코드 답변을 받는 것과, 파일이 바뀌는 것','같은 수정 요청을 두 방식으로 시연합니다. 답변을 실제 결과로 옮기는 과정을 비교해 보세요.',
+add('사람의 역할','일반 챗봇과 코딩 에이전트, 무엇이 다를까?','같은 기능을 요청해 봅니다. 일반 챗봇의 코드는 사람이 옮겨 적용하고, 코딩 에이전트는 파일을 직접 수정하고 실행합니다.',
     (ROOT/'build/handoff-demo.html').read_text(encoding='utf-8'),
     '', 'handoff-slide')
 
-add('사람의 역할','지식과 안목이 결과를 바꿉니다','자연어는 전달 방식입니다. 무엇을 요구하고 어떤 결과를 받아들일지는 실력입니다.',
+add('사람의 역할','코딩을 AI에 맡겨도 기초 지식이 필요한 이유','화면과 처리 구조를 알면 수정할 부분을 구체적으로 요청하고, 결과가 맞는지 판단할 수 있습니다.',
     cols(art('judgment','두 화면의 가독성과 구성을 비교해 개선점을 찾는 사람'),
-         item('알면 더 구체적으로 요구합니다','화면과 처리의 역할을 이해하면, 어디를 왜 바꿀지 설명할 수 있습니다.')+item('보이면 더 나은 결과를 고릅니다',term('GUI')+'의 정보 배치, 가독성, 조작 흐름을 구별할수록 개선 방향이 분명해집니다.')+item('경험이 쌓이면 문제를 좁힙니다','원하는 결과가 나오지 않을 때 무엇을 확인할지 판단할 수 있습니다.')),
+         item('이해를 바탕으로 한 구체적인 요구','화면과 처리의 역할을 이해하면, 어디를 왜 바꿀지 설명할 수 있습니다.')+item('안목을 바탕으로 한 더 나은 선택',term('GUI')+'의 정보 배치, 가독성, 조작 흐름을 구별할수록 개선 방향이 분명해집니다.')+item('경험을 바탕으로 한 문제 진단','원하는 결과가 나오지 않을 때 무엇을 확인할지 판단할 수 있습니다.')),
     '그래서 기초 개념을 배웁니다. 코드를 외우기보다, 작업을 이해하기 위해서입니다.')
 
-add('구조 이해','작업 공간에는 무엇이 있을까요?','AI가 만든 결과는 대화창 밖의 파일에 남습니다.',
+add('구조 이해','AI가 만든 파일은 어디에 있고, 무슨 역할일까요?','프로젝트 폴더에서 화면·디자인·동작을 담은 파일과 작업 지침·실행 안내를 살펴봅니다.',
     '<div class="workspace"><div class="file-list"><span class="label">tetris-workshop/</span>'+btn('index.html','data-file="html" aria-pressed="true"')+btn('style.css','data-file="css"')+btn('game.js','data-file="js"')+btn('AGENTS.md','data-file="agents"')+btn('README.md','data-file="readme"')+'</div><div class="file-preview"><span id="file-label" class="label">index.html · 화면 구조</span><pre id="file-code"></pre><p id="file-desc"></p></div></div><p class="statement">'+term('프로젝트 폴더')+'는 코드와 자료를 함께 두는 작업 공간입니다.<br>처음에는 여러 역할을 HTML 파일 하나에 담을 수도 있습니다.</p>',
     '파일을 만들었으니, 이제 실행해서 결과를 봅니다.')
 
-add('구조 이해','파일은 실행해야 결과가 됩니다','어떤 파일을 만들었는지에 따라 실행 방법도 달라집니다.',
+add('구조 이해','HTML과 Python 파일은 어떻게 실행할까요?','HTML은 브라우저에서 열고, Python 프로그램은 실행 환경에서 명령으로 실행하는 과정을 비교합니다.',
     cols('<div class="tabs">'+btn('HTML 게임','data-run="html" aria-pressed="true"')+btn('Python 프로그램','data-run="python"')+'</div><div class="terminal"><span class="label" id="run-label">브라우저에서 열기</span><pre id="run-command">index.html</pre><div id="run-output">HTML 파일을 브라우저로 열면 화면을 볼 수 있습니다.</div></div>'+btn('실행 과정 보기','id="run-demo"','primary')+'<p class="fine">설명용 실행 재현입니다. 실제 셸 명령은 실행하지 않습니다.</p>',
-         item(term('터미널'),'명령을 입력하고 결과를 보는 창입니다. 에이전트도 이 창을 통해 개발도구를 실행할 수 있습니다.')+item(term('Python'),'Python으로 쓴 프로그램을 실행하려면 Python 실행 환경이 필요합니다.')+item('모르는 실행 방법은 그대로 질문합니다','“이 파일을 실행하려면 무엇이 필요한지 설명하고 실행을 도와줘.”')),
+         item(term('터미널'),'명령을 입력하고 결과를 보는 창입니다. 에이전트도 이 창을 통해 개발도구를 실행할 수 있습니다.')+item(term('Python'),'Python으로 쓴 프로그램을 실행하려면 Python 실행 환경이 필요합니다.')+item('모르는 실행 방법은 그대로 질문','“이 파일을 실행하려면 무엇이 필요한지 설명하고 실행을 도와줘.”')),
     '실행된 화면에도 구조, 모양, 동작이라는 서로 다른 역할이 있습니다.')
 
-add('구조 이해','화면의 구조, 모양, 동작','하나씩 더하면 같은 화면이 어떻게 달라지는지 보입니다.',
+add('구조 이해','HTML·CSS·JavaScript는 각각 무엇을 할까요?','같은 화면에 구조, 디자인, 클릭 동작을 하나씩 더하며 세 가지 역할을 비교합니다.',
     cols('<div class="tabs">'+btn('HTML','data-layer="html"')+btn('+ CSS','data-layer="css"')+btn('+ JavaScript','data-layer="js" aria-pressed="true"')+'</div><div id="layer-preview" class="styled"><span>오늘의 작업</span><h3>첫 프로그램 확인</h3><p>만든 결과를 실행해 보고 확인합니다.</p><div class="task-status">상태 <strong id="layer-state">확인 전</strong></div><button id="layer-action">확인 완료</button></div><p id="layer-caption" class="fine">JavaScript가 버튼의 입력을 받아 상태를 바꿉니다.</p>',
-         item(term('HTML'),'제목, 입력란, 버튼 등 화면에 무엇이 있는지 정합니다.')+item(term('CSS'),'글자 크기, 색, 간격과 배치 등 어떻게 보일지 정합니다.')+item(term('JavaScript'),'클릭이나 입력에 반응하고 화면과 데이터를 바꿉니다.')),
+         item(term('HTML'),'제목, 입력란, 버튼 등 화면의 구성 요소')+item(term('CSS'),'글자 크기, 색, 간격과 배치 등 화면의 표현 방식')+item(term('JavaScript'),'클릭·입력에 따른 화면과 데이터의 변화')),
     '화면에서 처리할 수도 있고, 서버에 일을 요청할 수도 있습니다.')
 
-add('구조 이해','화면 뒤의 처리와 저장','화면은 보여주고, 처리 부분은 기준을 적용하고, 저장소는 결과를 보관합니다.',
+add('구조 이해','프론트엔드·백엔드·데이터베이스의 역할','사용자가 보는 화면, 서버의 요청 처리, 데이터 저장이 각각 어떤 일을 맡는지 살펴봅니다.',
     '<div class="architecture-art" style="--architecture:url(@@architecture@@)"><div class="arch-part arch-front" role="img" aria-label="입력란과 버튼이 있는 브라우저 화면"></div><div class="arch-part arch-back" role="img" aria-label="규칙을 확인하고 요청을 처리하는 부분"></div><div class="arch-part arch-db" role="img" aria-label="자료를 보관하는 저장소"></div></div><div class="architecture-labels"><div><h3>'+term('프론트엔드')+'</h3><p>사용자가 보고 조작하는 부분</p></div><div><h3>'+term('백엔드')+'</h3><p>서버에서 요청을 처리하는 부분</p></div><div><h3>'+term('데이터베이스')+'</h3><p>데이터를 저장하고 찾아 쓰는 부분</p></div></div><div class="callout">앞에서 본 작은 게임은 브라우저 안에서 실행됩니다.<br>별도의 서버와 데이터베이스가 모든 프로그램에 필요한 것은 아닙니다.</div>',
     '서버가 있는 경우에는 요청과 결과가 어떻게 오갈까요?')
 
-add('구조 이해','한 번의 입력이 지나가는 길','같은 점수 입력도, 처리 위치에 따라 경로가 달라집니다.',
+add('구조 이해','브라우저에서 계산할 때와 서버에 요청할 때','같은 점수 입력을 두 방식으로 처리하며, 입력부터 결과 표시까지의 경로를 비교합니다.',
     '<div class="tabs">'+btn('브라우저 안에서 계산','data-route="local" aria-pressed="true"')+btn('서버에 처리 요청','data-route="server"')+'</div><div class="route" id="route"><div data-node="input"><b>입력</b><span>점수 85</span></div><i>→</i><div data-node="process"><b id="process-label">브라우저 계산</b><span>80점 이상인가?</span></div><i>→</i><div data-node="result"><b>결과</b><span>기준 충족</span></div></div><div class="route-caption"><p id="route-desc">작은 순위 도구는 JavaScript로 브라우저 안에서 계산할 수 있습니다.</p>'+btn('입력 보내기','id="route-play"','primary')+'</div><div class="callout">'+term('API')+'는 프로그램이 정해진 방식으로 요청하고 결과를 받는 접점입니다.<br>서버에 맡기면 연결 상태와 오류 응답도 함께 다뤄야 합니다.</div>',
     '구조를 알았다면, 이제 결과의 품질을 보는 기준을 살펴봅니다.')
 
-add('지식과 안목','둘 다 작동합니다. 어느 쪽이 쓰기 편한가요?','좋은 GUI를 보는 안목은 예쁜 색을 고르는 것보다 넓습니다.',
-    '<div class="gui-lab"><div class="gui-controls"><label><input type="checkbox" id="gui-order"> 중요한 정보를 먼저</label><label><input type="checkbox" id="gui-spacing"> 읽기 편한 간격</label><label><input type="checkbox" id="gui-action"> 분명한 버튼 이름</label><p>같은 정보와 기능을 유지하면서<br>사용 경험을 바꿔 봅니다.</p></div><div id="gui-preview" class="rough"><div class="gui-toolbar"><span>후보 검토</span><button id="gui-button">OK</button></div><div class="gui-content"><p class="gui-date">마지막 변경 09.29</p><h3>검토할 후보 3건</h3><p class="gui-key">기준 점수 80점 · 2건 충족</p><div class="mini-row">후보 A <b>92</b><span>충족</span></div><div class="mini-row">후보 B <b>85</b><span>충족</span></div><div class="mini-row">후보 C <b>74</b><span>미달</span></div><div id="gui-feedback" aria-live="polite"></div></div></div></div>',
+add('지식과 안목','정보 배치와 버튼 이름으로 화면 개선하기','같은 기능도 정보 순서, 간격, 버튼 이름을 바꾸면 얼마나 쓰기 편해지는지 비교합니다.',
+    '<div class="gui-lab"><div class="gui-controls"><label><input type="checkbox" id="gui-order"> 중요한 정보를 먼저</label><label><input type="checkbox" id="gui-spacing"> 읽기 편한 간격</label><label><input type="checkbox" id="gui-action"> 분명한 버튼 이름</label><p>같은 정보와 기능,<br>달라지는 사용 경험</p></div><div id="gui-preview" class="rough"><div class="gui-toolbar"><span>후보 검토</span><button id="gui-button">OK</button></div><div class="gui-content"><p class="gui-date">마지막 변경 09.29</p><h3>검토할 후보 3건</h3><p class="gui-key">기준 점수 80점 · 2건 충족</p><div class="mini-row">후보 A <b>92</b><span>충족</span></div><div class="mini-row">후보 B <b>85</b><span>충족</span></div><div class="mini-row">후보 C <b>74</b><span>미달</span></div><div id="gui-feedback" aria-live="polite"></div></div></div></div>',
     '“더 예쁘게”보다 “무엇을 먼저 보고, 어떤 행동을 하게 할지”가 구체적인 기준입니다.')
 
-add('지식과 안목','그럴듯한 결과도 틀릴 수 있습니다','화면이 정상이어도, 처리 기준이 빠졌을 수 있습니다.',
+add('지식과 안목','정상 입력만으로는 오류를 찾을 수 없습니다','85점뿐 아니라 경계값 80점, 빈 입력, 잘못된 값을 넣어 처리 기준이 맞는지 확인합니다.',
     cols('<div class="rule-input"><span class="label">업무 기준 · 80점 이상이면 충족</span><label>검토 점수<input id="rule-score" type="text" inputmode="decimal" value="85"></label><div class="tabs">'+btn('보통 값 85','data-rule="85"')+btn('경계값 80','data-rule="80"')+btn('입력 없음','data-rule=""')+btn('잘못된 값','data-rule="abc"')+'</div><label class="switch"><input id="rule-fix" type="checkbox"> 누락·경계 조건까지 수정</label></div>',
          '<div id="rule-result" class="result-panel"><span class="label">프로그램 결과</span><strong id="rule-actual">충족</strong><p id="rule-expected">기대 결과: 충족</p><p id="rule-note">이 입력에서는 맞습니다. 다른 조건도 확인해야 합니다.</p></div>')+'<p class="fine">차이를 보여주기 위해 첫 버전에는 의도적으로 잘못된 비교와 누락 처리를 넣었습니다.</p>',
     '사람이 업무 기준을 알고 있어야, 빠진 조건도 찾아낼 수 있습니다.')
 
-add('지식과 안목','같은 “고쳐줘”에도 관찰의 깊이가 다릅니다','알고 보는 사람은 문제를 더 구체적으로 설명할 수 있습니다.',
+add('지식과 안목','막연한 “고쳐줘”를 구체적인 수정 요청으로','화면·처리·구조의 문제를 관찰하고, 무엇을 어떻게 바꿀지 담은 요청과 비교합니다.',
     '<div class="lens-tabs">'+btn('화면을 보는 눈','data-lens="gui" aria-pressed="true"')+btn('처리를 이해하는 지식','data-lens="logic"')+btn('구조를 이해하는 지식','data-lens="system"')+'</div><div class="request-comparison"><div><span class="label">막연한 요청</span><blockquote id="vague-request">화면을 더 예쁘게 해줘.</blockquote></div><div><span class="label">관찰이 담긴 요청</span><blockquote id="precise-request">검토할 건수를 먼저 보여주고,<br>주요 버튼의 이름을 ‘검토 시작’으로 바꿔줘.</blockquote></div></div><p id="lens-reason" class="statement">무엇이 불편한지 볼 수 있으면, 원하는 변화도 구체적으로 말할 수 있습니다.</p>',
     '더 잘 만드는 방법을 배우는 이유는, 좋은 요구와 판단을 하기 위해서입니다.')
 
-add('지식과 안목','기준과 변경을 다음 작업에도 이어갑니다','대화에서 합의한 기준을 남기고, 확인한 변경을 기록합니다.',
-    cols('<span class="label">'+term('AGENTS.md')+' · 작업 기준</span><div class="paper compact"><p>화면은 한국어로 작성합니다.</p><p>입력이 없으면 확인을 요청합니다.</p><p>수정 후 정상·경계·누락 입력을 확인합니다.</p></div><p class="fine">지원하는 에이전트가 읽는 지침 파일입니다.<br>지침을 적어도 준수 여부는 결과로 확인합니다.</p>',
+add('지식과 안목','AGENTS.md로 기준을 남기고, Git으로 변경 기록하기','에이전트가 참고할 작업 규칙과 파일의 수정 이력을 살펴보고, 두 기록의 역할을 구분합니다.',
+    cols('<span class="label">'+term('AGENTS.md')+' · 작업 기준</span><div class="paper compact"><p>화면은 한국어로 작성</p><p>입력이 없으면 확인 요청</p><p>수정 후 정상·경계·누락 입력 확인</p></div><p class="fine">지원하는 에이전트가 읽는 지침 파일입니다.<br>지침을 적어도 준수 여부는 결과로 확인합니다.</p>',
          '<span class="label">'+term('Git')+' · 변경 이력</span><div class="versions">'+btn('01 첫 화면','data-version="0"')+btn('02 처리 수정','data-version="1"')+btn('03 화면 개선','data-version="2" aria-pressed="true"')+'</div><div class="version-preview"><strong id="version-title">화면 개선</strong><p id="version-body">주요 결과를 먼저 보여주고 버튼 이름을 정리했습니다.</p></div><p class="fine">버튼은 저장된 상태를 비교하는 재현입니다.<br>실제 저장소의 이력을 바꾸지는 않습니다.</p>'),
     '이제 이런 판단을 실제 제작 과정에 써보겠습니다.')
 
-add('실제 제작','이제 실제 에이전트에 요청합니다','10분 제작 · 후보 이름과 점수를 넣으면 순위를 보여주는 작은 도구',
+add('실제 제작','실습: AI 에이전트와 점수 순위 도구 만들기','10분 동안 이름과 점수를 입력받는 도구를 만들고, 실행·확인·수정까지 해봅니다.',
     cols('<div class="prompt-box"><span class="label">첫 요청</span><p id="live-prompt">이름과 점수를 한 줄에 하나씩 입력하면 높은 점수순으로 정리하는 도구를 만들어줘. 브라우저에서 바로 여는 HTML 파일 하나로 만들고, 한국어로 보여줘. 먼저 입력과 결과가 보이는 간단한 버전을 만들어줘.</p>'+btn('요청문 복사','data-copy="live-prompt"')+'<span class="copy-status" aria-live="polite"></span></div>',
          '<div class="timer"><span class="label">실제 제작 시간</span><strong id="timer-value">10:00</strong><div>'+btn('시작','id="timer-start"','primary')+btn('초기화','id="timer-reset"')+'</div></div><div class="time-plan"><span>1분 · 목적</span><span>4분 · 제작</span><span>2분 · 확인</span><span>2분 · 수정</span><span>1분 · 재확인</span></div>'),
     '여기서는 실제 사용 환경으로 전환합니다. 다음 장에는 진행을 이어갈 수 있는 준비본이 있습니다.')
 
-add('실제 제작','첫 결과를 직접 확인합니다','준비된 첫 버전 · 외부 AI 없이 브라우저 안에서 정렬하는 도구',
+add('실제 제작','점수 순위 도구에 여러 입력 넣어보기','준비된 첫 버전에 정상·동점·점수 누락·빈 입력을 넣고, 순위와 오류 안내를 확인합니다.',
     '<div class="rank-lab"><div><label for="rank-input">이름, 점수 · 한 줄에 한 명</label><textarea id="rank-input" spellcheck="false">포석호, 85\n하늘, 92\n바다, 74</textarea><div class="tabs">'+btn('정상 입력','data-rank-sample="normal"')+btn('같은 점수','data-rank-sample="tie"')+btn('점수 누락','data-rank-sample="missing"')+btn('빈 입력','data-rank-sample="empty"')+'</div><p class="fine">실제 생성이 지연되면 준비본임을 밝히고 이어갑니다.<br>입력한 자료는 외부로 전송하지 않습니다.</p></div><div class="rank-results"><div class="window-bar"><span>순위 결과</span><span id="rank-count">3명</span></div><div id="rank-errors" aria-live="polite"></div><ol id="rank-output"></ol></div></div>',
     '보기 좋게 정렬됐습니다. 같은 점수와 빠진 값은 어떻게 다뤄야 할까요?')
 
-add('실제 제작','수정할 기준을 말하고 다시 확인합니다','실제 에이전트에 수정 요청을 보낸 뒤, 처음 입력과 예외 입력을 함께 확인합니다.',
+add('실제 제작','동점·누락 처리 요청하고 수정 결과 확인하기','실제 에이전트에 처리 기준을 전달합니다. 수정 후 정상·동점·누락·범위 밖 입력으로 다시 확인합니다.',
     cols('<div class="prompt-box"><span class="label">추가 요청</span><p id="fix-prompt">같은 점수는 공동 순위로 표시해줘. 1위가 두 명이면 다음은 3위야. 점수가 비었거나 숫자가 아니거나 0~100 범위를 벗어나면 해당 줄을 알려줘. 80점 이상을 강조하고, 이름과 점수가 먼저 보이게 화면을 정리해줘. 정상·동점·누락 입력을 다시 확인해줘.</p>'+btn('수정 요청 복사','data-copy="fix-prompt"')+'<span class="copy-status" aria-live="polite"></span></div>',
          '<div class="test-select">'+btn('정상','data-test="normal" aria-pressed="true"')+btn('동점','data-test="tie"')+btn('누락','data-test="missing"')+btn('범위 밖','data-test="range"')+'</div><div class="test-result" id="final-test"></div><p class="fine">오른쪽은 수정 기준을 반영한 준비본입니다.<br>실제 생성 결과도 같은 입력으로 별도 확인합니다.</p>'),
     'AI로 만들었지만, 이 정렬 도구가 실행될 때 AI를 부르는 것은 아닙니다.')
 
-add('AI 연결','AI로 제작하기와 AI 기능 넣기','AI가 코드를 작성했는지와 프로그램이 AI를 호출하는지는 서로 다른 질문입니다.',
+add('AI 연결','AI로 만든 프로그램과 AI를 호출하는 프로그램','점수 정렬과 문장 분류를 비교하며, 제작할 때 AI를 쓰는 것과 실행 중 AI를 쓰는 것을 구분합니다.',
     '<div class="compare"><div class="paper"><span class="label">AI로 만든 프로그램</span><h3>점수 정렬</h3><div class="simple-flow"><b>85, 92, 74</b><span>정해진 코드로 계산</span><b>92, 85, 74</b></div><p>실행할 때 AI 호출 없이 동작합니다.<br>앞에서 만든 도구가 여기에 해당합니다.</p></div><div class="paper blue-paper"><span class="label">실행 중 AI를 사용하는 프로그램</span><h3>문장 분류</h3><div class="simple-flow"><b>“접속이 자꾸 끊겨요.”</b><span>AI 서비스에 분류 요청</span><b>접속 문제</b></div><p>AI의 결과를 받아 화면에 활용합니다.<br>분류가 맞는지 확인할 기준도 필요합니다.</p></div></div>',
     '프로그램 안에서 AI 기능을 쓰려면 서비스와 연결해야 합니다.')
 
-add('AI 연결','AI 요청이 지나가는 경로','P-GPT를 연결하는 경우의 개념도입니다. 실제 주소와 지원 형식은 사내 안내로 확인합니다.',
+add('AI 연결','프로그램에서 P-GPT에 요청을 보내는 과정','화면 → 백엔드 → P-GPT의 요청 흐름과 연결 실패를 재현합니다. 실제 API를 호출하지는 않습니다.',
     '<div class="api-lab"><div class="api-input"><label for="api-text">분류할 문장</label><input id="api-text" value="접속이 자꾸 끊겨요."><div class="tabs">'+btn('정상 응답','data-api-mode="ok" aria-pressed="true"')+btn('연결 실패','data-api-mode="error"')+'</div>'+btn('요청 흐름 보기','id="api-send"','primary')+'<p class="fine">미리 정한 규칙으로 응답을 재현합니다.<br>실제 P-GPT 호출이나 AI 분류가 아닙니다.</p></div><div class="api-route"><div id="api-screen"><span>화면</span><p>사용자 입력</p></div><i>↓</i><div id="api-server"><span>백엔드</span><p>'+term('API 키')+'는 서버 측에서 사용</p></div><i>↓</i><div id="api-service"><span>P-GPT API</span><p id="api-result">아직 요청하지 않았습니다.</p></div></div></div>',
     '연결 방식뿐 아니라, AI가 틀리거나 응답하지 않을 때도 생각해야 합니다.')
 
-add('AI 연결','연결 전에 확인할 내용','개념을 이해한 다음, 실제 사용 환경에 맞는 정보를 확인합니다.',
-    '<div class="connection-grid"><div><span class="large-index">01</span><h3>사용 가능한 방식</h3><p>사내 신청 경로와 사용 권한,<br>호출 주소·요청 형식을 확인합니다.</p></div><div><span class="large-index">02</span><h3>키와 입력 자료</h3><p>키를 공유 화면이나 코드에 노출하지 않고,<br>입력 가능한 자료 범위를 확인합니다.</p></div><div><span class="large-index">03</span><h3>결과와 실패 처리</h3><p>AI 응답이 틀리거나 연결이 끊겼을 때<br>사용자에게 무엇을 보여줄지 정합니다.</p></div></div><div class="callout">'+term('환경변수')+'로 실행 설정을 분리할 수 있습니다.<br>환경변수 자체가 키를 암호화하거나 노출을 자동으로 막아주지는 않습니다.</div><p class="fine">사내 신청 링크·모델·주소·지원 기능은 이 자료에서 확인되지 않았습니다.</p>',
+add('AI 연결','AI 연결 전 확인할 권한·입력 자료·실패 대응','사용 가능한 연결 방식, API 키와 입력 자료의 관리, 오답·연결 실패 시 대응을 점검합니다.',
+    '<div class="connection-grid"><div><span class="large-index">01</span><h3>사용 가능한 방식</h3><p>사내 신청 경로와 사용 권한,<br>호출 주소·요청 형식 확인</p></div><div><span class="large-index">02</span><h3>키와 입력 자료</h3><p>키를 공유 화면이나 코드에 노출하지 않고,<br>입력 가능한 자료 범위를 확인합니다.</p></div><div><span class="large-index">03</span><h3>결과와 실패 처리</h3><p>AI 오답이나 연결 실패 시<br>사용자에게 보여줄 안내와 대응 방식</p></div></div><div class="callout">'+term('환경변수')+'로 실행 설정을 분리할 수 있습니다.<br>환경변수 자체가 키를 암호화하거나 노출을 자동으로 막아주지는 않습니다.</div><p class="fine">사내 신청 링크·모델·주소·지원 기능은 이 자료에서 확인되지 않았습니다.</p>',
     '처음 시작할 때는, 필요한 도구부터 하나씩 준비하면 됩니다.')
 
-add('시작과 질문','무엇을 만들지에 따라 준비가 달라집니다','먼저 사용할 에이전트와 작업 폴더를 정하고, 실행에 필요한 것만 준비합니다.',
+add('시작과 질문','만들 도구에 따라 무엇을 준비해야 할까요?','HTML 도구, Python 프로그램, AI 연결 도구를 비교하며 필요한 실행 환경과 설정을 살펴봅니다.',
     '<div class="tabs">'+btn('HTML 도구','data-setup="html" aria-pressed="true"')+btn('Python 처리','data-setup="python"')+btn('AI 연결 도구','data-setup="api"')+'</div><div class="setup-path" id="setup-path"></div><p id="setup-desc" class="statement"></p><div class="callout">'+term('라이브러리')+'는 이미 만들어진 기능을 가져다 쓰는 방법입니다.<br>Python '+term('가상환경')+'은 프로젝트별 패키지를 분리합니다. 필요해질 때 배우면 됩니다.</div>',
     '설치 이름을 모두 외우기보다, 지금 필요한 이유를 물어보면 됩니다.')
 
-add('시작과 질문','막히면 현재 상황을 보여줍니다','설명을 부탁하는 것과 작업을 부탁하는 것을 함께 사용할 수 있습니다.',
+add('시작과 질문','오류나 모르는 내용은 AI에 어떻게 물을까요?','낯선 용어는 설명을 요청하고, 오류는 현재 입력·실제 결과·기대 결과를 함께 보여주며 수정을 요청합니다.',
     '<div class="question-stack"><div><span>뜻이 낯설 때</span><blockquote>“지금 나온 API가 이 프로그램에서 무슨 역할인지 설명해줘.”</blockquote></div><div><span>실행이 안 될 때</span><blockquote>“이 오류가 났어. 원인을 확인하고, 필요한 작업을 진행해줘.”</blockquote></div><div><span>결과가 이상할 때</span><blockquote>“80점도 충족이어야 하는데 미달로 나와. 이 기준으로 고쳐줘.”</blockquote></div></div><p class="statement">현재 입력, 실제 결과, 기대한 결과를 함께 보여주면<br>어디서 차이가 생겼는지 확인하기 쉽습니다.</p>',
     '만들면서 배우고, 배운 만큼 더 구체적으로 요청합니다.')
 
-add('시작과 질문','배운 만큼 보이고, 보이는 만큼 다듬습니다','작은 제작 경험에 구조 이해와 GUI 안목을 계속 더합니다.',
+add('시작과 질문','작게 만들고, 구조를 배우고, 결과를 개선하기','작은 기능을 실행하고 파일의 역할을 물어보세요. 좋은 화면·정확한 처리와 비교하며 개선점을 찾습니다.',
     cols(art('learning','기술 자료를 읽으며 작은 프로그램을 점차 개선하는 사람'),
-         item('하나 만들고','입력과 결과가 분명한 작은 기능부터 실행해 봅니다.')+item('왜 그런지 묻고','파일과 코드가 어떤 역할을 하는지 설명을 받습니다.')+item('좋은 결과와 비교합니다','읽기 쉬운 화면과 정확한 처리의 차이를 구체적으로 찾아봅니다.')),
+         item('작은 기능 하나 만들기','입력과 결과가 분명한 작은 기능부터 실행해 봅니다.')+item('파일과 코드의 역할 묻기','파일과 코드가 어떤 역할을 하는지 설명을 받습니다.')+item('좋은 결과와 비교하기','읽기 쉬운 화면과 정확한 처리의 차이를 구체적으로 찾아봅니다.')),
     '만들기 시작하는 문턱은 낮아졌습니다. 잘 만드는 지식과 안목은 계속 쌓아갑니다.')
 
 add('시작과 질문','어떤 부분이 궁금하신가요?','Q&A · 5분',
@@ -173,13 +181,15 @@ glossary = {
 
 def main():
     css='\n'.join((ROOT/('build/'+name)).read_text(encoding='utf-8') for name in ['style.css','ide-workshop.css','handoff-demo.css'])
-    js='\n'.join((ROOT/('build/'+name)).read_text(encoding='utf-8') for name in ['tetris-workshop.js','handoff-game.js','handoff-demo.js','app.js'])
+    js='\n'.join((ROOT/('build/'+name)).read_text(encoding='utf-8') for name in ['tetris-workshop.js','handoff-game.js','handoff-demo.js','app.js','cover-diorama.js'])
     fonts=''.join('@font-face{font-family:Paperlogy;font-weight:'+str(weight)+';font-display:swap;src:url(data:font/woff2;base64,'+base64.b64encode((OLD/name).read_bytes()).decode()+') format("woff2")}\n' for weight,name in [(400,'Paperlogy-4Regular.woff2'),(600,'Paperlogy-6SemiBold.woff2'),(800,'Paperlogy-8ExtraBold.woff2')])
     parts=[]
     for i,s in enumerate(slides):
-        parts.append(f'<section class="slide {s["cls"]}" data-index="{i}" data-section="{s["section"]}" data-noclick aria-label="{i+1}. {html.escape(s["title"].replace("<br>"," ").replace("<em>","").replace("</em>",""))}"><header><div class="eyebrow">AI CODING WORKSHOP <span>{s["section"]}</span></div><h1>{s["title"]}</h1><p class="lead">{s["lead"]}</p></header><main class="slide-body">{s["body"]}</main><div class="bridge">{s["bridge"]}</div>'+('<div class="fullscreen-note">F 또는 우클릭으로 전체화면 보기</div>' if i==0 else '')+'</section>')
+        parts.append(f'<section class="slide {s["cls"]}" data-index="{i}" data-section="{s["section"]}" data-noclick aria-label="{i+1}. {html.escape(s["title"].replace("<br>"," ").replace("<em>","").replace("</em>",""))}"><header><div class="eyebrow">AI CODING WORKSHOP <span>{s["section"]}</span></div><h1>{s["title"]}</h1><p class="lead">{s["lead"]}</p></header><main class="slide-body">{s["body"]}</main><div class="bridge">{s["bridge"]}</div>'+('<div class="fullscreen-note"><span>F 또는 우클릭으로 전체화면 보기</span><span>마우스 휠 또는 ←, → 키로 슬라이드 넘기기</span></div>' if i==0 else '')+'</section>')
     glossary_html='<section class="print-glossary"><h1>용어 자세히 보기</h1>'+''.join('<article><h2>'+html.escape(k)+'</h2>'+''.join('<p>'+html.escape(p)+'</p>' for p in v)+'</article>' for k,v in glossary.items())+'</section>'
     result='<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 코딩 · 체험과 안목 v3</title><link rel="icon" href="data:,"><style>'+fonts+css+'</style></head><body><div id="stage">'+''.join(parts)+'<footer><div class="progress-track"><i id="progress-fill"></i></div><div class="footer-label"><span id="section-label"></span><span id="page-label" aria-live="polite"></span></div></footer></div><aside id="term-panel" role="tooltip" hidden></aside>'+glossary_html+'<script>const GLOSSARY='+json.dumps(glossary,ensure_ascii=False)+';</script><script>'+js+'</script></body></html>'
+    scene_data=base64.b64encode((ROOT/'build/cover-diorama.html').read_bytes()).decode()
+    result=result.replace('<script>const GLOSSARY=', '<script id="cover-diorama-data" type="application/octet-stream">'+scene_data+'</script><script>const GLOSSARY=')
     for name in ['workshop','judgment','architecture','learning']:
         result=result.replace('@@'+name+'@@','data:image/webp;base64,'+base64.b64encode((ASSETS/(name+'.webp')).read_bytes()).decode())
     (ROOT/'AI코딩교육_체험과안목_v3.html').write_text(result,encoding='utf-8')
