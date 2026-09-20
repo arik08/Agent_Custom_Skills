@@ -1,0 +1,27 @@
+{
+  "tool": "image_gen",
+  "requested_model": "gpt-image-2.5",
+  "model_note": "User identified provided image generation as gpt-image-2.5; tool does not expose model metadata.",
+  "assets": [
+    {
+      "id": "workshop",
+      "prompt": "Create a premium editorial 2D illustration asset for a Korean beginner AI coding course. True transparent background PNG, isolated full scene. A Korean male office worker wearing a neat pale blue shirt and navy trousers seated at a laptop, beside a friendly abstract AI assistant made of pale blue geometric light, together assembling a colorful playable block game on a large floating monitor. Human thoughtfully points at the screen. Rich polished hand-drawn digital illustration with crisp navy outlines, muted POSCO-like deep blue #005b91, sky blue, ivory, and small coral accents. Flat 2D, not 3D or isometric, adult professional yet playful. Wide 3:2 composition, all parts within frame, no text or letters, no watermark, no checkerboard, no bounding panel. Scene purpose: a person directs and AI builds, visible small game blocks on screen.",
+      "source": "C:\\Users\\Myeongcheol\\.codex\\generated_images\\01a0ba83-9bc5-7a20-a228-b714abcee2a1\\exec-1f629d3b-c776-47fa-844d-4361f3474032.png"
+    },
+    {
+      "id": "judgment",
+      "prompt": "Create a premium editorial 2D illustration asset, true transparent background PNG. Korean male office professional in pale blue shirt and navy trousers inspecting two distinct application screens with a large magnifying glass. Left screen crowded tiny inconsistent controls; right screen clear typographic blocks and orderly generous layout, no readable text. Human thoughtfully assesses detail and usability, one hand adjusting the orderly screen. Flat 2D digital editorial art, navy outlines, deep blue #005b91, sky blue, ivory, small coral accent, restrained polished Korean business education aesthetic. Wide 3:2, complete subject, no cropping, no text, no watermark, no backdrop or checkerboard. Shows visual judgment and craft.",
+      "source": "C:\\Users\\Myeongcheol\\.codex\\generated_images\\01a0ba83-9bc5-7a20-a228-b714abcee2a1\\exec-1a13156f-8dc1-41f0-aa0d-9608fe96cc5f.png"
+    },
+    {
+      "id": "architecture",
+      "prompt": "Create a premium editorial 2D illustration asset on true transparent background. An exploded side-by-side view of a simple web application: left a clean browser screen with form controls, center a small processing workstation with neatly meshing mechanical elements and a person checking rules, right organized file drawers for storage. A coherent flat 2D illustration with enough visual separation for HTML labels above each part. No arrows, no letters or readable text. Deep blue #005b91 and pale sky blue, navy outlines, ivory, small coral accents. Professional yet approachable illustration for absolute beginners, not a 3D metaphor. Wide 2:1 composition, isolated objects with transparent space around, no panel, no checkerboard, no watermark.",
+      "source": "C:\\Users\\Myeongcheol\\.codex\\generated_images\\01a0ba83-9bc5-7a20-a228-b714abcee2a1\\exec-162968e7-4d2b-4e60-83c6-a086922f1a1b.png"
+    },
+    {
+      "id": "learning",
+      "prompt": "Create a premium editorial 2D illustration with real transparent background PNG for the closing scene of a Korean beginner AI coding workshop. A Korean male office professional in a light blue shirt kneels beside a series of three progressively more refined miniature application screens laid on a wide desk: first simple rough controls, then improved clear interface, then well organized polished interface. He holds an open technical reference book and studies the latest screen thoughtfully. Small laptop and note cards without words. Theme is knowledge and visual judgment grow through making and revising. Flat 2D navy outlined illustration, deep blue #005b91, sky blue, warm ivory with tiny coral details, professional adult style. Wide 3:2 scene, no legible text, no watermark, no background, no checkerboard.",
+      "source": "C:\\Users\\Myeongcheol\\.codex\\generated_images\\01a0ba83-9bc5-7a20-a228-b714abcee2a1\\exec-2f0ef548-c888-45ff-a368-b46bad706edc.png"
+    }
+  ]
+}

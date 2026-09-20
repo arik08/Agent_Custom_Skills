@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "name": "sequence state 0",
+      "ok": true
+    },
+    {
+      "name": "one visible action 0",
+      "ok": true
+    },
+    {
+      "name": "single scenario 0",
+      "ok": true
+    },
+    {
+      "name": "real auto game advances 0",
+      "ok": true
+    },
+    {
+      "name": "feature state 0",
+      "ok": true
+    },
+    {
+      "name": "sequence state 1",
+      "ok": true
+    },
+    {
+      "name": "one visible action 1",
+      "ok": true
+    },
+    {
+      "name": "single scenario 1",
+      "ok": true
+    },
+    {
+      "name": "sequence state 2",
+      "ok": true
+    },
+    {
+      "name": "one visible action 2",
+      "ok": true
+    },
+    {
+      "name": "single scenario 2",
+      "ok": true
+    },
+    {
+      "name": "no automatic advance",
+      "ok": true
+    },
+    {
+      "name": "return preserves step",
+      "ok": true
+    },
+    {
+      "name": "sequence state 3",
+      "ok": true
+    },
+    {
+      "name": "one visible action 3",
+      "ok": true
+    },
+    {
+      "name": "single scenario 3",
+      "ok": true
+    },
+    {
+      "name": "sequence state 4",
+      "ok": true
+    },
+    {
+      "name": "one visible action 4",
+      "ok": true
+    },
+    {
+      "name": "single scenario 4",
+      "ok": true
+    },
+    {
+      "name": "keyboard button does not navigate slide",
+      "ok": true
+    },
+    {
+      "name": "sequence state 5",
+      "ok": true
+    },
+    {
+      "name": "one visible action 5",
+      "ok": true
+    },
+    {
+      "name": "single scenario 5",
+      "ok": true
+    },
+    {
+      "name": "sequence state 6",
+      "ok": true
+    },
+    {
+      "name": "one visible action 6",
+      "ok": true
+    },
+    {
+      "name": "single scenario 6",
+      "ok": true
+    },
+    {
+      "name": "real auto game advances 6",
+      "ok": true
+    },
+    {
+      "name": "feature state 6",
+      "ok": true
+    },
+    {
+      "name": "line clear effect fires on real clear",
+      "ok": true
+    },
+    {
+      "name": "game stops off slide",
+      "ok": true
+    },
+    {
+      "name": "sequence state 7",
+      "ok": true
+    },
+    {
+      "name": "one visible action 7",
+      "ok": true
+    },
+    {
+      "name": "single scenario 7",
+      "ok": true
+    },
+    {
+      "name": "sequence state 8",
+      "ok": true
+    },
+    {
+      "name": "one visible action 8",
+      "ok": true
+    },
+    {
+      "name": "single scenario 8",
+      "ok": true
+    },
+    {
+      "name": "sequence state 9",
+      "ok": true
+    },
+    {
+      "name": "one visible action 9",
+      "ok": true
+    },
+    {
+      "name": "single scenario 9",
+      "ok": true
+    },
+    {
+      "name": "sequence state 10",
+      "ok": true
+    },
+    {
+      "name": "one visible action 10",
+      "ok": true
+    },
+    {
+      "name": "single scenario 10",
+      "ok": true
+    },
+    {
+      "name": "real auto game advances 10",
+      "ok": true
+    },
+    {
+      "name": "feature state 10",
+      "ok": true
+    },
+    {
+      "name": "all states fit",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "last button restarts at chatbot",
+      "ok": true
+    },
+    {
+      "name": "reduced motion still advances one step",
+      "ok": true
+    },
+    {
+      "name": "viewport 1024x768",
+      "ok": true
+    },
+    {
+      "name": "viewport 800x1200",
+      "ok": true
+    },
+    {
+      "name": "PDF has both narratives",
+      "ok": true
+    },
+    {
+      "name": "interactive stage hidden in PDF",
+      "ok": true
+    },
+    {
+      "name": "no external requests",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "no JS errors",
+      "ok": true,
+      "details": []
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "requests": []
+}

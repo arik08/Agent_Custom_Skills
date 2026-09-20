@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "name": "ranking-first",
+      "test": "tie ranks",
+      "ok": true
+    },
+    {
+      "name": "ranking-first",
+      "test": "range validation",
+      "ok": true
+    },
+    {
+      "name": "ranking-first",
+      "test": "empty state",
+      "ok": true
+    },
+    {
+      "name": "ranking-first",
+      "test": "escaped name",
+      "ok": true
+    },
+    {
+      "name": "ranking-complete",
+      "test": "tie ranks",
+      "ok": true
+    },
+    {
+      "name": "ranking-complete",
+      "test": "range validation",
+      "ok": true
+    },
+    {
+      "name": "ranking-complete",
+      "test": "empty state",
+      "ok": true
+    },
+    {
+      "name": "ranking-complete",
+      "test": "escaped name",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

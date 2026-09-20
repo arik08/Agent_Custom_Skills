@@ -1,0 +1,38 @@
+[
+  {
+    "id": "workshop",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 199294,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 254
+  },
+  {
+    "id": "judgment",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 165790,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 254
+  },
+  {
+    "id": "architecture",
+    "width": 1774,
+    "height": 887,
+    "bytes": 129252,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 255
+  },
+  {
+    "id": "learning",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 185540,
+    "hasAlpha": true,
+    "alphaMin": 0,
+    "alphaMax": 254
+  }
+]

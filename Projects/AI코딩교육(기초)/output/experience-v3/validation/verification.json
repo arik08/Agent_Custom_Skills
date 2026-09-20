@@ -1,0 +1,323 @@
+{
+  "checks": [
+    {
+      "name": "25 slides",
+      "ok": true
+    },
+    {
+      "name": "embedded WebP images and fonts",
+      "ok": true
+    },
+    {
+      "name": "all slides within safe content area",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "next ArrowRight",
+      "ok": true
+    },
+    {
+      "name": "next ArrowDown",
+      "ok": true
+    },
+    {
+      "name": "next PageDown",
+      "ok": true
+    },
+    {
+      "name": "next Space",
+      "ok": true
+    },
+    {
+      "name": "next Enter",
+      "ok": true
+    },
+    {
+      "name": "previous ArrowLeft",
+      "ok": true
+    },
+    {
+      "name": "previous ArrowUp",
+      "ok": true
+    },
+    {
+      "name": "previous PageUp",
+      "ok": true
+    },
+    {
+      "name": "previous Backspace",
+      "ok": true
+    },
+    {
+      "name": "previous Shift+Space",
+      "ok": true
+    },
+    {
+      "name": "first boundary",
+      "ok": true
+    },
+    {
+      "name": "last boundary",
+      "ok": true
+    },
+    {
+      "name": "rapid keys",
+      "ok": true
+    },
+    {
+      "name": "modified key preserved",
+      "ok": true
+    },
+    {
+      "name": "large wheel 0 -1 one slide",
+      "ok": true
+    },
+    {
+      "name": "large wheel 0 1 one slide",
+      "ok": true
+    },
+    {
+      "name": "large wheel 1 -1 one slide",
+      "ok": true
+    },
+    {
+      "name": "large wheel 1 1 one slide",
+      "ok": true
+    },
+    {
+      "name": "large wheel 2 -1 one slide",
+      "ok": true
+    },
+    {
+      "name": "large wheel 2 1 one slide",
+      "ok": true
+    },
+    {
+      "name": "small wheel accumulates",
+      "ok": true
+    },
+    {
+      "name": "small wheel threshold",
+      "ok": true
+    },
+    {
+      "name": "immediate wheel reversal",
+      "ok": true
+    },
+    {
+      "name": "hash navigation",
+      "ok": true
+    },
+    {
+      "name": "Tetris first request",
+      "ok": true
+    },
+    {
+      "name": "Tetris visual upgrade",
+      "ok": true
+    },
+    {
+      "name": "file explorer",
+      "ok": true
+    },
+    {
+      "name": "terminal explanation",
+      "ok": true
+    },
+    {
+      "name": "HTML stage",
+      "ok": true
+    },
+    {
+      "name": "CSS stage",
+      "ok": true
+    },
+    {
+      "name": "JS interaction",
+      "ok": true
+    },
+    {
+      "name": "server route changes",
+      "ok": true
+    },
+    {
+      "name": "GUI controls",
+      "ok": true
+    },
+    {
+      "name": "rule case \"80\"",
+      "ok": true
+    },
+    {
+      "name": "rule case \"\"",
+      "ok": true
+    },
+    {
+      "name": "rule case \"abc\"",
+      "ok": true
+    },
+    {
+      "name": "rule case \"101\"",
+      "ok": true
+    },
+    {
+      "name": "rule case \"0\"",
+      "ok": true
+    },
+    {
+      "name": "rule case \"100\"",
+      "ok": true
+    },
+    {
+      "name": "intentional faulty case visible",
+      "ok": true
+    },
+    {
+      "name": "input navigation preserved",
+      "ok": true
+    },
+    {
+      "name": "specific structure request",
+      "ok": true
+    },
+    {
+      "name": "version comparison",
+      "ok": true
+    },
+    {
+      "name": "timer runs",
+      "ok": true
+    },
+    {
+      "name": "timer pauses",
+      "ok": true
+    },
+    {
+      "name": "timer reset",
+      "ok": true
+    },
+    {
+      "name": "normal ranking",
+      "ok": true
+    },
+    {
+      "name": "missing score surfaced",
+      "ok": true
+    },
+    {
+      "name": "empty result",
+      "ok": true
+    },
+    {
+      "name": "input escaped",
+      "ok": true
+    },
+    {
+      "name": "competition ranking 1 1 3",
+      "ok": true
+    },
+    {
+      "name": "range validation",
+      "ok": true
+    },
+    {
+      "name": "API response simulation",
+      "ok": true
+    },
+    {
+      "name": "API failure simulation",
+      "ok": true
+    },
+    {
+      "name": "API empty input",
+      "ok": true
+    },
+    {
+      "name": "setup switch",
+      "ok": true
+    },
+    {
+      "name": "hover glossary visible",
+      "ok": true
+    },
+    {
+      "name": "detailed explanation",
+      "ok": true
+    },
+    {
+      "name": "pointer can enter tooltip",
+      "ok": true
+    },
+    {
+      "name": "escape closes tooltip",
+      "ok": true
+    },
+    {
+      "name": "keyboard focus glossary",
+      "ok": true
+    },
+    {
+      "name": "click pins tooltip",
+      "ok": true
+    },
+    {
+      "name": "slide clears tooltip",
+      "ok": true
+    },
+    {
+      "name": "edge tooltip within viewport",
+      "ok": true
+    },
+    {
+      "name": "stage fits 1440x900",
+      "ok": true
+    },
+    {
+      "name": "stage fits 1024x768",
+      "ok": true
+    },
+    {
+      "name": "stage fits 1920x800",
+      "ok": true
+    },
+    {
+      "name": "stage fits 800x1200",
+      "ok": true
+    },
+    {
+      "name": "right click fullscreen",
+      "ok": true
+    },
+    {
+      "name": "F exits fullscreen",
+      "ok": true
+    },
+    {
+      "name": "fullscreen rejection safe",
+      "ok": true
+    },
+    {
+      "name": "navigation during animation immediate",
+      "ok": true
+    },
+    {
+      "name": "no delayed navigation",
+      "ok": true
+    },
+    {
+      "name": "no page errors",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "no external requests",
+      "ok": true,
+      "details": []
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "requests": [],
+  "layout": []
+}

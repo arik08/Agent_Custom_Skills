@@ -1,0 +1,18 @@
+from pathlib import Path
+import base64
+R=Path(__file__).resolve().parents[1]
+D=R/'demo';D.mkdir(exist_ok=True)
+js=(R/'build/app.js').read_text(encoding='utf-8')
+parser=js[js.index('function parseRows(text){'):js.index('const samples=')]
+font=base64.b64encode((R.parent/'assets/Paperlogy-4Regular.woff2').read_bytes()).decode()
+for complete in (False,True):
+    code='''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>후보 순위 도구 · __VERSION__</title><style>@font-face{font-family:Paperlogy;src:url(data:font/woff2;base64,__FONT__)}*{box-sizing:border-box}body{font-family:Paperlogy,sans-serif;background:#f3f6f8;color:#123047;max-width:1100px;margin:50px auto;padding:0 24px;word-break:keep-all}h1{font-size:38px}p{line-height:1.7}main{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px}label{display:block;margin-bottom:16px}textarea{font:20px/1.7 Paperlogy;width:100%;height:280px;padding:20px;border:1px solid #a7c2d2;border-radius:8px}button{font:17px Paperlogy;border:1px solid #a7c2d2;background:white;border-radius:5px;padding:12px;margin:8px 4px 0 0;cursor:pointer}ol{list-style:none;padding:15px 25px;background:white;margin:0;border:1px solid #c5d6e0;min-height:280px}li{display:flex;gap:20px;border-bottom:1px solid #c5d6e0;padding:20px 0;font-size:23px}li b{margin-left:auto}.pass{color:#005b91;background:#e2f0f8}#errors{color:#a7472f;line-height:1.7}small{font-size:15px;color:#496174}button:focus-visible,textarea:focus-visible{outline:3px solid #006295;outline-offset:4px}@media(max-width:700px){main{grid-template-columns:1fr}}</style><h1>후보 순위 도구</h1><p>__DESC__</p><small>준비된 __VERSION__ · 입력 자료는 외부로 전송하지 않습니다. 새로고침하면 초기값으로 돌아갑니다.</small><main><div><label for="input">이름, 점수 · 한 줄에 한 명</label><textarea id="input">포석호, 85
+하늘, 92
+바다, 74</textarea><div><button data-sample="normal">정상</button><button data-sample="tie">동점</button><button data-sample="missing">누락</button><button data-sample="range">범위 밖</button><button data-sample="empty">빈 입력</button></div></div><div><p id="errors" role="status"></p><ol id="result"></ol></div></main><script>__PARSER__
+const complete=__COMPLETE__;
+const samples={normal:'포석호, 85\\n하늘, 92\\n바다, 74',tie:'포석호, 90\\n하늘, 90\\n바다, 80',missing:'포석호,\\n하늘, 92',range:'포석호, 101\\n하늘, -1',empty:''};
+function render(){const {rows,errors}=parseRows(document.querySelector('#input').value);document.querySelector('#errors').textContent=errors.join(' / ')||(!rows.length?'입력한 자료가 없습니다.':'');const out=document.querySelector('#result');out.replaceChildren();let rank=0;rows.forEach((r,i)=>{rank=complete&&i>0&&r.score===rows[i-1].score?rank:i+1;const li=document.createElement('li');if(complete&&r.score>=80)li.className='pass';[rank+'위',r.name,r.score+'점'].forEach((v,j)=>{const e=document.createElement(j===2?'b':'span');e.textContent=v;li.append(e);});out.append(li);});}
+document.querySelector('#input').addEventListener('input',render);document.querySelectorAll('[data-sample]').forEach(b=>b.addEventListener('click',()=>{document.querySelector('#input').value=samples[b.dataset.sample];render();}));render();</script></html>'''
+    code=code.replace('__FONT__',font).replace('__VERSION__','완성 예제' if complete else '중간 예제').replace('__DESC__','동점은 공동 순위로 표시하고, 80점 이상을 강조합니다.' if complete else '이름과 점수를 입력하면 높은 점수부터 정렬합니다.').replace('__PARSER__',parser).replace('__COMPLETE__','true' if complete else 'false')
+    (D/('ranking-complete.html' if complete else 'ranking-first.html')).write_text(code,encoding='utf-8')
+print('Prepared two standalone ranking examples.')

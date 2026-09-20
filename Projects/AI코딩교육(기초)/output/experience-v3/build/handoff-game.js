@@ -1,0 +1,16 @@
+(()=>{'use strict';
+const shapes=[[[1,1,1,1]],[[1,1],[1,1]],[[0,1,0],[1,1,1]],[[0,1,1],[1,1,0]],[[1,1,0],[0,1,1]],[[1,0,0],[1,1,1]],[[0,0,1],[1,1,1]]],colors=['#51ddf5','#fadd72','#ba99fc','#75e9b2','#ff83a4','#71b2ff','#ffad70'];
+let host=null,engine=null,enhanced=false,raf=0,last=0,acc=0,active=false;const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+function stop(){if(raf)cancelAnimationFrame(raf);raf=0;last=0;acc=0;}
+function fill(ctx,x,y,id,ghost=false){const s=26;if(ghost){ctx.fillStyle=colors[id-1]+'27';ctx.fillRect(x*s+2,y*s+2,s-4,s-4);ctx.strokeStyle=colors[id-1];ctx.lineWidth=2;ctx.strokeRect(x*s+3,y*s+3,s-6,s-6);return;}ctx.fillStyle=colors[id-1];ctx.fillRect(x*s+1,y*s+1,s-2,s-2);ctx.fillStyle='#ffffff66';ctx.fillRect(x*s+3,y*s+3,s-6,4);}
+function draw(){if(!host||!engine)return;const c=host.querySelector('[data-hgame-board]');if(!c)return;const ctx=c.getContext('2d');ctx.fillStyle='#091723';ctx.fillRect(0,0,260,520);ctx.strokeStyle='#213449';ctx.lineWidth=.5;for(let y=0;y<20;y++)for(let x=0;x<10;x++)ctx.strokeRect(x*26,y*26,26,26);engine.board.forEach((r,y)=>r.forEach((id,x)=>{if(id)fill(ctx,x,y,id);}));const p=engine.piece;
+if(p){if(enhanced){let y=p.y;while(engine.fits(p.a,p.x,y+1))y++;p.a.forEach((r,j)=>r.forEach((v,i)=>{if(v)fill(ctx,p.x+i,y+j,p.id,true);}));}p.a.forEach((r,j)=>r.forEach((v,i)=>{if(v)fill(ctx,p.x+i,p.y+j,p.id);}));}
+const age=Date.now()-engine.clearAt;if(enhanced&&age<650&&!reduced.matches){const t=age/650;engine.lastClear.forEach(y=>{ctx.fillStyle='rgba(194,248,255,'+(.75*(1-t))+')';ctx.fillRect(0,y*26,260,26);for(let i=0;i<22;i++){ctx.fillStyle=colors[i%7];ctx.fillRect(i*12+Math.sin(i)*t*18,y*26-t*(20+i*3),5,5);}});}
+const score=host.querySelector('[data-hgame-score]');score.textContent=engine.score.toLocaleString();host.querySelector('[data-hgame-lines]').textContent=engine.lines;const flash=host.querySelector('[data-hgame-flash]');flash.textContent=enhanced&&age<900&&!reduced.matches?(['','SINGLE','DOUBLE','TRIPLE','TETRIS'][engine.lastClear.length]+' +'+[0,100,300,500,800][engine.lastClear.length]):'';flash.classList.toggle('on',!!flash.textContent);
+const n=host.querySelector('[data-hgame-next]'),nc=n.getContext('2d');nc.clearRect(0,0,130,104);if(enhanced){const a=shapes[engine.queue[0]];a.forEach((r,y)=>r.forEach((v,x)=>{if(v)fill(nc,x+(5-a[0].length)/2,y+.4,engine.queue[0]+1);}));}}
+function frame(now){raf=0;if(!active||document.hidden||!host?.isConnected||!host.querySelector('[data-hgame-board]'))return;const dt=last?Math.min(100,now-last):0;last=now;acc+=dt;while(acc>=35){if(engine.gameOver)seed();engine.step();acc-=35;}draw();raf=requestAnimationFrame(frame);}
+function seed(){engine=new TetrisEngine(37);for(let i=0;i<24;i++)engine.drop();engine.clearAt=0;}
+function start(){if(active&&host?.querySelector('[data-hgame-board]')&&!document.hidden&&!reduced.matches&&!raf)raf=requestAnimationFrame(frame);}
+window.handoffGame={mount(root,upgraded){stop();host=root;enhanced=upgraded;seed();draw();start();},navigate(value){active=value;stop();start();},stop, get state(){return{running:!!raf,enhanced,pieces:engine?.pieces,lines:engine?.lines,score:engine?.score};}};
+document.addEventListener('visibilitychange',()=>{stop();start();});reduced.addEventListener('change',()=>{stop();draw();start();});
+})();

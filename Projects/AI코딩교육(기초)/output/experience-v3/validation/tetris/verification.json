@@ -1,0 +1,183 @@
+{
+  "checks": [
+    {
+      "name": "auto planner clears lines without early game over",
+      "ok": true,
+      "details": {
+        "lines": 58,
+        "pieces": 150,
+        "score": 6300
+      }
+    },
+    {
+      "name": "7-bag distribution",
+      "ok": true
+    },
+    {
+      "name": "multiple row clearing",
+      "ok": true
+    },
+    {
+      "name": "left wall collision",
+      "ok": true
+    },
+    {
+      "name": "floor collision",
+      "ok": true
+    },
+    {
+      "name": "pause freezes engine",
+      "ok": true
+    },
+    {
+      "name": "hard drop locks",
+      "ok": true
+    },
+    {
+      "name": "game over does not recurse or silently reset",
+      "ok": true
+    },
+    {
+      "name": "new game reset",
+      "ok": true
+    },
+    {
+      "name": "request builds actual game",
+      "ok": true
+    },
+    {
+      "name": "auto enabled from first version",
+      "ok": true
+    },
+    {
+      "name": "fast default produces multiple placements",
+      "ok": true
+    },
+    {
+      "name": "first version visibly crude",
+      "ok": true
+    },
+    {
+      "name": "upgrade color",
+      "ok": true
+    },
+    {
+      "name": "upgrade keeps existing game color",
+      "ok": true
+    },
+    {
+      "name": "upgrade hud",
+      "ok": true
+    },
+    {
+      "name": "upgrade keeps existing game hud",
+      "ok": true
+    },
+    {
+      "name": "upgrade effects",
+      "ok": true
+    },
+    {
+      "name": "upgrade keeps existing game effects",
+      "ok": true
+    },
+    {
+      "name": "all final features enabled",
+      "ok": true
+    },
+    {
+      "name": "next piece visible",
+      "ok": true
+    },
+    {
+      "name": "file explorer updates code",
+      "ok": true
+    },
+    {
+      "name": "diff review available",
+      "ok": true
+    },
+    {
+      "name": "UI pause",
+      "ok": true
+    },
+    {
+      "name": "game arrows do not navigate slides",
+      "ok": true
+    },
+    {
+      "name": "hard drop keeps slide",
+      "ok": true
+    },
+    {
+      "name": "navigation resumes outside game",
+      "ok": true
+    },
+    {
+      "name": "inactive slide stops game",
+      "ok": true
+    },
+    {
+      "name": "new game preserves upgrades",
+      "ok": true
+    },
+    {
+      "name": "typed supported request",
+      "ok": true
+    },
+    {
+      "name": "unsupported request stays honest",
+      "ok": true
+    },
+    {
+      "name": "empty prompt handled",
+      "ok": true
+    },
+    {
+      "name": "navigation cancels staged work",
+      "ok": true
+    },
+    {
+      "name": "IDE fits slide area",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "IDE chrome stays in place after interaction",
+      "ok": true
+    },
+    {
+      "name": "stage fits 1024x768",
+      "ok": true
+    },
+    {
+      "name": "stage fits 800x1200",
+      "ok": true
+    },
+    {
+      "name": "stage fits 1920x800",
+      "ok": true
+    },
+    {
+      "name": "reduced-motion creation completes",
+      "ok": true
+    },
+    {
+      "name": "new project restarts at crude baseline",
+      "ok": true
+    },
+    {
+      "name": "offline standalone",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "no JS errors",
+      "ok": true,
+      "details": []
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "network": []
+}

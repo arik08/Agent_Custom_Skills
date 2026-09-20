@@ -1,0 +1,98 @@
+{
+  "checks": [
+    {
+      "name": "initial score unchanged",
+      "ok": true
+    },
+    {
+      "name": "reply only does not edit file",
+      "ok": true
+    },
+    {
+      "name": "copy does not update preview",
+      "ok": true
+    },
+    {
+      "name": "wrong HTML file gives explanation",
+      "ok": true
+    },
+    {
+      "name": "wrong JS file gives explanation",
+      "ok": true
+    },
+    {
+      "name": "CSS exposes line numbers",
+      "ok": true
+    },
+    {
+      "name": "wrong code block does not enable paste",
+      "ok": true
+    },
+    {
+      "name": "agent finishes connected file work",
+      "ok": true
+    },
+    {
+      "name": "keyboard chooses exact block without slide navigation",
+      "ok": true
+    },
+    {
+      "name": "paste changes simulated source only",
+      "ok": true
+    },
+    {
+      "name": "refresh applies preview",
+      "ok": true
+    },
+    {
+      "name": "completed layout and code fit",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "reset clears both lanes",
+      "ok": true
+    },
+    {
+      "name": "autoplay shows work transfer difference",
+      "ok": true
+    },
+    {
+      "name": "autoplay completes manual chain",
+      "ok": true
+    },
+    {
+      "name": "navigation cancels staged changes",
+      "ok": true
+    },
+    {
+      "name": "reduced motion retains completed narrative",
+      "ok": true
+    },
+    {
+      "name": "stage fits 1024x768",
+      "ok": true
+    },
+    {
+      "name": "stage fits 800x1200",
+      "ok": true
+    },
+    {
+      "name": "print includes completed human and agent states",
+      "ok": true
+    },
+    {
+      "name": "offline standalone",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "no JavaScript errors",
+      "ok": true,
+      "details": []
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "network": []
+}
