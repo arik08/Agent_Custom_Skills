@@ -1,0 +1,836 @@
+# 프로젝트: HQ AX WORLD
+
+## POSCO 경영기획본부 3D Autonomous Management Simulation
+
+당신은 지금부터 이 프로젝트의 Lead Game Developer, 3D Designer, Simulation Designer, UI/UX Designer 역할을 동시에 수행한다.
+
+내가 세부 구현 방법을 하나씩 지시하기를 기다리지 말고, 아래 요구사항을 바탕으로 스스로 합리적인 세부사항을 결정하여 실제 실행 가능한 결과물을 만들어라.
+
+중간에 사소한 사항을 질문하지 말고 합리적인 기본값을 선택하라.
+
+기획서만 작성하고 끝내지 마라.
+반드시 실제 동작하는 프로그램을 구현하고 실행 및 테스트하라.
+
+---
+
+# 1. 프로젝트 목적
+
+POSCO 경영기획본부 구성원 대상 바이브코딩/AX 교육의 오프닝에서 보여줄 3D 데모를 만든다.
+
+일반적인 업무 Dashboard가 아니다.
+
+처음 보는 사람이 다음과 같이 반응할 정도로 시각적으로 재미있는 프로그램이어야 한다.
+
+"이거 게임 아니야?"
+"우리 본부를 게임으로 만들었네?"
+"AI가 알아서 움직이고 있네?"
+"이걸 바이브코딩으로 만들었다고?"
+
+사용자가 직접 플레이하는 게임은 아니다.
+
+기본적으로 AI Auto Mode로 계속 자동 실행되는 "살아 있는 3D 경영 시뮬레이션"이다.
+
+사용자는 가만히 보고만 있어도 된다.
+
+핵심 메시지는 다음과 같다.
+
+"AI가 정보를 탐색하고 분석하고, 여러 업무 Agent가 협업하고, 인간은 중요한 판단에 집중하는 AX 조직"
+
+그리고 더 중요한 교육 메시지는 다음이다.
+
+"복잡한 업무 아이디어도 자연어로 설명하여 실제 동작하는 소프트웨어로 구현할 수 있다."
+
+---
+
+# 2. 기술 방향
+
+브라우저에서 실행되는 3D Web Application으로 구현한다.
+
+우선순위:
+
+1. 시각적 임팩트
+2. 안정적인 자동 시뮬레이션
+3. 조직 특색
+4. 보는 재미
+5. 코드 유지보수성
+6. 실제 경영 모델의 정밀성
+
+Three.js 등 적절한 WebGL 기술을 자유롭게 선택하라.
+
+필요하다면 Vite를 사용해도 된다.
+
+특별한 이유가 없다면 과도한 프레임워크 의존성을 피하라.
+
+3D Asset이 없어도 procedural geometry와 low-poly 스타일을 활용하여 충분히 멋지게 만들어라.
+
+외부 유료 Asset에 의존하지 마라.
+
+실행 방법은 최대한 단순하게 만든다.
+
+최종적으로 README에 실행 방법을 작성한다.
+
+---
+
+# 3. 세계관
+
+경영기획본부 전체를 하나의 미래형 3D 도시로 표현한다.
+
+이름:
+
+HQ AX WORLD
+
+부제:
+
+Autonomous Management Simulation
+
+전체 디자인은 장난감 같은 저품질 게임이 아니라,
+
+"Premium Miniature Strategy Game + Digital Twin + Management Simulation"
+
+느낌으로 만든다.
+
+참고 감성:
+
+* Miniature city
+* Strategy management game
+* Digital twin
+* Futuristic command center
+* Low-poly premium visualization
+* Isometric city
+* Tilt-shift miniature
+
+POSCO를 연상시키는 Blue 계열을 주요 포인트로 사용할 수 있지만 전체 화면을 파란색으로 도배하지 않는다.
+
+건물, 도로, 녹지, 공장, 파이프라인, 데이터 네트워크 등이 조화를 이루는 미래형 산업도시로 만든다.
+
+---
+
+# 4. 실제 조직 구조
+
+게임의 도시 구조 자체가 아래 조직을 표현해야 한다.
+
+## A. 경영기획실 / STRATEGY DISTRICT
+
+### 경영기획그룹
+
+대표 건물:
+STRATEGY TOWER
+
+역할:
+
+* 경영계획
+* KPI
+* 경영실적
+* Forecast
+* 전사 영향 판단
+
+도시 중앙에 위치한 상징적인 건물로 만든다.
+
+### 지속가능경영그룹
+
+대표 건물:
+GREEN CONTROL CENTER
+
+역할:
+
+* Sustainability
+* Carbon
+* ESG
+* 환경 관련 지표
+
+녹지, 에너지 시설 등 친환경적인 디자인 요소를 사용한다.
+
+### 투자관리그룹
+
+대표 건물:
+INVESTMENT LAB
+
+역할:
+
+* 투자안 검토
+* 경제성 분석
+* 투자 심의
+* CAPEX
+
+투자 Project가 홀로그램 카드 또는 데이터 오브젝트 형태로 들어오는 연출을 넣는다.
+
+### 사업관리그룹
+
+대표 건물:
+BUSINESS CONTROL TOWER
+
+역할:
+
+* 사업 성과
+* 법인 실적
+* 사업 Risk
+* 사업 Portfolio
+
+여러 사업/법인과 연결되는 Control Tower처럼 표현한다.
+
+---
+
+# 5. 재무실 / FINANCE DISTRICT
+
+금융/데이터 중심의 미래형 구역으로 디자인한다.
+
+## 재무기획그룹
+
+FINANCIAL PLANNING CENTER
+
+* 재무계획
+* Forecast
+* 재무구조 분석
+
+## 자금그룹
+
+TREASURY CENTER
+
+* Cash
+* Financing
+* Liquidity
+* 자금조달
+
+돈 또는 데이터가 도시를 이동하는 시각효과를 구현한다.
+
+## 회계원가그룹
+
+COST ENGINE
+
+* Accounting
+* Cost
+* Closing
+* Profitability
+
+분기/연말 Closing 시 특별 연출을 넣는다.
+
+## 세무그룹
+
+TAX OFFICE
+
+* Tax
+* Global Tax
+* 세무 Risk
+
+## 내부회계관리섹션
+
+INTERNAL CONTROL GATE
+
+* Internal Control
+* Validation
+* Compliance
+
+데이터나 의사결정이 통과하는 Gate 같은 시각적 컨셉을 사용할 수 있다.
+
+## PosPLOT고도화TF팀
+
+PosPLOT LAB
+
+* Planning Platform
+* Data
+* Digital Management Infrastructure
+
+디지털 플랫폼 연구소처럼 표현한다.
+
+---
+
+# 6. 산업가스사업부 / GAS INDUSTRIAL ZONE
+
+다른 지역과 확실히 다른 실제 산업시설 느낌으로 만든다.
+
+산소, 질소, 아르곤 등을 연상시키는 저장 Tank와 Pipeline을 배치한다.
+
+실제 가스가 Pipeline을 따라 이동하는 것처럼 애니메이션한다.
+
+## 조업안전기술섹션
+
+OPERATION & SAFETY CENTER
+
+* 설비 Monitoring
+* 이상징후
+* 안전
+* 기술지원
+
+## 사업개발그룹
+
+BUSINESS DEVELOPMENT HUB
+
+* 신규 사업
+* 신규 Project
+* 사업성 검토
+
+Project가 승인되면 실제 작은 시설이 건설되는 Animation을 구현한다.
+
+## 마케팅그룹
+
+MARKETING & SALES HUB
+
+* 고객
+* 수요
+* 계약
+* 판매
+
+외부 고객/수요가 도시로 들어오는 모습을 표현한다.
+
+## 포항생산부
+
+POHANG GAS PLANT
+
+실제 생산설비처럼 계속 움직여야 한다.
+
+## 광양생산부
+
+GWANGYANG GAS PLANT
+
+포항과 별도의 생산시설로 표현한다.
+
+두 생산부 사이에 생산량 Balance가 변화할 수 있어야 한다.
+
+---
+
+# 7. 경영기획DX추진TF팀 / AX CORE
+
+이 게임에서 매우 중요한 시설이다.
+
+건물 이름:
+
+AX CORE
+
+미래적인 AI/Data Center 형태로 만든다.
+
+하지만 AX CORE가 모든 조직을 대신하는 것처럼 표현하지 않는다.
+
+각 전문 조직이 자신의 업무를 수행하며,
+
+AX CORE는
+
+* AI Agent
+* Data
+* Knowledge
+* Automation
+* Analytics
+* 업무 연결
+
+을 지원하는 Digital/AI Hub 역할을 한다.
+
+모든 주요 조직과 AX CORE 사이에 Data Network가 연결되어 있어야 한다.
+
+평소에는 은은하게 데이터가 이동한다.
+
+중요 Event 발생 시 AX CORE가 활성화되며 데이터 흐름이 강해진다.
+
+---
+
+# 8. AI AGENT SYSTEM
+
+각 조직에는 작은 AI Agent 캐릭터 또는 Drone/Robot 형태의 존재가 있다.
+
+너무 인간형 캐릭터일 필요는 없다.
+
+작고 귀엽지만 미래적인 Robot/Agent가 좋다.
+
+Agent들은 도시 안에서 실제로 움직인다.
+
+Event 발생 시 관련 조직 Agent들이 움직이며 협업한다.
+
+예:
+
+Market Signal 발생
+
+Marketing Agent
+↓
+Business Agent
+↓
+AX CORE
+↓
+Planning Agent
+↓
+Strategy Tower
+
+데이터 Packet도 함께 이동한다.
+
+Agent의 머리 위에 작은 상태 표시를 띄운다.
+
+예:
+
+ANALYZING...
+
+SEARCHING...
+
+CALCULATING...
+
+SIMULATING...
+
+REVIEWING...
+
+EXECUTING...
+
+MONITORING...
+
+---
+
+# 9. AUTO SIMULATION
+
+게임은 실행하자마자 자동으로 돌아간다.
+
+사용자 입력이 없어도 된다.
+
+게임 내부 시간은 현실보다 빠르게 흐른다.
+
+예:
+
+1분 = 게임 세계 1개월
+
+또는 화면 연출상 더 자연스러운 속도를 스스로 결정한다.
+
+화면에 Game Date를 표시한다.
+
+예:
+
+2030 MAR
+
+AUTO MODE ●
+
+Simulation Speed x4
+
+기본적으로 계속 Event가 발생한다.
+
+Event 간격은 너무 빠르거나 느리지 않게 약 20~45초 수준으로 조정한다.
+
+---
+
+# 10. EVENT SYSTEM
+
+최소 15개의 Event를 구현한다.
+
+예:
+
+1. Iron Ore Price Surge
+2. Coking Coal Price Surge
+3. KRW/USD Exchange Rate Shock
+4. China Steel Export Price Drop
+5. Automotive Steel Demand Increase
+6. Global Steel Demand Slowdown
+7. Carbon Cost Increase
+8. New Overseas Investment Opportunity
+9. Investment Project Cost Overrun
+10. Subsidiary Profit Deterioration
+11. Pohang Gas Equipment Warning
+12. Gwangyang Gas Equipment Warning
+13. Industrial Gas Demand Surge
+14. Major Customer Contract Opportunity
+15. Logistics Disruption
+16. Financing Cost Increase
+17. Tax Risk Detection
+18. Closing Season
+19. New AI Automation Opportunity
+20. Unexpected Productivity Improvement
+
+필요하다면 더 추가한다.
+
+각 Event는 단순 Notification으로 끝나면 안 된다.
+
+Event
+→ Detection
+→ Agent collaboration
+→ Analysis
+→ Decision
+→ Action
+→ KPI impact
+→ Feedback
+
+이라는 Life Cycle을 가진다.
+
+---
+
+# 11. 예시 시나리오
+
+광양 Gas Plant에서 이상징후가 발생한다.
+
+카메라가 자동으로 광양으로 이동한다.
+
+화면:
+
+⚠ MAJOR EVENT
+
+GWANGYANG GAS PLANT
+Equipment anomaly detected
+
+조업안전기술 Agent가 활성화된다.
+
+상태:
+
+ANALYZING EQUIPMENT DATA...
+
+데이터가 AX CORE로 이동한다.
+
+AX CORE:
+
+SEARCHING MAINTENANCE HISTORY...
+
+관련 Agent들이 활성화된다.
+
+Gwangyang Production
+Operation & Safety
+Marketing
+Cost Engine
+Business Management
+Strategy
+
+화면 한쪽 Activity Log:
+
+[SAFETY] Equipment anomaly detected
+[AX CORE] Historical patterns analyzed
+[PRODUCTION] Output adjustment calculated
+[MARKETING] Customer supply impact checked
+[COST] Financial impact calculated
+[BUSINESS] Business impact analyzed
+[STRATEGY] Response approved
+
+그 후:
+
+ACTION EXECUTED
+
+Gwangyang production -8%
+Pohang production +6%
+
+Expected impact
+
+Before:
+-₩12B
+
+After:
+-₩3B
+
+그리고 실제 3D 세계에서 광양 생산량이 감소하고 포항 생산량이 증가한다.
+
+---
+
+# 12. 신규 투자 시나리오
+
+NEW BUSINESS OPPORTUNITY
+
+사업개발그룹 Agent 활성화
+
+↓
+
+Investment Management
+
+↓
+
+Financial Planning
+
+↓
+
+Treasury
+
+↓
+
+Tax
+
+↓
+
+Sustainability
+
+↓
+
+Strategy
+
+각 조직에서 분석이 진행된다.
+
+BUSINESS CASE ANALYSIS
+
+IRR SIMULATION
+
+FUNDING REVIEW
+
+TAX REVIEW
+
+CARBON IMPACT
+
+STRATEGIC FIT
+
+최종 승인되면
+
+PROJECT APPROVED
+
+화면에 작은 Construction Site가 생긴다.
+
+Crane 등이 움직이고
+
+몇 초 후 새로운 산업가스 Plant가 완성된다.
+
+도시 자체가 변화하는 모습을 보여준다.
+
+---
+
+# 13. KPI SYSTEM
+
+화면 상단 또는 적절한 위치에 주요 KPI를 표시한다.
+
+예:
+
+HQ PERFORMANCE
+
+EBIT
+
+CASH
+
+CAPEX
+
+BUSINESS PERFORMANCE
+
+SUSTAINABILITY
+
+GAS OPERATION STABILITY
+
+AI TASKS
+
+각 Event와 Action에 따라 값이 자연스럽게 움직인다.
+
+정확한 실제 POSCO 수치를 사용하지 않는다.
+
+모든 값은 DEMO/SIMULATION용 가상 데이터다.
+
+이를 UI 어딘가에 작게 표시한다.
+
+"SIMULATED DATA / FOR DEMONSTRATION"
+
+---
+
+# 14. CAMERA DIRECTOR
+
+매우 중요하다.
+
+사용자가 조작하지 않아도 재미있어야 한다.
+
+자동 Camera Director를 구현한다.
+
+평상시:
+
+도시 전체를 천천히 Orbit.
+
+Event 발생:
+
+관련 지역으로 부드럽게 이동.
+
+Agent 활동:
+
+Agent 또는 Data Flow를 따라간다.
+
+Major Decision:
+
+Strategy Tower 또는 AX CORE로 이동.
+
+Project Construction:
+
+Construction Site로 이동.
+
+Event 종료:
+
+다시 도시 전체 View로 돌아간다.
+
+카메라 이동은 갑작스럽지 않고 cinematic하게 한다.
+
+가능하다면 Camera Director가 여러 Shot을 선택하도록 한다.
+
+Wide Shot
+District Shot
+Building Close-up
+Agent Follow
+Event Focus
+Return to City
+
+---
+
+# 15. 보는 재미를 위한 Ambient Activity
+
+Event가 없더라도 도시가 살아 있어야 한다.
+
+예:
+
+공장 설비 회전
+
+Pipeline 흐름
+
+작은 물류 차량 이동
+
+Agent 이동
+
+Data Packet 이동
+
+건물 Light 변화
+
+공장 Steam
+
+홀로그램 회전
+
+풍력/친환경 설비 움직임
+
+항구 또는 물류 표현
+
+숫자/그래프 변화
+
+Day/Night 또는 시간 변화
+
+단, GPU 부하가 지나치게 커지지 않도록 최적화한다.
+
+---
+
+# 16. 재미있는 OFFICE EASTER EGGS
+
+업무 구성원이 보면 웃을 수 있는 가벼운 요소를 넣는다.
+
+예:
+
+분기 Closing:
+
+🔥 CLOSING SEASON
+
+Cost Engine과 Finance District에 불이 모두 켜진다.
+
+투자안 집중:
+
+INVESTMENT MANAGEMENT
+WORKLOAD 187%
+
+Agent 여러 명이 Investment Lab으로 몰려간다.
+
+회의:
+
+MEETING DETECTED
+
+Participants: 12
+Active speakers: 3
+
+Agent들이 회의실로 몰려간다.
+
+경영계획 시즌:
+
+Strategy Tower가 밤에도 계속 켜져 있다.
+
+Agent:
+
+"자료 받으러 가는 중..."
+
+단, 회사나 특정 개인을 조롱하는 표현은 사용하지 않는다.
+
+---
+
+# 17. UI
+
+게임 HUD처럼 만든다.
+
+좌측 상단:
+
+HQ AX WORLD
+2030 MAR
+AUTO MODE ●
+
+상단:
+
+HQ PERFORMANCE 78.4
+
+EBIT
+CASH
+CAPEX
+ESG
+GAS
+AI TASKS
+
+우측:
+
+LIVE EVENT
+
+현재 발생 중인 Event와 진행 상태.
+
+하단 또는 우측 하단:
+
+AI ACTIVITY
+
+예:
+
+[MARKET] Signal detected
+[AX] Searching 1,284 documents
+[COST] Calculating EBIT impact
+[INVESTMENT] Running scenario analysis
+[STRATEGY] Decision completed
+[ACTION] Execution started
+
+Log가 자연스럽게 계속 흐른다.
+
+화면을 너무 Dashboard처럼 만들지 않는다.
+
+3D World가 화면의 주인공이어야 한다.
+
+UI는 게임 HUD 수준으로 제한한다.
+
+---
+
+# 18. EVENT VISUALIZATION
+
+중요 Event 발생 시 작은 Notification만 띄우지 말고 영화처럼 보여준다.
+
+예:
+
+⚠ MAJOR EVENT
+
+CARBON PRICE
++23%
+
+Detected by
+Sustainability Agent
+
+Impact analysis
+████████░░ 82%
+
+그리고 관련 건물 사이에 Data Stream이 움직인다.
+
+최종적으로:
+
+DECISION COMPLETE
+
+Product Mix Optimization
+
+EXPECTED EBIT PROTECTION
++₩14.2B
+
+처럼 결과를 보여준다.
+
+숫자는 모두 가상값이다.
+
+---
+
+# 19. AX 시각화
+
+이 프로젝트의 핵심 메시지다.
+
+사람이 직접 모든 정보를 읽는 모습이 아니라,
+
+각 조직의 Agent가 정보를 처리하고 AX CORE를 통해 필요한 정보와 분석을 연결하며,
+
+최종적으로 중요한 판단만 Strategy/Management 단계로 올라가는 모습을 보여준다.
+
+시각적으로
+
+DATA
+↓
+AI
+↓
+ANALYSIS
+↓
+COLLABORATION
+↓
+DECISION
+↓
+ACTION
+↓
+FEEDBACK
+
+Cycle이 반복되어야 한다.
+
+---
+
+# 20. PERFORMANCE
+
+교육용 노

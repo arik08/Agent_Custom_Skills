@@ -1,0 +1,8 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {Simulation,events,buildings} from './simulation.js';
+test('all 20 scenarios traverse lifecycle and apply impact exactly once',()=>{for(const e of events){const s=new Simulation();s.next(e.id);const before=s.kpi.ebit;const visited=new Set([s.stage]);for(let i=0;i<112;i++){s.update(.25);visited.add(s.stage);}assert.equal(visited.size,7);assert.equal(s.kpi.ebit,before+e.after);assert.equal(s.applied,true);s.update(3);assert.equal(s.kpi.ebit,before+e.after);assert.ok(e.route.every(id=>buildings[id]));assert.ok(e.route.includes(15));assert.equal(e.route.at(-1),0);}});
+test('Gwangyang warning redistributes physical production',()=>{const s=new Simulation();s.update(17);assert.deepEqual(s.production,[92,81]);assert.equal(s.kpi.ebit,1237);});
+test('investment starts only after decision and commits once',()=>{const s=new Simulation();s.next(1);s.update(15.9);assert.equal(s.projects,0);s.update(.2);assert.equal(s.projects,1);assert.equal(s.kpi.capex,345);assert.equal(s.kpi.cash,835);s.update(10);assert.equal(s.projects,1);});
+test('continuous unattended operation stays finite and bounded',()=>{const s=new Simulation();s.update(32*400);assert.equal(s.completed,400);assert.equal(s.index,0);assert.ok(s.logs.length<=7);assert.ok(s.production.every(v=>v>=0&&v<=100));assert.ok(Object.values(s.kpi).every(Number.isFinite));assert.ok(s.kpi.performance<=99);});
+test('invalid delta and event interruption do not produce phantom actions',()=>{const s=new Simulation();s.update(NaN);s.update(-1);assert.equal(s.time,0);s.update(12);s.next(1);assert.equal(s.kpi.ebit,1240);assert.equal(s.age,0);s.update(16);assert.equal(s.projects,1);});
