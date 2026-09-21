@@ -1,0 +1,22 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const path=require('path'),base=__dirname;
+const workshop=fs.readFileSync(path.join(base,'tetris-workshop.js'),'utf8');
+const app=fs.readFileSync(path.join(base,'app.js'),'utf8');
+new vm.Script(workshop);new vm.Script(app);
+const source=workshop.slice(workshop.indexOf('function advance(){'),workshop.indexOf('window.tetrisWorkshop='));
+const input={value:'',dispatchEvent(){}};
+const roots=[{querySelectorAll:()=>[{dataset:{preset:'build'}}]},{querySelectorAll:()=>['color','hud','effects'].map(preset=>({dataset:{preset}}))}];
+const ctx={active:1,busy:null,built:false,config:{},roots,q:()=>input,requests:{build:'build request',color:'color request',hud:'hud request',effects:'effects request'},Event:class {},sent:[],send(root){ctx.sent.push(input.value);ctx.busy={root};}};
+vm.createContext(ctx);vm.runInContext(source,ctx);
+assert(ctx.advance());assert.equal(input.value,'build request');assert.equal(ctx.sent.length,0);
+assert(ctx.advance());assert.equal(ctx.sent.length,1);
+assert(ctx.advance());assert.equal(ctx.sent.length,1);
+ctx.busy=null;ctx.built=true;assert.equal(ctx.advance(),false);
+ctx.active=2;
+for(const key of ['color','hud','effects']){assert(ctx.advance());assert.equal(input.value,ctx.requests[key]);assert(ctx.advance());assert(ctx.busy);assert(ctx.advance());ctx.busy=null;ctx.config[key]=true;}
+assert.equal(ctx.advance(),false);
+ctx.active=0;assert.equal(ctx.advance(),false);
+ctx.active=2;ctx.config={hud:true};input.value='';assert(ctx.advance());assert.equal(input.value,ctx.requests.color);
+assert(app.includes('if(direction>0&&window.tetrisWorkshop?.advance())return;'));
+assert(!workshop.includes('editor.focus({preventScroll:true})'));
+console.log('PASS: syntax, build input/send, busy guard, three improvements, manual completion skip, unrelated slides, shared forward navigation');
