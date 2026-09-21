@@ -1,0 +1,15 @@
+<div class="ag-layout">
+<section><span class="label"><button class="term" data-term="AGENTS.md">AGENTS.md</button> · 항상 적용할 지침</span>
+<h3>AI 에이전트가 작업을 시작하기 전에<br>읽고 따르는 지침 파일</h3>
+<p class="ag-intro">사용자가 반복해서 시키는 일을 적어 두면,<br>매번 말하지 않아도 작업마다 적용합니다.</p>
+<div class="ag-example"><span>반복해서 하던 요청</span><p>“원본은 보존하고, 결과는 output 폴더에 저장해줘.”</p><div class="ag-down">↓ &nbsp; AGENTS.md에 한 번 기록</div><strong>이후 작업에서도 같은 규칙을 따르도록</strong></div>
+<p class="ag-note">단, Claude의 경우 AGENTS.md가 아닌 CLAUDE.md를 기본으로 읽습니다.</p></section>
+<section><span class="label"><button class="term" data-term="Git">Git</button> · 저장하고, 되돌리고, 함께 작업하기</span>
+<h3>수정 전 상태를 남겨 두고,<br>문제가 생기면 이전 상태로 복원</h3>
+<svg class="git-map" viewBox="0 0 850 265" role="img" aria-label="기본 작업의 저장 지점에서 별도 브랜치가 갈라지고 두 번의 변경 후 기본 작업에 병합됩니다. 이전 저장 지점으로 복원할 수 있습니다.">
+<g fill="none" stroke-width="5"><path d="M60 100 H780" stroke="#006b98"/><path d="M235 100 C280 100 275 195 330 195 H490 C555 195 565 100 625 100" stroke="#b16b2c"/><path d="M760 75 Q500 -5 240 75" stroke="#006b98" stroke-width="3" stroke-dasharray="8 7"/><path d="m250 62 -10 13 16 5" stroke="#006b98" stroke-width="3"/></g>
+<g fill="#fff" stroke="#006b98" stroke-width="5"><circle cx="60" cy="100" r="12"/><circle cx="235" cy="100" r="12"/><circle cx="430" cy="100" r="12"/><circle cx="625" cy="100" r="12"/><circle cx="780" cy="100" r="12"/></g>
+<g fill="#fff" stroke="#b16b2c" stroke-width="5"><circle cx="330" cy="195" r="12"/><circle cx="490" cy="195" r="12"/></g>
+<g font-family="Paperlogy, sans-serif" font-size="23" fill="#13364b"><text x="60" y="143" text-anchor="middle">시작</text><text x="235" y="143" text-anchor="middle">저장</text><text x="625" y="143" text-anchor="middle">병합</text><text x="780" y="143" text-anchor="middle">현재</text><text x="495" y="30" text-anchor="middle" fill="#006b98">필요하면 이전 저장 지점으로 복원</text><text x="415" y="244" text-anchor="middle" fill="#95551f">분기(branch) · 별도로 수정 → 병합(merge)</text></g></svg>
+<div class="git-benefits"><p><strong>전체를 매번 새로 복사하지 않습니다.</strong><br>바뀌지 않은 파일은 재사용하고, 바뀐 코드 부분은 비교해 볼 수 있습니다.</p><p><strong>저장·복원</strong> 커밋(●)으로 돌아갈 지점을 남깁니다.<br>원격 저장소에도 올려 두면 별도 백업이 됩니다.</p><p><strong>여러 명의 협업에 필수</strong> 각자 작업을 나눠 진행하고,<br>변경 이력을 확인하며 하나로 합칩니다.</p></div>
+</section></div>

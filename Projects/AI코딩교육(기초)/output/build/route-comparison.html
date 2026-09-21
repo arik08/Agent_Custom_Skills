@@ -1,0 +1,31 @@
+<div class="route-comparison">
+<svg viewBox="0 0 1680 560" role="img" aria-labelledby="route-title route-detail" style="width:100%;height:490px;display:block">
+<title id="route-title">간단한 계산은 JavaScript, 복잡한 계산은 백엔드에서 처리하는 예시</title>
+<desc id="route-detail">위: 브라우저의 JavaScript가 80점과 90점의 평균 85점을 바로 계산합니다. 아래: 브라우저가 생산 조건을 서버로 보내면 백엔드가 많은 조합을 비교해 최적 생산 계획을 계산하고 결과를 돌려줍니다.</desc>
+<defs><marker id="route-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 10 5 0 10" fill="#0072a5"/></marker></defs>
+<g font-family="Paperlogy, Malgun Gothic, sans-serif" fill="#173b50">
+<text x="5" y="35" font-size="29" font-weight="700">① 간단한 계산 · JavaScript가 바로 처리</text>
+<rect x="5" y="58" width="1665" height="190" rx="12" fill="#fff" stroke="#adc8d8" stroke-width="2"/>
+<path d="M5 102 H1670" stroke="#adc8d8"/><circle cx="30" cy="80" r="5" fill="#83aabc"/><circle cx="50" cy="80" r="5" fill="#83aabc"/><circle cx="70" cy="80" r="5" fill="#83aabc"/>
+<text x="96" y="88" font-size="23">내 컴퓨터 · 브라우저</text><text x="1635" y="88" text-anchor="end" font-size="22" fill="#547184">서버에 보낼 필요 없음</text>
+<text x="100" y="154" font-size="23">입력</text><text x="100" y="204" font-size="40" font-weight="700">80점, 90점</text>
+<path d="M310 173 H540" stroke="#0072a5" stroke-width="3" marker-end="url(#route-arrow)"/>
+<rect x="575" y="120" width="470" height="106" rx="9" fill="#e8f4fa"/>
+<text x="810" y="159" text-anchor="middle" font-size="25" fill="#0072a5">JavaScript가 계산</text><text x="810" y="200" text-anchor="middle" font-size="32" font-weight="700">(80 + 90) ÷ 2 = 85</text>
+<path d="M1080 173 H1310" stroke="#0072a5" stroke-width="3" marker-end="url(#route-arrow)"/>
+<text x="1390" y="154" font-size="23">결과 표시</text><text x="1390" y="204" font-size="36" font-weight="700" fill="#0072a5">평균 85점</text>
+<text x="5" y="303" font-size="29" font-weight="700">② 복잡한 계산 · 백엔드에 요청</text>
+<rect x="5" y="326" width="560" height="210" rx="12" fill="#fff" stroke="#adc8d8" stroke-width="2"/>
+<path d="M5 370 H565" stroke="#adc8d8"/><text x="28" y="356" font-size="23">내 컴퓨터 · 브라우저</text>
+<text x="35" y="420" font-size="30" font-weight="700">생산량·설비·납기 입력</text><text x="35" y="493" font-size="30" font-weight="700" fill="#0072a5">최적 생산 계획 표시</text>
+<text x="830" y="389" text-anchor="middle" font-size="25">요청 · “생산 계획을 계산해줘”</text>
+<path d="M590 410 H1070" stroke="#0072a5" stroke-width="3" marker-end="url(#route-arrow)"/>
+<text x="830" y="471" text-anchor="middle" font-size="25">응답 · 계산된 생산 계획</text>
+<path d="M1070 493 H590" stroke="#0072a5" stroke-width="3" marker-end="url(#route-arrow)"/>
+<rect x="1100" y="326" width="570" height="210" rx="12" fill="#e8f4fa" stroke="#0072a5" stroke-width="2"/>
+<rect x="1130" y="348" width="32" height="15" rx="3" fill="#0072a5"/><rect x="1130" y="370" width="32" height="15" rx="3" fill="#0072a5"/>
+<text x="1180" y="377" font-size="29" font-weight="700">서버 · 백엔드</text>
+<text x="1135" y="430" font-size="25">여러 조건과 수많은 조합을 비교</text><text x="1135" y="485" font-size="32" font-weight="700">최적 생산 계획 계산</text>
+</g></svg>
+<div class="callout" style="margin-top:8px;padding:17px 26px;font-size:26px;line-height:1.6"><b>API</b>는 이 요청과 응답을 주고받는 약속입니다.<br>이 예시에서는 계산량이 큰 작업을 백엔드에 맡기고, 브라우저는 받은 결과를 보여줍니다.</div>
+</div>

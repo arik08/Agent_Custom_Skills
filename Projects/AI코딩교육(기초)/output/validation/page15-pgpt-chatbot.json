@@ -1,0 +1,10 @@
+{
+  "result": {
+    "title": "사내 LLM API로 챗봇을 만들어봅니다",
+    "index": "14",
+    "source": "import os\nimport requests\n\nurl = \"http://pgpt.posco.com/s0la01-gpt/gptApi/personalApi\"\napi_key = os.getenv(\"PGPT_API_KEY\")\n\nheaders = {\n    \"accept\": \"*/*\",\n    \"Authorization\": f\"Bearer {api_key}\",\n    \"Content-Type\": \"application/json\"\n}\ndata = {\n    \"model\": \"gpt-5.6-luna\",\n    \"messages\": [\n        {\"role\": \"system\", \"content\": \"시스템 지시\"},\n        {\"role\": \"user\", \"content\": \"테스트\"}\n    ]\n}\nresponse = requests.post(url, headers=headers, json=data)\nprint('\\n', response.text, '\\n')",
+    "codeFits": true,
+    "overflow": []
+  },
+  "errors": []
+}

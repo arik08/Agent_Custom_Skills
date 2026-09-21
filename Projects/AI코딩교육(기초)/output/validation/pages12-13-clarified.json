@@ -1,0 +1,101 @@
+{
+  "checks": [
+    {
+      "raw": "85",
+      "fixed": false,
+      "actual": "충족",
+      "expected": "내 기준대로라면: 충족"
+    },
+    {
+      "raw": "85",
+      "fixed": true,
+      "actual": "충족",
+      "expected": "내 기준대로라면: 충족"
+    },
+    {
+      "raw": "80",
+      "fixed": false,
+      "actual": "미달",
+      "expected": "내 기준대로라면: 충족"
+    },
+    {
+      "raw": "80",
+      "fixed": true,
+      "actual": "충족",
+      "expected": "내 기준대로라면: 충족"
+    },
+    {
+      "raw": "",
+      "fixed": false,
+      "actual": "미달",
+      "expected": "내 기준대로라면: 확인 필요"
+    },
+    {
+      "raw": "",
+      "fixed": true,
+      "actual": "확인 필요",
+      "expected": "내 기준대로라면: 확인 필요"
+    },
+    {
+      "raw": "abc",
+      "fixed": false,
+      "actual": "미달",
+      "expected": "내 기준대로라면: 입력 오류"
+    },
+    {
+      "raw": "abc",
+      "fixed": true,
+      "actual": "입력 오류",
+      "expected": "내 기준대로라면: 입력 오류"
+    },
+    {
+      "raw": "79",
+      "fixed": false,
+      "actual": "미달",
+      "expected": "내 기준대로라면: 미달"
+    },
+    {
+      "raw": "79",
+      "fixed": true,
+      "actual": "미달",
+      "expected": "내 기준대로라면: 미달"
+    },
+    {
+      "raw": "100",
+      "fixed": false,
+      "actual": "충족",
+      "expected": "내 기준대로라면: 충족"
+    },
+    {
+      "raw": "100",
+      "fixed": true,
+      "actual": "충족",
+      "expected": "내 기준대로라면: 충족"
+    },
+    {
+      "raw": "-1",
+      "fixed": false,
+      "actual": "미달",
+      "expected": "내 기준대로라면: 입력 오류"
+    },
+    {
+      "raw": "-1",
+      "fixed": true,
+      "actual": "입력 오류",
+      "expected": "내 기준대로라면: 입력 오류"
+    },
+    {
+      "raw": "101",
+      "fixed": false,
+      "actual": "충족",
+      "expected": "내 기준대로라면: 입력 오류"
+    },
+    {
+      "raw": "101",
+      "fixed": true,
+      "actual": "입력 오류",
+      "expected": "내 기준대로라면: 입력 오류"
+    }
+  ],
+  "errors": []
+}

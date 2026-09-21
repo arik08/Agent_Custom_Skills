@@ -1,0 +1,24 @@
+{
+  "pages": [
+    15,
+    16,
+    17
+  ],
+  "live_pages": 1,
+  "visual_case_pages": 2,
+  "timer_removed": true,
+  "checked": [
+    "normal ranking",
+    "new names and boundary scores 0,80,100",
+    "empty input",
+    "tied ranks 1,1,3",
+    "missing score",
+    "out of range",
+    "browser console no errors",
+    "PDF pages 15-17 rendered and inspected"
+  ],
+  "not_retested": [
+    "full deck regression suite",
+    "all navigation modes"
+  ]
+}

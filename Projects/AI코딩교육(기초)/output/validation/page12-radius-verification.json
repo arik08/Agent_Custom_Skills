@@ -1,0 +1,117 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough ordered",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough ordered spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough clear-action",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough clear-action spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough clear-action ordered",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "64px",
+      "buttonRadius": "999px",
+      "classes": "rough clear-action ordered spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius ordered",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius ordered spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius clear-action",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius clear-action spaced",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius clear-action ordered",
+      "aligned": true,
+      "overflow": []
+    },
+    {
+      "radius": "6px",
+      "buttonRadius": "4px",
+      "classes": "rough restrained-radius clear-action ordered spaced",
+      "aligned": true,
+      "overflow": []
+    }
+  ]
+}

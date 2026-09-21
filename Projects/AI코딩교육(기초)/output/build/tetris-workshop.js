@@ -56,9 +56,17 @@ const initialViews=new Map(roots.map(root=>[root,{
  input:q(root,'[data-codex-input]').value,
  sendLabel:q(root,'[data-codex-send]').getAttribute('aria-label')
 }]));
+function updateRequestCue(root, reset=false){
+ const buttons=[...root.querySelectorAll('[data-preset]')];
+ if(buttons.length<2)return;
+ if(reset)buttons.forEach(b=>delete b.dataset.requestVisited);
+ const next=buttons.find(b=>!b.dataset.requestVisited);
+ buttons.forEach(b=>b.classList.toggle('is-request-cue',b===next));
+}
 function resetWorkshop(){
  cancel();stop();built=false;filesReady=false;config={...base};dropMs=40;speed=1;engine.reset();
  roots.forEach(root=>{
+  updateRequestCue(root,true);
   const initial=initialViews.get(root);
   states.set(root,{file:root.dataset.ide==='2'?'index':'game',mode:'code',lastDiff:[],fileDiffs:{},drafts:{},lastCaption:'Codex에 만들고 싶은 동작을 설명합니다.'});
   q(root,'[data-codex-history]').replaceChildren();
@@ -85,7 +93,7 @@ function diffLines(before,after){
  }
  return rows;
 }
-function renderCode(root){const s=states.get(root),area=q(root,'[data-ide-code]');const hasChanges=s.lastDiff.length>0;q(root,'[data-editor-mode="diff"]').hidden=!hasChanges;if(!hasChanges&&s.mode==='diff')s.mode='code';area.replaceChildren();area.classList.remove('editing');area.contentEditable='false';area.setAttribute('role','textbox');area.setAttribute('aria-label','코드 편집기');area.setAttribute('aria-multiline','true');area.spellcheck=false;const rows=!filesReady&&!built&&root.dataset.ide==='2'?['<!-- 여기에 작성하세요 -->']:(s.mode==='diff'&&s.lastDiff.length?(s.fileDiffs[s.file]||codeFor(root,s.file).map(line=>'  '+line)):codeFor(root,s.file));const draftKey=!filesReady&&!built&&root.dataset.ide==='2'?'initial':s.file;if(s.mode==='code'){
+function renderCode(root){const s=states.get(root),area=q(root,'[data-ide-code]');const hasChanges=s.lastDiff.length>0||!!s.streamingDiff;q(root,'[data-editor-mode="diff"]').hidden=!hasChanges;if(!hasChanges&&s.mode==='diff')s.mode='code';area.replaceChildren();area.classList.remove('editing');area.contentEditable='false';area.setAttribute('role','textbox');area.setAttribute('aria-label','코드 편집기');area.setAttribute('aria-multiline','true');area.spellcheck=false;const rows=s.streamingDiff&&s.streamingDiff.key===s.file?s.streamingDiff.rows:!filesReady&&!built&&root.dataset.ide==='2'?['<!-- 여기에 작성하세요 -->']:(s.mode==='diff'&&s.lastDiff.length?(s.fileDiffs[s.file]||codeFor(root,s.file).map(line=>'  '+line)):codeFor(root,s.file));const draftKey=!filesReady&&!built&&root.dataset.ide==='2'?'initial':s.file;if(s.mode==='code'){
  const gutter=document.createElement('div'),input=document.createElement('textarea');
  gutter.className='ide-edit-gutter';gutter.setAttribute('aria-hidden','true');input.className='ide-edit-input';input.setAttribute('aria-label','코드 편집기');input.spellcheck=false;input.wrap='off';input.value=s.drafts[draftKey]??rows.join('\n');
  const update=()=>{gutter.textContent=Array.from({length:input.value.split('\n').length},(_,i)=>i+1).join('\n');gutter.scrollTop=input.scrollTop;};
@@ -108,26 +116,58 @@ function sync(){roots.forEach(root=>{root.dataset.workspaceStage=root.dataset.id
 function frame(now){raf=0;if(document.hidden||![1,2].includes(active))return;const dt=lastTime?Math.min(120,now-lastTime):0;lastTime=now;if(built&&!engine.paused&&!engine.gameOver){acc+=dt;const delay=engine.auto?dropMs/speed:600;let steps=0;while(acc>=delay&&steps<8){engine.step();acc-=delay;steps++;}}const root=roots[active-1];if(root)render(root);raf=requestAnimationFrame(frame);}
 function start(){if(!raf&&[1,2].includes(active)&&!document.hidden){lastTime=0;raf=requestAnimationFrame(frame);}}
 function stop(){if(raf)cancelAnimationFrame(raf);raf=0;lastTime=0;acc=0;}
-function log(root,kind,text){const e=document.createElement('div');e.className=kind+'-message';e.textContent=text;q(root,'[data-codex-history]').append(e);const thread=q(root,'.codex-thread');thread.scrollTop=thread.scrollHeight;}
-function wait(fn,ms){timers.push(setTimeout(fn,reduced.matches?0:ms));}
-function cancel(){timers.forEach(clearTimeout);timers=[];if(busy){q(busy.root,'[data-codex-send]').disabled=false;q(busy.root,'[data-codex-input]').readOnly=false;q(busy.root,'[data-ide-status]').textContent='재현 중단';q(busy.root,'[data-codex-hint]').textContent='장 이동으로 중단했습니다. 요청을 다시 보낼 수 있습니다.';busy=null;}}
+function log(root,kind,text){const e=document.createElement('div');e.className=kind+'-message';e.textContent=text;q(root,'[data-codex-history]').append(e);const thread=q(root,'.codex-thread');thread.scrollTop=thread.scrollHeight;return e;}
+function wait(fn,ms){const id=setTimeout(()=>{timers=timers.filter(timer=>timer!==id);fn();},reduced.matches?0:ms);timers.push(id);}
+function streamText(root,kind,text,done){
+ const run=busy,node=log(root,kind,''),chars=Array.from(text);let offset=0;
+ node.classList.add('is-streaming');
+ function tick(){if(busy!==run)return;offset=Math.min(chars.length,offset+(reduced.matches?chars.length:3));node.textContent=chars.slice(0,offset).join('');const thread=q(root,'.codex-thread');thread.scrollTop=thread.scrollHeight;
+  if(offset<chars.length)wait(tick,/[。.!?…]$/.test(node.textContent)?130:35+(offset%3)*12);
+  else {node.classList.remove('is-streaming');done();}
+ }
+ wait(tick,100);
+}
+function streamFiles(root,diffs,done){
+ const run=busy,state=states.get(root),entries=Object.entries(diffs);let fileIndex=0;
+ function next(){if(busy!==run)return;if(fileIndex===entries.length){state.streamingDiff=null;q(root,'[data-ide-code]').removeAttribute('aria-busy');done();return;}
+  const [key,rows]=entries[fileIndex++];state.file=key;state.mode='diff';state.streamingDiff={key,rows:[]};q(root,'[data-ide-code]').setAttribute('aria-busy','true');let offset=0;
+  function tick(){if(busy!==run)return;offset=Math.min(rows.length,offset+(reduced.matches?rows.length:1));state.streamingDiff.rows=rows.slice(0,offset);renderCode(root);const area=q(root,'[data-ide-code]');area.scrollTop=area.scrollHeight;
+   if(offset<rows.length)wait(tick,65+(offset%3)*25);else wait(next,160);
+  }
+  tick();
+ }
+ next();
+}
+function cancel(){timers.forEach(clearTimeout);timers=[];if(busy){const root=busy.root;states.get(root).streamingDiff=null;q(root,'[data-ide-code]').removeAttribute('aria-busy');root.querySelectorAll('.is-streaming').forEach(node=>node.classList.remove('is-streaming'));q(root,'[data-codex-send]').disabled=false;q(root,'[data-codex-input]').readOnly=false;q(root,'[data-ide-status]').textContent='재현 중단';q(root,'[data-codex-hint]').textContent='장 이동으로 중단했습니다. 요청을 다시 보낼 수 있습니다.';busy=null;}}
 function classify(text){const t=text.toLowerCase(),op={};if(/색|컬러|디자인|게임답|꾸며|테마/.test(t))op.color=true;if(/점수|다음.*블록/.test(t))op.hud=true;if(/착지|고스트|그림자|효과|사라지/.test(t)){op.ghost=true;op.effects=true;}if(/천천히|느리|속도.*낮|속도.*줄/.test(t))op.dropMs=100;else if(/빠르|빠르게|속도.*높/.test(t))op.dropMs=40;return op;}
 function send(root){if(busy)return;const input=q(root,'[data-codex-input]'),text=input.value.trim();if(!text){q(root,'[data-codex-hint]').textContent='요청 내용을 입력해 주세요.';return;}q(root,'[data-codex-hint]').textContent='';const isBuild=root.dataset.ide==='2';const op=isBuild?{build:true}:classify(text);if((isBuild&&!/테트리스|tetris/i.test(text))||(!isBuild&&!Object.keys(op).length)){log(root,'error','이 체험은 테트리스 제작과 색·점수판·착지 효과·속도 수정을 재현합니다. 준비된 요청을 사용해 주세요.');return;}
  if(!isBuild){for(const k of Object.keys(op)){if(k==='dropMs'?dropMs===op[k]:config[k]===op[k])delete op[k];}if(!Object.keys(op).length){log(root,'assistant','요청한 내용은 이미 반영되어 있습니다. 다른 개선을 이어서 요청할 수 있습니다.');return;}}
- busy={root,op};q(root,'[data-codex-send]').disabled=true;input.readOnly=true;log(root,'user',text);log(root,'tool',isBuild?'작업 폴더 확인 중…':'현재 파일과 게임 설정을 확인하는 중…');q(root,'[data-ide-status]').textContent='Codex 작업 중';
- wait(()=>{q(root,'[data-ide-terminal]').textContent='PS C:\\work\\tetris-workshop> Get-ChildItem\n'+(isBuild?'새 프로젝트 · 파일 작성 준비':'index.html   style.css   tetris.js');log(root,'tool',isBuild?'index.html · style.css · tetris.js 작성':'요청한 부분의 변경을 준비했습니다.');},500);
- wait(()=>{const state=states.get(root);if(isBuild)filesReady=true;state.mode='diff';state.file=op.color?'style':'game';const nextConfig=isBuild?{...base}:{...config,...op},nextInterval=isBuild?40:(op.dropMs||dropMs);
- if(isBuild)state.fileDiffs={};
- for(const key of ['index','style','game']){
-  const before=isBuild?[]:codeFor(root,key),after=codeFor(root,key,nextConfig,nextInterval);
-  if(before.join('\n')!==after.join('\n'))state.fileDiffs[key]=diffLines(before,after);
- }
- state.lastDiff=Object.values(state.fileDiffs).flat();
- q(root,'[data-change-count]').textContent=Object.keys(state.fileDiffs).length+'개 파일';
- state.lastCaption=isBuild?'파일을 작성하고 브라우저에서 첫 결과를 확인합니다.':'파일을 선택하면 해당 파일의 최근 변경과 실행 결과를 확인합니다.';sync();q(root,'[data-ide-terminal]').textContent='PS C:\\work\\tetris-workshop> python -m http.server 5500\nServing HTTP on localhost:5500';log(root,'tool','변경 파일 확인 · 로컬 실행 과정 재현');},1050);
- wait(()=>{if(isBuild){built=true;config={...base};dropMs=40;speed=1;engine.reset();q(roots[1],'[data-codex-history]').replaceChildren();states.get(roots[1]).lastDiff=[];states.get(roots[1]).fileDiffs={};states.get(roots[1]).mode='code';q(roots[1],'[data-change-count]').textContent='0';q(roots[1],'[data-ide-status]').textContent='첫 버전 실행 중';log(root,'assistant','첫 버전을 만들었습니다. 자동으로 블록을 배치하고 줄을 지웁니다. 화면과 점수판은 기본 형태입니다.');q(root,'[data-codex-send]').setAttribute('aria-label','테트리스 제작 다시 요청');}else{for(const k of ['color','hud','ghost','effects'])if(k in op)config[k]=op[k];if(op.dropMs)dropMs=op.dropMs;built=true;log(root,'assistant','변경을 반영했습니다. '+(op.color?'블록 색과 화면이 달라졌습니다. ':'')+(op.hud?'점수판과 다음 블록을 추가했습니다. ':'')+(op.ghost?'착지 위치와 줄 삭제 효과를 추가했습니다. ':'')+(op.dropMs?'자동 플레이 속도를 조정했습니다.':'')+'게임은 이어서 실행됩니다.');}
- q(root,'[data-ide-status]').textContent=isBuild?'첫 버전 실행 중':`개선 ${tier(config)}/3 · 실행 중`;q(root,'[data-codex-hint]').textContent='';q(root,'[data-codex-send]').disabled=false;input.readOnly=false;busy=null;sync();start();},1650);
+ busy={root,op};const run=busy,state=states.get(root);q(root,'[data-codex-send]').disabled=true;input.readOnly=true;log(root,'user',text);q(root,'[data-ide-status]').textContent='Codex 작업 중';
+ streamText(root,'tool',isBuild?'작업 폴더를 확인하고 테트리스 파일을 작성하겠습니다.':'현재 파일과 게임 설정을 확인하고 요청한 부분을 수정하겠습니다.',()=>{
+  if(busy!==run)return;
+  q(root,'[data-ide-terminal]').textContent='PS C:\\work\\tetris-workshop> Get-ChildItem\n'+(isBuild?'새 프로젝트 · 파일 작성 준비':'index.html   style.css   tetris.js');
+  if(isBuild)filesReady=true;
+  const nextConfig=isBuild?{...base}:{...config,...op},nextInterval=isBuild?40:(op.dropMs||dropMs),diffs={};
+  for(const key of ['index','style','game']){const before=isBuild?[]:codeFor(root,key),after=codeFor(root,key,nextConfig,nextInterval);if(before.join('\n')!==after.join('\n'))diffs[key]=diffLines(before,after);}
+  state.lastCaption=isBuild?'파일을 작성하고 브라우저에서 첫 결과를 확인합니다.':'요청한 변경을 파일에 반영하고 있습니다.';
+  root.dataset.workspaceStage='files';
+  streamFiles(root,diffs,()=>{
+   if(busy!==run)return;
+   state.fileDiffs=isBuild?diffs:{...state.fileDiffs,...diffs};state.lastDiff=Object.values(state.fileDiffs).flat();
+   state.drafts={};q(root,'[data-change-count]').textContent=Object.keys(state.fileDiffs).length+'개 파일';
+   streamText(root,'tool','변경 파일을 확인하고 로컬 실행 결과를 확인합니다.',()=>{
+    if(busy!==run)return;
+    q(root,'[data-ide-terminal]').textContent='PS C:\\work\\tetris-workshop> python -m http.server 5500\nServing HTTP on localhost:5500';
+    let message;
+    if(isBuild){built=true;config={...base};dropMs=40;speed=1;engine.reset();q(roots[1],'[data-codex-history]').replaceChildren();states.get(roots[1]).lastDiff=[];states.get(roots[1]).fileDiffs={};states.get(roots[1]).mode='code';q(roots[1],'[data-change-count]').textContent='0';q(roots[1],'[data-ide-status]').textContent='첫 버전 실행 중';message='첫 버전을 만들었습니다. 자동으로 블록을 배치하고 줄을 지웁니다. 화면과 점수판은 기본 형태입니다.';q(root,'[data-codex-send]').setAttribute('aria-label','테트리스 제작 다시 요청');}
+    else{for(const k of ['color','hud','ghost','effects'])if(k in op)config[k]=op[k];if(op.dropMs)dropMs=op.dropMs;built=true;message='변경을 반영했습니다. '+(op.color?'블록 색과 화면이 달라졌습니다. ':'')+(op.hud?'점수판과 다음 블록을 추가했습니다. ':'')+(op.ghost?'착지 위치와 줄 삭제 효과를 추가했습니다. ':'')+(op.dropMs?'자동 플레이 속도를 조정했습니다.':'')+'게임은 이어서 실행됩니다.';}
+    state.lastCaption='파일을 선택하면 해당 파일의 최근 변경과 실행 결과를 확인합니다.';sync();start();
+    streamText(root,'assistant',message,()=>{if(busy!==run)return;q(root,'[data-ide-status]').textContent=isBuild?'첫 버전 실행 중':`개선 ${tier(config)}/3 · 실행 중`;q(root,'[data-codex-hint]').textContent='';q(root,'[data-codex-send]').disabled=false;input.readOnly=false;busy=null;});
+   });
+  });
+ });
 }
+
 roots.forEach(root=>{
  const app=q(root,'[data-game-app]'),board=q(root,'.tetris-board-wrap'),controls=q(root,'.tetris-controls');
  const alignControls=()=>{const a=app.getBoundingClientRect(),b=board.getBoundingClientRect(),c=controls.getBoundingClientRect();if(a.width&&app.offsetWidth)controls.style.setProperty('--board-left',Math.max(0,(b.left-c.left)/(a.width/app.offsetWidth))+'px');};
@@ -136,7 +176,8 @@ roots.forEach(root=>{
  editor.addEventListener('keydown',e=>{const input=e.target;if(e.key==='Escape'){e.preventDefault();input.blur();}if(e.key==='Tab'&&input.matches('.ide-edit-input')){e.preventDefault();input.setRangeText('  ',input.selectionStart,input.selectionEnd,'end');input.dispatchEvent(new Event('input',{bubbles:true}));}e.stopPropagation();});
  q(root,'[data-codex-send]').addEventListener('click',()=>send(root));
  q(root,'[data-codex-input]').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();send(root);}});
- root.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{q(root,'[data-codex-input]').value=requests[b.dataset.preset];}));
+ updateRequestCue(root);
+ root.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{q(root,'[data-codex-input]').value=requests[b.dataset.preset];b.dataset.requestVisited='true';updateRequestCue(root);}));
  root.querySelectorAll('[data-ide-file]').forEach(b=>b.addEventListener('click',()=>{states.get(root).file=b.dataset.ideFile;renderCode(root);}));
  root.querySelectorAll('[data-editor-mode]').forEach(b=>b.addEventListener('click',()=>{states.get(root).mode=b.dataset.editorMode;renderCode(root);}));
  q(root,'[data-tetris-speed]').addEventListener('input',e=>{speed=+e.target.value;sync();});
@@ -144,22 +185,7 @@ roots.forEach(root=>{
  q(root,'.tetris-canvas').addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey||!built)return;const actions={ArrowLeft:()=>engine.move(-1),ArrowRight:()=>engine.move(1),ArrowUp:()=>engine.turn(),ArrowDown:()=>engine.step(),' ':()=>engine.drop()};if(actions[e.key]){e.preventDefault();e.stopPropagation();engine.setAuto(false);actions[e.key]();render(root);}else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();q(root,'.tetris-canvas').blur();}});
 });
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
-// Presentation navigation shares the same request and send path as the controls.
-function advance(){
- if(![1,2].includes(active))return false;
- if(busy)return true;
- const root=roots[active-1];
- const preset=[...root.querySelectorAll('[data-preset]')].find(button=>{
-  const key=button.dataset.preset;
-  return key==='build'?!built:!config[key];
- });
- if(!preset)return false;
- const input=q(root,'[data-codex-input]'),request=requests[preset.dataset.preset];
- if(input.value.trim()===request){send(root);}
- else {input.value=request;input.dispatchEvent(new Event('input',{bubbles:true}));}
- return true;
-}
-window.tetrisWorkshop={advance,engine,get config(){return {...config,dropMs,speed};},get built(){return built;},get busy(){return !!busy;},get running(){return !!raf;},classify,
+window.tetrisWorkshop={engine,get config(){return {...config,dropMs,speed};},get built(){return built;},get busy(){return !!busy;},get running(){return !!raf;},classify,
  navigate(index){cancel();stop();active=index;if(index===1)resetWorkshop();if(index===2&&!built){built=true;log(roots[1],'assistant','첫 테트리스를 준비했습니다. 이제 요청을 하나씩 보내 화면을 개선합니다.');}sync();start();},
  preparePrint(){cancel();stop();built=true;engine.reset();for(let i=0;i<28;i++)engine.drop();config={color:true,hud:true,ghost:true,effects:true};roots.forEach(root=>{states.get(root).mode='code';q(root,'[data-ide-status]').textContent=root.dataset.ide==='2'?'첫 버전 · AUTO':'개선 완료 · AUTO';});sync();}
 };

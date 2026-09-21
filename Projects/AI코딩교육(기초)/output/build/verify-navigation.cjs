@@ -1,22 +1,44 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert');
-const path=require('path'),base=__dirname;
-const workshop=fs.readFileSync(path.join(base,'tetris-workshop.js'),'utf8');
-const app=fs.readFileSync(path.join(base,'app.js'),'utf8');
-new vm.Script(workshop);new vm.Script(app);
-const source=workshop.slice(workshop.indexOf('function advance(){'),workshop.indexOf('window.tetrisWorkshop='));
-const input={value:'',dispatchEvent(){}};
-const roots=[{querySelectorAll:()=>[{dataset:{preset:'build'}}]},{querySelectorAll:()=>['color','hud','effects'].map(preset=>({dataset:{preset}}))}];
-const ctx={active:1,busy:null,built:false,config:{},roots,q:()=>input,requests:{build:'build request',color:'color request',hud:'hud request',effects:'effects request'},Event:class {},sent:[],send(root){ctx.sent.push(input.value);ctx.busy={root};}};
-vm.createContext(ctx);vm.runInContext(source,ctx);
-assert(ctx.advance());assert.equal(input.value,'build request');assert.equal(ctx.sent.length,0);
-assert(ctx.advance());assert.equal(ctx.sent.length,1);
-assert(ctx.advance());assert.equal(ctx.sent.length,1);
-ctx.busy=null;ctx.built=true;assert.equal(ctx.advance(),false);
-ctx.active=2;
-for(const key of ['color','hud','effects']){assert(ctx.advance());assert.equal(input.value,ctx.requests[key]);assert(ctx.advance());assert(ctx.busy);assert(ctx.advance());ctx.busy=null;ctx.config[key]=true;}
-assert.equal(ctx.advance(),false);
-ctx.active=0;assert.equal(ctx.advance(),false);
-ctx.active=2;ctx.config={hud:true};input.value='';assert(ctx.advance());assert.equal(input.value,ctx.requests.color);
-assert(app.includes('if(direction>0&&window.tetrisWorkshop?.advance())return;'));
-assert(!workshop.includes('editor.focus({preventScroll:true})'));
-console.log('PASS: syntax, build input/send, busy guard, three improvements, manual completion skip, unrelated slides, shared forward navigation');
+const assert=require('node:assert/strict');
+const path=require('node:path');
+const {pathToFileURL}=require('node:url');
+const {chromium}=require(path.join(process.env.USERPROFILE,'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
+(async()=>{
+ const browser=await chromium.launch({channel:'msedge',headless:true});
+ try {
+ const page=await browser.newPage({reducedMotion:'reduce'});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(pathToFileURL(path.resolve(__dirname,'../AI코딩교육_체험과안목_v3.html')).href+'#/2');
+ for(const key of ['ArrowRight','PageDown','Space','Enter']){
+  for(const index of [1,2]){
+   await page.evaluate(i=>deck.go(i),index);
+   const before=await page.locator('[data-codex-input]').evaluateAll(es=>es.map(e=>e.value));
+   await page.keyboard.press(key);
+   assert.equal(await page.evaluate(()=>deck.current),index+1);
+   assert.deepEqual(await page.locator('[data-codex-input]').evaluateAll(es=>es.map(e=>e.value)),before);
+   assert.equal(await page.evaluate(()=>tetrisWorkshop.busy),false);
+  }
+ }
+ await page.evaluate(()=>deck.go(1));await page.mouse.move(5,5);await page.mouse.wheel(0,100);
+ await page.waitForFunction(()=>deck.current===2);
+ await page.mouse.wheel(0,100);await page.waitForFunction(()=>deck.current===3);
+ await page.evaluate(()=>deck.go(1));
+ await page.locator('[data-ide="2"] [data-preset="build"]').click();
+ await page.locator('[data-ide="2"] [data-codex-send]').click();
+ await page.waitForFunction(()=>tetrisWorkshop.built&&!tetrisWorkshop.busy);
+ await page.evaluate(()=>deck.go(2));
+ for(const preset of ['color','hud','effects']){
+  await page.locator(`[data-ide="3"] [data-preset="${preset}"]`).click();
+  await page.locator('[data-ide="3"] [data-codex-send]').click();
+  await page.waitForFunction(key=>tetrisWorkshop.config[key]&&!tetrisWorkshop.busy,preset);
+ }
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.evaluate(()=>deck.go(1));
+ await page.locator('[data-ide="2"] [data-preset="build"]').click();
+ await page.locator('[data-ide="2"] [data-codex-send]').click();
+ await page.locator('[data-ide="2"] [data-codex-send]').blur();
+ await page.keyboard.press('PageDown');assert.equal(await page.evaluate(()=>deck.current),2);
+ assert.equal(await page.evaluate(()=>tetrisWorkshop.busy),false);
+ assert.deepEqual(errors,[]);
+ console.log('PASS: immediate keyboard/wheel navigation, unchanged inputs, direct build and all upgrade buttons, navigation during execution, no JS errors');
+ } finally {await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});
