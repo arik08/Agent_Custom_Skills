@@ -1,0 +1,91 @@
+{
+  "html": [
+    "index.html · 화면 구조",
+    "<link rel=\"stylesheet\" href=\"style.css\">\n<main class=\"game\">\n    <h1>테트리스</h1>\n    <canvas id=\"board\" width=\"240\" height=\"480\"></canvas>\n    <p>점수 <span id=\"score\">0</span></p>\n    <div class=\"controls\">\n        <button id=\"start\">시작</button>\n        <button id=\"pause\">일시정지</button>\n    </div>\n</main>\n<script src=\"game.js\"></script>",
+    "화면에 게임판·점수·버튼을 배치하고, 디자인과 동작을 담은 파일을 연결합니다.",
+    [
+      "화면 디자인 파일 연결",
+      "게임 화면을 하나로 묶기",
+      "화면에 제목 표시",
+      "블록을 그릴 게임판",
+      "점수를 바꿔 표시할 자리",
+      "조작 버튼을 묶는 영역",
+      "게임 시작 버튼",
+      "일시정지 버튼",
+      "",
+      "",
+      "JavaScript 동작 파일 연결"
+    ]
+  ],
+  "css": [
+    "style.css · 화면 표현",
+    ".game {\n    width: 360px;\n    margin: 0 auto;\n    text-align: center;\n}\n#board {\n    background: #10273d;\n    border: 2px solid #006295;\n}\nbutton { padding: 10px 18px; color: #006295; }\nbutton:hover { background: #e0eff7; }",
+    "화면의 크기·정렬·색과 버튼 모양을 정합니다. 게임의 점수 계산 규칙은 바뀌지 않습니다.",
+    [
+      "게임 영역의 디자인",
+      "전체 게임 화면 너비",
+      "화면 가운데에 배치",
+      "제목과 버튼을 가운데 정렬",
+      "",
+      "게임판의 디자인",
+      "게임판 배경을 짙은 남색으로",
+      "게임판에 파란 테두리",
+      "",
+      "버튼 안쪽 여백과 글자색",
+      "마우스를 올리면 배경색 변경"
+    ]
+  ],
+  "js": [
+    "game.js · 화면 동작",
+    "let score = 0, paused = false;\nconst scoreText = document.querySelector(\"#score\");\nconst pauseButton = document.querySelector(\"#pause\");\nfunction addScore(clearedLines) {\n    score += clearedLines * 100;\n    scoreText.textContent = score;\n}\npauseButton.addEventListener(\"click\", () => {\n    paused = !paused;\n    pauseButton.textContent = paused ? \"계속하기\" : \"일시정지\";\n});",
+    "점수 계산·화면 갱신·버튼 클릭 처리를 연결하는 예시입니다. 전체 게임 코드의 일부입니다.",
+    [
+      "점수와 일시정지 상태 준비",
+      "HTML의 점수 표시 요소 찾기",
+      "HTML의 일시정지 버튼 찾기",
+      "줄 삭제 시 호출할 함수",
+      "지운 줄 수 × 100점 더하기",
+      "새 점수를 화면에 반영",
+      "",
+      "버튼을 클릭했을 때 실행",
+      "멈춤과 진행 상태 전환",
+      "상태에 맞게 버튼 글자 변경",
+      "클릭 처리 마무리"
+    ]
+  ],
+  "agents": [
+    "AGENTS.md · 반복 작업 기준",
+    "# 작업 기준\n## 화면과 파일\n- 사용자에게 보이는 문구는 한국어로 작성\n- 화면은 index.html, 디자인은 style.css에 작성\n- 게임 동작은 game.js에 작성\n## 수정 후 확인\n- 시작·일시정지 버튼을 직접 눌러 확인\n- 줄 삭제 후 점수가 바뀌는지 확인\n- 브라우저 콘솔에 오류가 없는지 확인\n- 실행 방법이 바뀌면 README.md도 수정",
+    "지원하는 코딩 에이전트가 작업할 때 참고할 공통 기준과 확인 절차를 남깁니다.",
+    [
+      "문서의 큰 제목",
+      "작성 규칙을 묶는 소제목",
+      "화면 언어를 통일",
+      "파일별 역할을 분리",
+      "동작 코드를 둘 파일 지정",
+      "검증할 항목을 모으기",
+      "실제 버튼 동작 확인",
+      "계산 결과 확인",
+      "실행 오류 확인",
+      "실행 안내도 함께 갱신"
+    ]
+  ],
+  "readme": [
+    "README.md · 실행 안내",
+    "# 테트리스 실행 안내\n## 실행\n1. HTML·CSS·JS 파일을 같은 폴더에 둡니다.\n2. index.html을 브라우저로 엽니다.\n3. 시작 버튼을 누릅니다.\n## 조작\n- ← / → : 블록 이동, ↑ : 회전\n- 일시정지 버튼 : 멈춤 / 계속하기\n## 확인\n- 한 줄을 지우면 점수가 100점 증가합니다.\n- 화면이 바뀌지 않으면 새로고침합니다.",
+    "프로그램을 사용하는 사람이 실행 순서·조작 방법·확인할 결과를 읽는 안내 문서입니다.",
+    [
+      "어떤 프로그램인지 소개",
+      "실행 순서를 안내",
+      "연결할 파일을 한곳에 보관",
+      "실행할 파일 지정",
+      "게임 시작 방법",
+      "사용 방법을 모으기",
+      "키보드 조작 설명",
+      "버튼 사용법 설명",
+      "정상 동작 확인 기준",
+      "기대하는 점수 변화",
+      "수정한 화면을 다시 불러오기"
+    ]
+  ]
+}

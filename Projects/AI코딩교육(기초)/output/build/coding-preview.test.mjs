@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {BlockPreview} from './coding-preview.mjs';
+test('feedback changes the actual falling rate',()=>{const fast=new BlockPreview(),slow=new BlockPreview();fast.update(.65,150);slow.update(.65,500);assert(fast.y>slow.y);assert.equal(slow.y,1);});
+test('blocks land, clear rows and update score without overlap',()=>{const p=new BlockPreview();let rotated=false;for(let i=0;i<3000;i++){p.update(.02,150);assert(p.fits(p.cells,p.x,p.y));assert(p.board.every(r=>r.length===6));if(p.rotations)rotated=true;}assert(p.locked>10);assert(p.lines>=2);assert(p.score>=200);assert(rotated);});
+test('zero time pauses and reset is deterministic',()=>{const p=new BlockPreview();p.update(2,150);const before=JSON.stringify(p.snapshot());p.update(0,150);assert.equal(JSON.stringify(p.snapshot()),before);p.reset();assert.deepEqual(p.snapshot(),new BlockPreview().snapshot());});

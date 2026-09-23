@@ -48,6 +48,7 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)'),engine=new TetrisEn
 const base={color:false,hud:false,ghost:false,effects:false};let config={...base},built=false,filesReady=false,active=-1,raf=0,lastTime=0,acc=0,speed=1,dropMs=40,busy=null,timers=[];
 const states=new Map(roots.map(root=>[root,{file:root.dataset.ide==='2'?'index':'game',mode:'code',lastDiff:[],fileDiffs:{},drafts:{},lastCaption:'Codex에 만들고 싶은 동작을 설명합니다.'}]));
 const q=(root,s)=>root.querySelector(s);
+function updateSendCue(root,ready=true){q(root,'[data-codex-send]').classList.toggle('is-send-cue',ready&&!busy&&!!q(root,'[data-codex-input]').value.trim());}
 function viewConfig(root){return root.dataset.ide==='2'?base:config;}
 function tier(cfg){return Number(cfg.color)+Number(cfg.hud)+Number(cfg.ghost);}
 const requests={build:'웹에서 실행하는 테트리스를 만들어줘. 일단 단순하게 만들고, 자동 플레이를 처음부터 빠르게 넣어줘.',color:'블록마다 색을 다르게 하고, 화면을 게임답게 꾸며줘.',hud:'점수를 크게 하고 다음 블록도 보여줘.',effects:'착지 위치랑 줄이 사라지는 효과도 넣어줘.'};
@@ -63,6 +64,7 @@ function updateRequestCue(root, reset=false){
  const next=buttons.find(b=>!b.dataset.requestVisited);
  buttons.forEach(b=>b.classList.toggle('is-request-cue',b===next));
 }
+function advanceRequestCue(root,op){root.querySelectorAll('[data-preset]').forEach(button=>{if(op[button.dataset.preset])button.dataset.requestVisited='true';});updateRequestCue(root);}
 function resetWorkshop(){
  cancel();stop();built=false;filesReady=false;config={...base};dropMs=40;speed=1;engine.reset();
  roots.forEach(root=>{
@@ -138,10 +140,10 @@ function streamFiles(root,diffs,done){
  }
  next();
 }
-function cancel(){timers.forEach(clearTimeout);timers=[];if(busy){const root=busy.root;states.get(root).streamingDiff=null;q(root,'[data-ide-code]').removeAttribute('aria-busy');root.querySelectorAll('.is-streaming').forEach(node=>node.classList.remove('is-streaming'));q(root,'[data-codex-send]').disabled=false;q(root,'[data-codex-input]').readOnly=false;q(root,'[data-ide-status]').textContent='재현 중단';q(root,'[data-codex-hint]').textContent='장 이동으로 중단했습니다. 요청을 다시 보낼 수 있습니다.';busy=null;}}
+function cancel(){roots.forEach(root=>updateSendCue(root,false));timers.forEach(clearTimeout);timers=[];if(busy){const root=busy.root;states.get(root).streamingDiff=null;q(root,'[data-ide-code]').removeAttribute('aria-busy');root.querySelectorAll('.is-streaming').forEach(node=>node.classList.remove('is-streaming'));q(root,'[data-codex-send]').disabled=false;q(root,'[data-codex-input]').readOnly=false;q(root,'[data-ide-status]').textContent='재현 중단';q(root,'[data-codex-hint]').textContent='장 이동으로 중단했습니다. 요청을 다시 보낼 수 있습니다.';busy=null;}}
 function classify(text){const t=text.toLowerCase(),op={};if(/색|컬러|디자인|게임답|꾸며|테마/.test(t))op.color=true;if(/점수|다음.*블록/.test(t))op.hud=true;if(/착지|고스트|그림자|효과|사라지/.test(t)){op.ghost=true;op.effects=true;}if(/천천히|느리|속도.*낮|속도.*줄/.test(t))op.dropMs=100;else if(/빠르|빠르게|속도.*높/.test(t))op.dropMs=40;return op;}
-function send(root){if(busy)return;const input=q(root,'[data-codex-input]'),text=input.value.trim();if(!text){q(root,'[data-codex-hint]').textContent='요청 내용을 입력해 주세요.';return;}q(root,'[data-codex-hint]').textContent='';const isBuild=root.dataset.ide==='2';const op=isBuild?{build:true}:classify(text);if((isBuild&&!/테트리스|tetris/i.test(text))||(!isBuild&&!Object.keys(op).length)){log(root,'error','이 체험은 테트리스 제작과 색·점수판·착지 효과·속도 수정을 재현합니다. 준비된 요청을 사용해 주세요.');return;}
- if(!isBuild){for(const k of Object.keys(op)){if(k==='dropMs'?dropMs===op[k]:config[k]===op[k])delete op[k];}if(!Object.keys(op).length){log(root,'assistant','요청한 내용은 이미 반영되어 있습니다. 다른 개선을 이어서 요청할 수 있습니다.');return;}}
+function send(root){if(busy)return;updateSendCue(root,false);const input=q(root,'[data-codex-input]'),text=input.value.trim();if(!text){q(root,'[data-codex-hint]').textContent='요청 내용을 입력해 주세요.';return;}q(root,'[data-codex-hint]').textContent='';const isBuild=root.dataset.ide==='2';const op=isBuild?{build:true}:classify(text);if((isBuild&&!/테트리스|tetris/i.test(text))||(!isBuild&&!Object.keys(op).length)){log(root,'error','이 체험은 테트리스 제작과 색·점수판·착지 효과·속도 수정을 재현합니다. 준비된 요청을 사용해 주세요.');return;}
+ if(!isBuild){advanceRequestCue(root,op);for(const k of Object.keys(op)){if(k==='dropMs'?dropMs===op[k]:config[k]===op[k])delete op[k];}if(!Object.keys(op).length){log(root,'assistant','요청한 내용은 이미 반영되어 있습니다. 다른 개선을 이어서 요청할 수 있습니다.');return;}}
  busy={root,op};const run=busy,state=states.get(root);q(root,'[data-codex-send]').disabled=true;input.readOnly=true;log(root,'user',text);q(root,'[data-ide-status]').textContent='Codex 작업 중';
  streamText(root,'tool',isBuild?'작업 폴더를 확인하고 테트리스 파일을 작성하겠습니다.':'현재 파일과 게임 설정을 확인하고 요청한 부분을 수정하겠습니다.',()=>{
   if(busy!==run)return;
@@ -177,7 +179,8 @@ roots.forEach(root=>{
  q(root,'[data-codex-send]').addEventListener('click',()=>send(root));
  q(root,'[data-codex-input]').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();send(root);}});
  updateRequestCue(root);
- root.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{q(root,'[data-codex-input]').value=requests[b.dataset.preset];b.dataset.requestVisited='true';updateRequestCue(root);}));
+ q(root,'[data-codex-input]').addEventListener('input',()=>updateSendCue(root));
+ root.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{if(busy)return;q(root,'[data-codex-input]').value=requests[b.dataset.preset];updateSendCue(root);}));
  root.querySelectorAll('[data-ide-file]').forEach(b=>b.addEventListener('click',()=>{states.get(root).file=b.dataset.ideFile;renderCode(root);}));
  root.querySelectorAll('[data-editor-mode]').forEach(b=>b.addEventListener('click',()=>{states.get(root).mode=b.dataset.editorMode;renderCode(root);}));
  q(root,'[data-tetris-speed]').addEventListener('input',e=>{speed=+e.target.value;sync();});
@@ -186,7 +189,7 @@ roots.forEach(root=>{
 });
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();else start();});
 window.tetrisWorkshop={engine,get config(){return {...config,dropMs,speed};},get built(){return built;},get busy(){return !!busy;},get running(){return !!raf;},classify,
- navigate(index){cancel();stop();active=index;if(index===1)resetWorkshop();if(index===2&&!built){built=true;log(roots[1],'assistant','첫 테트리스를 준비했습니다. 이제 요청을 하나씩 보내 화면을 개선합니다.');}sync();start();},
+ navigate(index){cancel();stop();active=roots.findIndex(root=>Number(root.closest('.slide').dataset.index)===index)+1;if(active===1)resetWorkshop();if(active===2&&!built){built=true;log(roots[1],'assistant','첫 테트리스를 준비했습니다. 이제 요청을 하나씩 보내 화면을 개선합니다.');}sync();start();},
  preparePrint(){cancel();stop();built=true;engine.reset();for(let i=0;i<28;i++)engine.drop();config={color:true,hud:true,ghost:true,effects:true};roots.forEach(root=>{states.get(root).mode='code';q(root,'[data-ide-status]').textContent=root.dataset.ide==='2'?'첫 버전 · AUTO':'개선 완료 · AUTO';});sync();}
 };
 sync();

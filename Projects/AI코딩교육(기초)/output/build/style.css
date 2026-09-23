@@ -160,7 +160,7 @@
 .key-warning small{display:block;font-size:21px;color:var(--muted);margin-top:8px}
 
 /* Page 19: reusable blocks and project prerequisites. */
-.package-slide .slide-body{padding-top:28px}.pkg-layout{display:grid;grid-template-columns:760px 1fr;gap:52px}.pkg-layout h3{font-size:31px;margin-bottom:17px}.pkg-layout p{font-size:25px;line-height:1.55}.pkg-blocks{width:760px;height:285px;display:block;margin:6px 0 0}.pkg-def{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0}.pkg-def p{display:flex;gap:24px;align-items:center}.pkg-def p+p{margin-top:10px}.pkg-def .term{min-width:145px;text-align:left;font-size:27px}.pkg-layout .pkg-note{font-size:21px;color:var(--muted);margin-top:17px;line-height:1.55}.pkg-prep{border-left:1px solid var(--line);padding-left:35px}.pkg-step{display:flex;gap:18px;margin:17px 0}.pkg-step>b{font-size:23px;color:var(--blue);padding-top:4px}.pkg-step h4{font-size:27px;margin:0 0 7px;font-weight:600}.pkg-step p{font-size:22px}.pkg-step .term{font-size:27px}.pkg-commands{display:grid;gap:12px;margin-top:18px}.pkg-commands>div{padding:12px 20px;background:#e5eef3;border-left:3px solid var(--blue)}.pkg-commands strong{display:block;font-size:22px;margin-bottom:6px}.pkg-commands code{display:block;white-space:pre;font-family:Consolas,monospace;font-size:24px;line-height:1.4;color:var(--deep)}.pkg-commands code span{font:19px Paperlogy,sans-serif;color:var(--muted);margin-left:18px}.pkg-commands small{display:block;font-size:18px;color:var(--muted);margin-top:6px}.pkg-note code{font-size:22px}
+.package-slide .slide-body{padding-top:20px}.pkg-layout{display:grid;grid-template-columns:760px 1fr;gap:52px}.pkg-layout h3{font-size:31px;margin-bottom:17px}.pkg-layout p{font-size:25px;line-height:1.55}.pkg-blocks{width:760px;height:285px;display:block;margin:6px 0 0}.pkg-def{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0}.pkg-def p{display:flex;gap:24px;align-items:center}.pkg-def p+p{margin-top:10px}.pkg-def .term{min-width:145px;text-align:left;font-size:27px}.pkg-layout .pkg-note{font-size:21px;color:var(--muted);margin-top:17px;line-height:1.55}.pkg-prep{border-left:1px solid var(--line);padding-left:35px}.pkg-step{display:flex;gap:18px;margin:17px 0}.pkg-step>b{font-size:23px;color:var(--blue);padding-top:4px}.pkg-step h4{font-size:27px;margin:0 0 7px;font-weight:600}.pkg-step p{font-size:22px}.pkg-step .term{font-size:27px}.pkg-commands{display:grid;gap:12px;margin-top:18px}.pkg-commands>div{padding:12px 20px;background:#e5eef3;border-left:3px solid var(--blue)}.pkg-commands strong{display:block;font-size:22px;margin-bottom:6px}.pkg-commands code{display:block;white-space:pre;font-family:Consolas,monospace;font-size:24px;line-height:1.4;color:var(--deep)}.pkg-commands code span{font:19px Paperlogy,sans-serif;color:var(--muted);margin-left:18px}.pkg-commands small{display:block;font-size:18px;color:var(--muted);margin-top:6px}.pkg-note code{font-size:22px}
 
 /* Complex program design workflow */
 .design-process-slide h1{font-size:60px}.design-process-slide .slide-body{padding-top:32px}.design-process{display:flex;flex-direction:column;gap:32px}.design-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}.design-stages article{border-top:3px solid var(--blue);padding-top:20px}.design-stages article>span{font-size:22px;color:var(--blue);font-weight:600}.design-stages h3{font-size:30px;margin:18px 0 16px;line-height:1.45}.design-stages p{font-size:26px;line-height:1.7}.design-request{padding:24px 30px;background:var(--pale);border-left:5px solid var(--blue)}.design-request strong{font-size:22px;color:var(--deep)}.design-request p{font-size:28px;margin-top:10px;line-height:1.65}.design-loop{display:flex;gap:30px;align-items:center;border-top:1px solid var(--line);padding-top:23px}.design-loop b{font-size:28px;color:var(--blue);white-space:nowrap}.design-loop span{font-size:24px;line-height:1.6}
@@ -187,7 +187,7 @@
 @media print{.closing .qa-letter,.closing .qa-illustration{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}.closing .qa-cursor{display:none!important}}
 
 /* Page 19: assembled parts and project preparation illustration */
-.package-slide .pkg-blocks{height:310px;margin-top:0}
+.package-slide .pkg-blocks{height:280px;margin-top:0}
 .pkg-prep{position:relative}.pkg-prep-art{position:absolute;width:205px;height:205px;object-fit:contain;right:-10px;top:55px;pointer-events:none}
 .package-slide .pkg-prep .pkg-step{padding-right:180px}
 
@@ -206,3 +206,58 @@
 
 [data-step-highlight]>[role="button"]{cursor:pointer}
 [data-step-highlight]>[role="button"]:focus-visible{outline:3px solid var(--accent,#b65e3c);outline-offset:5px}
+
+/* Execution examples: fill the three teaching windows with readable context. */
+.run-example{margin-top:22px;font-size:21px;line-height:1.8}
+.run-example .example-caption{font-size:17px;letter-spacing:.04em;opacity:.75;margin-bottom:12px}
+.run-game{display:grid;grid-template-columns:180px 1fr;gap:30px;align-items:center;padding:20px 24px;background:#f1f6fa;border:1px solid #dbe5ed;border-radius:7px;color:#23465e}
+.run-board{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;padding:9px;background:#132c42;border-radius:4px}
+.run-cell{height:17px;background:#203e56;border-radius:1px}.run-cell.filled{background:#51b8dc}.run-cell.gold{background:#efc460}
+.run-game strong{display:block;font-size:26px;color:#07547c}.run-game p{font-size:20px;line-height:1.65;margin:9px 0}.run-score{font:20px/1.8 Consolas,monospace;color:#426279}
+.run-console-lines{font:22px/1.95 Consolas,monospace;white-space:pre-wrap;color:#e7f0fc;margin:0}
+.run-example .run-success{color:#90e3c0}.run-example .run-note{font-size:19px;line-height:1.65;border-top:1px solid #ffffff35;margin-top:16px;padding-top:14px;color:#c6ddec}
+.run-window[data-run-mode=hybrid] .run-address-row{margin:12px 0}
+.run-window[data-run-mode=hybrid] #run-hybrid p{line-height:1.8;margin-top:17px}
+.run-window[data-run-mode=hybrid] .run-example{margin-top:17px}
+.run-window[data-run-mode=hybrid] .run-console-lines{font-size:19px;line-height:1.8;color:#acdded}
+.run-window[data-run-mode=hybrid]:has(#run-browser:not([hidden])) .run-example{display:none}
+
+.run-window .run-example{margin-top:16px;color:#23465e}
+.run-window[data-run-mode=python] .run-example,.run-window[data-run-mode=hybrid] .run-example{color:#c6ddec}
+.run-window .run-example .run-console-lines{font:21px/1.65 Consolas,monospace;min-height:0;margin:0;padding:0;white-space:pre-wrap}
+.run-window .run-example .example-caption{font-size:17px;line-height:1.4;margin-bottom:10px}
+.run-window .run-game{padding:16px 20px;grid-template-columns:160px 1fr;gap:24px}
+.run-window .run-game p{font-size:19px;line-height:1.55;margin:8px 0}
+.run-window .run-game strong{font-size:25px}.run-window .run-cell{height:15px}
+.run-window .run-example .run-note{font-size:18px;margin-top:12px;padding-top:10px;line-height:1.6}
+.run-window[data-run-mode=hybrid] .run-example .run-console-lines{font-size:18px;line-height:1.6}
+.run-window[data-run-mode=hybrid] .run-address-row{margin:9px 0}
+.run-window[data-run-mode=hybrid] #run-hybrid p{font-size:18px;line-height:1.7;margin-top:12px}
+
+.run-window .run-window-body{padding:18px 24px}
+.run-window .run-example .run-game p{font-size:19px;line-height:1.45;margin:8px 0}
+.run-window .run-example .run-game strong{font-size:25px;line-height:1.3}
+.run-window .run-example .run-score{font:20px/1.5 Consolas,monospace}
+.run-window .run-example .run-console-lines{font:20px/1.5 Consolas,monospace}
+.run-window .run-example .run-note{margin-top:10px;padding-top:8px;font-size:18px;line-height:1.5}
+.run-window .run-example .run-game{padding:16px 20px}
+.run-window[data-run-mode=hybrid] .run-example{margin-top:16px}
+.run-window[data-run-mode=hybrid] #run-hybrid p{line-height:1.6}
+
+.run-window[data-run-mode=hybrid] .run-address-row{margin:6px 0}
+.run-window[data-run-mode=hybrid] #run-hybrid p{font-size:18px;line-height:1.5;margin-top:10px}
+.run-window[data-run-mode=hybrid] .run-example{margin-top:10px}
+.run-window[data-run-mode=hybrid] .run-example .example-caption{margin-bottom:6px}
+.run-window[data-run-mode=hybrid] .run-example .run-note{margin-top:8px;padding-top:6px}
+.run-window[data-run-mode=hybrid] .run-window-body{padding:14px 24px 12px}
+
+/* File examples use the existing panel size, with aligned explanatory comments. */
+.workspace { height: 481px; min-height: 481px; }
+.workspace .file-preview { padding: 24px 36px 22px; min-width: 0; }
+.workspace #file-label { margin-bottom: 12px; }
+#file-code { height: 341px; font-size: 23px; line-height: 31px; white-space: normal; }
+#file-code .file-code-line { display: grid; grid-template-columns: 740px minmax(0, 1fr); gap: 24px; min-height: 31px; }
+#file-code .file-code-source { white-space: pre; tab-size: 4; }
+#file-code .file-code-note,
+#file-code[data-language="js"] .file-code-note { position: static; white-space: pre; font-size: 21px; line-height: 31px; font-style: normal; color: #517065; }
+.workspace #file-desc { margin-top: 12px; font-size: 21px; line-height: 1.5; }

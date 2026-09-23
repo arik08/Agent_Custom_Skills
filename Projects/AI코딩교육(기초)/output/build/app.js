@@ -127,11 +127,101 @@ panel.addEventListener('mouseenter',()=>clearTimeout(termCloseTimer));panel.addE
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('.term,#term-panel'))closeTerm();});
 function pressed(selector,target){$$(selector).forEach(b=>b.setAttribute('aria-pressed',String(b===target)));}
 
-const files={html:['index.html · 화면 구조','<h1>테트리스</h1>\n<canvas id="board"></canvas>\n<p>점수 0</p>','화면에 제목, 게임판, 점수 표시가 있다는 구조를 표현합니다.'],css:['style.css · 화면 표현','button {\n  width: 116px;\n  color: #006295;\n}','크기와 색 같은 표현을 정합니다. 블록 충돌이나 줄 삭제 규칙을 바꾸는 코드는 아닙니다.'],js:['tetris.js · 화면 동작','가득 찬 줄이 생기면 {\n  해당 줄을 지운다;\n  점수를 계산하고 표시한다;\n}','동작을 쉽게 풀어쓴 설명입니다. 실제 JavaScript 문법을 외울 필요는 없습니다.'],agents:['AGENTS.md · 반복 작업 기준','# 작업 기준\n- 화면은 한국어로 작성\n- 수정 후 실제 입력으로 확인','지원하는 에이전트가 참고할 기준을 남기는 문서입니다.'],readme:['README.md · 실행 안내','# 실행 방법\n1. index.html을 브라우저로 엽니다.\n2. 자동 플레이와 점수 변화를 확인합니다.','나중에 다시 실행할 때 필요한 안내를 남깁니다.']};
+const files = {
+              "html": [
+                "index.html · 화면 구조",
+                "\u003clink rel=\"stylesheet\" href=\"style.css\">\n\u003cmain class=\"game\">\n    \u003ch1>테트리스\u003c/h1>\n    \u003ccanvas id=\"board\" width=\"240\" height=\"480\">\u003c/canvas>\n    \u003cp>점수 \u003cspan id=\"score\">0\u003c/span>\u003c/p>\n    \u003cdiv class=\"controls\">\n        \u003cbutton id=\"start\">시작\u003c/button>\n        \u003cbutton id=\"pause\">일시정지\u003c/button>\n    \u003c/div>\n\u003c/main>\n\u003cscript src=\"game.js\">\u003c/script>",
+                "화면에 게임판·점수·버튼을 배치하고, 디자인과 동작을 담은 파일을 연결합니다.",
+                [
+                  "화면 디자인 파일 연결",
+                  "게임 화면을 하나로 묶기",
+                  "화면에 제목 표시",
+                  "블록을 그릴 게임판",
+                  "점수를 바꿔 표시할 자리",
+                  "조작 버튼을 묶는 영역",
+                  "게임 시작 버튼",
+                  "일시정지 버튼",
+                  "",
+                  "",
+                  "JavaScript 동작 파일 연결"
+                ]
+              ],
+              "css": [
+                "style.css · 화면 표현",
+                ".game {\n    width: 360px;\n    margin: 0 auto;\n    text-align: center;\n}\n#board {\n    background: #10273d;\n    border: 2px solid #006295;\n}\nbutton { padding: 10px 18px; color: #006295; }\nbutton:hover { background: #e0eff7; }",
+                "화면의 크기·정렬·색과 버튼 모양을 정합니다. 게임의 점수 계산 규칙은 바뀌지 않습니다.",
+                [
+                  "게임 영역의 디자인",
+                  "전체 게임 화면 너비",
+                  "화면 가운데에 배치",
+                  "제목과 버튼을 가운데 정렬",
+                  "",
+                  "게임판의 디자인",
+                  "게임판 배경을 짙은 남색으로",
+                  "게임판에 파란 테두리",
+                  "",
+                  "버튼 안쪽 여백과 글자색",
+                  "마우스를 올리면 배경색 변경"
+                ]
+              ],
+              "js": [
+                "game.js · 화면 동작",
+                "let score = 0, paused = false;\nconst scoreText = document.querySelector(\"#score\");\nconst pauseButton = document.querySelector(\"#pause\");\nfunction addScore(clearedLines) {\n    score += clearedLines * 100;\n    scoreText.textContent = score;\n}\npauseButton.addEventListener(\"click\", () => {\n    paused = !paused;\n    pauseButton.textContent = paused ? \"계속하기\" : \"일시정지\";\n});",
+                "점수 계산·화면 갱신·버튼 클릭 처리를 연결하는 예시입니다. 전체 게임 코드의 일부입니다.",
+                [
+                  "점수와 일시정지 상태 준비",
+                  "HTML의 점수 표시 요소 찾기",
+                  "HTML의 일시정지 버튼 찾기",
+                  "줄 삭제 시 호출할 함수",
+                  "지운 줄 수 × 100점 더하기",
+                  "새 점수를 화면에 반영",
+                  "",
+                  "버튼을 클릭했을 때 실행",
+                  "멈춤과 진행 상태 전환",
+                  "상태에 맞게 버튼 글자 변경",
+                  "클릭 처리 마무리"
+                ]
+              ],
+              "agents": [
+                "AGENTS.md · 반복 작업 기준",
+                "# 작업 기준\n## 화면과 파일\n- 사용자에게 보이는 문구는 한국어로 작성\n- 화면은 index.html, 디자인은 style.css에 작성\n- 게임 동작은 game.js에 작성\n## 수정 후 확인\n- 시작·일시정지 버튼을 직접 눌러 확인\n- 줄 삭제 후 점수가 바뀌는지 확인\n- 브라우저 콘솔에 오류가 없는지 확인\n- 실행 방법이 바뀌면 README.md도 수정",
+                "지원하는 코딩 에이전트가 작업할 때 참고할 공통 기준과 확인 절차를 남깁니다.",
+                [
+                  "문서의 큰 제목",
+                  "작성 규칙을 묶는 소제목",
+                  "화면 언어를 통일",
+                  "파일별 역할을 분리",
+                  "동작 코드를 둘 파일 지정",
+                  "검증할 항목을 모으기",
+                  "실제 버튼 동작 확인",
+                  "계산 결과 확인",
+                  "실행 오류 확인",
+                  "실행 안내도 함께 갱신"
+                ]
+              ],
+              "readme": [
+                "README.md · 실행 안내",
+                "# 테트리스 실행 안내\n## 실행\n1. HTML·CSS·JS 파일을 같은 폴더에 둡니다.\n2. index.html을 브라우저로 엽니다.\n3. 시작 버튼을 누릅니다.\n## 조작\n- ← / → : 블록 이동, ↑ : 회전\n- 일시정지 버튼 : 멈춤 / 계속하기\n## 확인\n- 한 줄을 지우면 점수가 100점 증가합니다.\n- 화면이 바뀌지 않으면 새로고침합니다.",
+                "프로그램을 사용하는 사람이 실행 순서·조작 방법·확인할 결과를 읽는 안내 문서입니다.",
+                [
+                  "어떤 프로그램인지 소개",
+                  "실행 순서를 안내",
+                  "연결할 파일을 한곳에 보관",
+                  "실행할 파일 지정",
+                  "게임 시작 방법",
+                  "사용 방법을 모으기",
+                  "키보드 조작 설명",
+                  "버튼 사용법 설명",
+                  "정상 동작 확인 기준",
+                  "기대하는 점수 변화",
+                  "수정한 화면을 다시 불러오기"
+                ]
+              ]
+            };
 function highlightFileCode(target,code,language){
  const rules={
   python: /(?<comment>#[^\n]*)|(?<string>(?:[fFrRbBuU]{1,2})?"(?:\\.|[^"\\])*"|(?:[fFrRbBuU]{1,2})?'(?:\\.|[^'\\])*')|(?<keyword>\b(?:import|from|as|def|return|if|else|elif|for|in|while|try|except|raise|with|class|True|False|None)\b)|(?<function>\b[a-zA-Z_]\w*(?=\())|(?<number>\b\d+(?:\.\d+)?\b)|(?<punctuation>[{}\[\]():,=])/g,
-  html: /(?<comment><!--[\s\S]*?-->)|(?<tag><\/?[\w-]+)|(?<attribute>[\w:-]+(?=\s*=))|(?<string>"[^"\n]*"|'[^'\n]*')|(?<punctuation>\/?\s*>|=)/g,
+  html: /(?<comment>\x3C!--[\s\S]*?-->)|(?<tag><\/?[\w-]+)|(?<attribute>[\w:-]+(?=\s*=))|(?<string>"[^"\n]*"|'[^'\n]*')|(?<punctuation>\/?\s*>|=)/g,
   css: /(?<comment>\/\*[\s\S]*?\*\/)|(?<string>"[^"\n]*"|'[^'\n]*')|(?<property>[\w-]+(?=\s*:))|(?<number>#[\da-fA-F]{3,8}\b|\b\d+(?:\.\d+)?(?:px|em|rem|%|s)?\b)|(?<selector>[.#]?[a-zA-Z][\w-]*(?=\s*\{))|(?<punctuation>[{}:;])/g,
   js: /(?<comment>\/\/[^\n]*|\/\*[\s\S]*?\*\/)|(?<string>"[^"\n]*"|'[^'\n]*'|`[^`]*`)|(?<keyword>\b(?:const|let|var|if|else|return|function|for|while|true|false|null|new)\b)|(?<number>\b\d+(?:\.\d+)?\b)|(?<punctuation>[{}();=+])/g,
   md: /(?<heading>^#{1,6}[^\n]*)|(?<marker>^\s*(?:[-*+] |\d+\. ))|(?<string>`[^`\n]+`)|(?<keyword>\*\*[^*\n]+\*\*)/gm
@@ -148,7 +238,31 @@ function highlightFileCode(target,code,language){
  target.append(document.createTextNode(code.slice(cursor)));
 }
 $$('code[data-language]').forEach(el=>highlightFileCode(el,el.textContent,el.dataset.language));
-function selectFile(b){pressed('[data-file]',b);const [label,code,desc]=files[b.dataset.file];$('#file-label').textContent=label;highlightFileCode($('#file-code'),code,{agents:'md',readme:'md'}[b.dataset.file]||b.dataset.file);$('#file-desc').textContent=desc;}
+function renderFileExample(target, code, language, notes) {
+              target.dataset.language = language;
+              target.replaceChildren();
+              const markers = language === "js" ? ["// ", ""] : language === "css" ? ["/* ", " */"] : ["\x3C!-- ", " -->"];
+              code.split("\n").forEach((line, index) => {
+                const row = document.createElement("span");
+                row.className = "file-code-line";
+                const source = document.createElement("span");
+                source.className = "file-code-source";
+                highlightFileCode(source, line, language);
+                const note = document.createElement("span");
+                note.className = "syntax-comment file-code-note";
+                note.textContent = notes[index] ? markers[0] + notes[index] + markers[1] : "";
+                row.append(source, document.createTextNode("  "), note);
+                target.append(row);
+                if (index < notes.length - 1) target.append(document.createTextNode("\n"));
+              });
+            }
+            function selectFile(b) {
+              pressed("[data-file]", b);
+              const [label, code, desc, notes] = files[b.dataset.file];
+              $("#file-label").textContent = label;
+              renderFileExample($("#file-code"), code, { agents: "md", readme: "md" }[b.dataset.file] || b.dataset.file, notes);
+              $("#file-desc").textContent = desc;
+            }
 $$('[data-file]').forEach(b=>b.addEventListener('click',()=>selectFile(b)));selectFile($('[data-file="html"]'));
 let runKind='html';
 $$('[data-run]').forEach(b=>b.addEventListener('click',()=>{
@@ -216,3 +330,27 @@ $$('[data-setup]').forEach(b=>b.addEventListener('click',()=>renderSetup(b)));if
 window.deck={get current(){return current;},get count(){return slides.length;},go(i){go(i);},parseRows,preparePrint(){window.handoffDemo?.preparePrint();window.tetrisWorkshop?.preparePrint();['order','spacing','action','radius'].forEach(x=>{const e=$('#gui-'+x);e.checked=true;e.dispatchEvent(new Event('change'));});$$('.slide').forEach(s=>{s.inert=false;s.removeAttribute('aria-hidden');});closeTerm();}};
 resize();go(parseHash());
 })();
+
+// Illustrative output, not an external program execution.
+const runExample=document.createElement('div');runExample.className='run-example';
+document.querySelector('#run-output').after(runExample);
+function renderRunExample(mode){
+ document.querySelector(mode==='hybrid'?'#run-hybrid':'#run-output').after(runExample);
+ if(mode==='html'){
+  const cells=Array.from({length:64},(_,i)=>'<i class="run-cell '+((i>=48&&![49,54,58].includes(i))?'filled':([11,19,20,28].includes(i)?'gold':''))+'"></i>').join('');
+  runExample.innerHTML='<div class="example-caption">실행 화면 예시</div><div class="run-game"><div class="run-board" aria-label="테트리스 게임 보드 예시">'+cells+'</div><div><strong>TETRIS</strong><div class="run-score">SCORE  1,200<br>LEVEL  03</div><p>브라우저 안에서 게임 화면과<br>키보드 입력이 동작합니다.</p><p>파일을 수정한 뒤 새로고침하면<br>변경된 화면을 확인할 수 있습니다.</p></div></div>';
+ }else if(mode==='python'){
+  runExample.innerHTML=`<div class="example-caption">점수 집계 프로그램 · 출력 예시</div><pre class="run-console-lines">점수 파일 읽기: scores.csv
+참가자 3명의 기록을 불러왔습니다.
+
+1위  김민수   2,400점
+2위  이서연   1,800점
+3위  박지훈   1,200점
+<span class="run-success">집계 완료 → ranking.csv 저장</span></pre><div class="run-note">실행 결과는 터미널에 표시되거나 파일로 저장됩니다.</div>`;
+ }else{
+  runExample.innerHTML=`<div class="example-caption">접속 후 표시되는 로그 예시</div><pre class="run-console-lines">127.0.0.1 - &quot;GET / HTTP/1.1&quot; 200 -
+127.0.0.1 - &quot;GET /api/sales HTTP/1.1&quot; 200 -</pre><div class="run-note">200 = 요청 처리 성공 · 화면과 데이터를 정상 응답<br>서버를 종료하려면 터미널에서 Ctrl+C</div>`;
+ }
+}
+document.querySelectorAll('[data-run]').forEach(button=>button.addEventListener('click',()=>renderRunExample(button.dataset.run)));
+renderRunExample('html');

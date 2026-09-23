@@ -1,0 +1,3 @@
+Built-in image_gen edit prompt (2026-09-23):
+
+Use case: text-localization. Edit the reference illustration for an existing Korean workshop slide. Preserve the friendly Bob Ross face, afro, blue shirt, brush, palette, Tetris easel, white background, fine ink outlines and soft colors, and wide landscape layout. Replace the left Korean lettering with EXACTLY "어때요, 참 쉽죠?" arranged on two clear lines: "어때요," then "참 쉽죠?". Bold dark navy hand-lettering, very legible at small slide size, blue brush underline. No comma after 참. Change only the lettering and minimal spacing needed to fit it; preserve the person and painting. No other text.

@@ -84,3 +84,49 @@
 @media print{.codex-suggestions button::before{display:none}}
 
 .codex-suggestions:has(button:nth-child(2)) button:not(.is-request-cue)::before{display:none}
+[data-ide]:has([data-codex-send]:disabled) .codex-suggestions button::before{display:none}
+
+/* Cue the next action after a request is entered. */
+.slide.is-active [data-codex-send].is-send-cue:not(:disabled) {
+  position: relative;
+  background: #e4f6ff;
+  outline: 2px solid #91dcff;
+  outline-offset: 3px;
+  animation: codex-send-pulse 1.6s ease-in-out infinite;
+}
+.slide.is-active [data-codex-send].is-send-cue:not(:disabled)::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #91dcff;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: codex-send-ring 1.6s ease-out infinite;
+}
+@keyframes codex-send-pulse {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(1.14); }
+  65% { transform: scale(1); }
+}
+@keyframes codex-send-ring {
+  0% { transform: scale(1); opacity: 0.85; }
+  70%, 100% { transform: scale(1.5); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-active [data-codex-send].is-send-cue:not(:disabled) {
+    animation: none;
+  }
+  .slide.is-active [data-codex-send].is-send-cue:not(:disabled)::after {
+    display: none;
+  }
+}
+@media print {
+  .slide.is-active [data-codex-send].is-send-cue:not(:disabled) {
+    animation: none;
+    outline: none;
+    background: #ffffff;
+  }
+  .slide.is-active [data-codex-send].is-send-cue:not(:disabled)::after {
+    display: none;
+  }
+}

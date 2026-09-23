@@ -111,5 +111,5 @@ function animateAgent(mode){
 motionPreference.addEventListener('change',()=>{if(motionPreference.matches)stopMotion();});
 function next(){if(phase==='human'&&step===human.length-1){phase='agent';step=0;}else if(phase==='agent'&&step===agent.length-1){phase='human';step=0;}else step++;render();}
 $('[data-handoff="next"]').addEventListener('click',next);
-window.handoffDemo={get state(){return{phase,step};},navigate(index){if(index!==4)stopMotion();window.handoffGame.navigate(index===4);},preparePrint(){stopMotion();window.handoffGame.stop();}};render();
+window.handoffDemo={get state(){return{phase,step};},navigate(index){const isActive=Number(document.querySelector('.handoff-sequence').closest('.slide').dataset.index)===index;if(!isActive)stopMotion();window.handoffGame.navigate(isActive);},preparePrint(){stopMotion();window.handoffGame.stop();}};render();
 })();

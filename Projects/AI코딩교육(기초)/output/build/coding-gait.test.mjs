@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {spriteFrame} from './coding-gait.mjs';
+for(const key of ['employee-a','employee-b'])test(key+' uses all eight ordered whole-body poses for equal distances',()=>{const frames=[];for(let i=0;i<8;i++){const cell=spriteFrame(key,1,0,1.05*(i+.5)/8);assert(cell.walk);assert(!cell.gait);frames.push(cell.row*4+cell.col);}assert.deepEqual(frames,[0,1,2,3,4,5,6,7]);assert.equal(spriteFrame(key,0,0,0).walk,false);assert.equal(spriteFrame(key,1,0,1.05).col,0);});
