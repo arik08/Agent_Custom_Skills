@@ -1,0 +1,83 @@
+{
+  "diagrams": [
+    {
+      "title": "요청에서 검증까지의 업무 흐름",
+      "nodes": 4,
+      "textLines": 13,
+      "width": 1082,
+      "height": 360,
+      "failures": []
+    },
+    {
+      "title": "Long Korean, unbroken Latin and escaped characters",
+      "nodes": 4,
+      "textLines": 29,
+      "width": 1082,
+      "height": 544,
+      "failures": []
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "chapters": 13,
+      "sections": 62,
+      "checkedTextLines": 1266,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    },
+    {
+      "width": 1440,
+      "chapters": 13,
+      "sections": 62,
+      "checkedTextLines": 1301,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    },
+    {
+      "width": 1280,
+      "chapters": 13,
+      "sections": 62,
+      "checkedTextLines": 1341,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    },
+    {
+      "width": 1024,
+      "chapters": 13,
+      "sections": 62,
+      "checkedTextLines": 1513,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    },
+    {
+      "width": 768,
+      "chapters": 13,
+      "sections": 62,
+      "checkedTextLines": 1462,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    },
+    {
+      "width": 390,
+      "chapters": 13,
+      "sections": 62,
+      "checkedTextLines": 1985,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    }
+  ],
+  "errors": []
+}

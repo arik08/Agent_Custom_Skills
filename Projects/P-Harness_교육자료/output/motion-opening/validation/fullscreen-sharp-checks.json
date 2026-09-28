@@ -1,0 +1,10 @@
+{
+  "syntax": "passed",
+  "browser_canvas_pixels": [
+    2380,
+    1339
+  ],
+  "text_rendering": "direct fillText at final transform",
+  "report_cache": "device scale",
+  "duration": 16
+}

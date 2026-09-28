@@ -1,0 +1,27 @@
+{
+  "track": "electro-v3",
+  "bpm": 160,
+  "duration_seconds": 15.0,
+  "sample_rate": 44100,
+  "channels": 2,
+  "peak_dbfs": -1.1847975254058838,
+  "rms_dbfs": -13.301148414611816,
+  "clipped_samples": 0,
+  "scene_accents_seconds": [
+    1.875,
+    3.375,
+    6.375,
+    9.375,
+    12
+  ],
+  "ending_hit_seconds": 14.25,
+  "rms_per_3_second_phrase": [
+    0.21783436834812164,
+    0.22271257638931274,
+    0.22314472496509552,
+    0.20774796605110168,
+    0.20928506553173065
+  ],
+  "file_bytes": 422221,
+  "listening_verified": false
+}

@@ -1,0 +1,21 @@
+{
+  "symbol": "central AI with four circular skill icons",
+  "shared_instances": 4,
+  "label_rendering": "Direct Canvas text at output resolution, centered by actual glyph bounds",
+  "browser": "Codex in-app browser",
+  "reviewed_seconds": [
+    3.1,
+    6.1,
+    8.8,
+    14.6
+  ],
+  "visual_review": "AI visibly centered and sharp in all four scenes, including fullscreen ending; no overlap or clipping",
+  "fullscreen_ending_checked": true,
+  "javascript_syntax": "passed",
+  "current_audio_embedded_correctly": true,
+  "current_audio_sha256": "a21342ce011b7d1096260df106d5a6c33063d71f129e25028ac56c8b1b9a928c",
+  "old_audio_baseline_matches": false,
+  "audio_note": "The older three-node report predates the current audio revision. This symbol edit did not modify audio source files.",
+  "timeline_unchanged": true,
+  "console_errors_or_warnings": []
+}

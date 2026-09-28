@@ -1,0 +1,37 @@
+{
+  "track": "stomp-clap-v6",
+  "bpm": 160,
+  "duration_seconds": 15.0,
+  "channels": 2,
+  "instruments": [
+    "closed-hat",
+    "cut-drum-accent",
+    "dry-drum",
+    "ending-group-clap",
+    "ending-impact",
+    "ending-kick",
+    "ending-snare",
+    "group-handclap",
+    "handclap",
+    "snare-accent",
+    "stomp-body",
+    "stomp-kick"
+  ],
+  "melodic_layers": 0,
+  "pitched_bass_layers": 0,
+  "source_music_tracks": 0,
+  "peak_dbfs": -1.3673728704452515,
+  "rms_dbfs": -17.28070068359375,
+  "clipped_samples": 0,
+  "ending_hit_seconds": 14.25,
+  "file_bytes": 422212,
+  "speaker_listening_verified": false,
+  "handclap_hits": 27,
+  "phrases": [
+    "stomp-clap identity",
+    "call and response",
+    "denser build",
+    "break and rebuild",
+    "logo hits"
+  ]
+}

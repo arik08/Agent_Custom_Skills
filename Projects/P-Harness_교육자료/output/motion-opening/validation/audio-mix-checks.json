@@ -1,0 +1,11 @@
+{
+  "duration_seconds": 15.0,
+  "sample_rate": 44100,
+  "channels": 2,
+  "peak_dbfs": -2.265014171600342,
+  "rms_dbfs": -21.92702293395996,
+  "clipped_samples": 0,
+  "stereo_difference_rms": 0.11610697209835052,
+  "file_bytes": 361909,
+  "listening_verified": false
+}

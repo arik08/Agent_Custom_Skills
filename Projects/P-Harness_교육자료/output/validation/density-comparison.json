@@ -1,0 +1,32 @@
+[
+  {
+    "width": 1920,
+    "before": 40402,
+    "after": 27879,
+    "reductionPercent": 31,
+    "bodyFontUnchanged": true,
+    "textCharactersPreserved": true,
+    "skillBefore": 2064,
+    "skillAfter": 848
+  },
+  {
+    "width": 1280,
+    "before": 40228,
+    "after": 28081,
+    "reductionPercent": 30.2,
+    "bodyFontUnchanged": true,
+    "textCharactersPreserved": true,
+    "skillBefore": 1855,
+    "skillAfter": 693
+  },
+  {
+    "width": 390,
+    "before": 51231,
+    "after": 41913,
+    "reductionPercent": 18.2,
+    "bodyFontUnchanged": true,
+    "textCharactersPreserved": true,
+    "skillBefore": 1500,
+    "skillAfter": 1231
+  }
+]

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>P-Harness — 교육 오프닝</title>
+<style>
+@font-face{font-family:Paperlogy;src:url(data:font/woff2;base64,__FONT_400__) format('woff2');font-weight:400;font-display:block}
+@font-face{font-family:Paperlogy;src:url(data:font/woff2;base64,__FONT_600__) format('woff2');font-weight:600;font-display:block}
+@font-face{font-family:Paperlogy;src:url(data:font/woff2;base64,__FONT_800__) format('woff2');font-weight:800;font-display:block}
+:root{font-family:Paperlogy,system-ui,sans-serif;color:#eef3ff;background:#080e1a;color-scheme:dark;scrollbar-width:thin;scrollbar-color:#a8b3c166 transparent}
+*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #88b6ff;outline-offset:5px}button{color:inherit;background:transparent;border:1px solid #3d4b63;border-radius:5px;height:38px;padding:0 12px;white-space:nowrap}button:hover{background:#25354e;border-color:#6b88b6}button:disabled{opacity:.55;cursor:wait}button[aria-pressed=true]{background:#183761;color:#dbeaff;border-color:#6498e6}.shell{width:min(1600px,100%)}.mast{display:flex;justify-content:space-between;align-items:center;margin:0 0 13px;font-size:12px;letter-spacing:.12em;color:#aab8d1}.mast strong{color:#dfe9fc;font-weight:600}.player{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#080f20;box-shadow:0 22px 85px #0005;outline:1px solid #263148}.screen{width:100%;height:100%;display:block}.loader{position:absolute;inset:0;display:grid;place-content:center;text-align:center;background:#0b1428;font-size:20px;line-height:2}.loader small{font-size:13px;color:#b7c5dc}.controls{display:flex;gap:10px;align-items:center;padding:16px 0 10px}.icon{width:40px;padding:0;display:grid;place-items:center}.icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.time{font-size:12px;color:#b9c7de;font-variant-numeric:tabular-nums;min-width:82px;text-align:center}.scrub{flex:1;min-width:30px;height:22px;accent-color:#86afff;cursor:pointer}.subline{display:flex;justify-content:space-between;gap:20px;color:#8fa2bf;font-size:12px;line-height:1.6}.subline p{margin:0}.transcript{color:#bcc9df;font-size:14px;margin-top:18px;max-width:900px}.transcript summary{cursor:pointer;width:max-content}.transcript ol{line-height:1.9;padding-left:24px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.player:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;background:#000;display:flex;align-items:center;justify-content:center}.player:fullscreen canvas{width:min(100vw,177.7778vh);height:min(56.25vw,100vh)}::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:#a8b3c166;border-radius:9px}::-webkit-scrollbar-thumb:hover{background:#a8b3c188}::-webkit-scrollbar-track{background:transparent}@media(max-width:650px){body{padding:12px}.mast{font-size:10px;letter-spacing:.04em}.controls{gap:6px;flex-wrap:wrap}.scrub{order:2;flex-basis:100%}.controls .sound{margin-left:auto}button{font-size:12px;padding:0 8px}.subline{font-size:11px;display:block}.subline p+p{margin-top:3px}.time{min-width:68px}.transcript{font-size:13px}}@media print{body{background:white;color:#17294b}.controls,.subline,.transcript{display:none}.mast{color:#17294b}.player{box-shadow:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+<style>
+/* Keep the playback controls visible on a projector or a short browser window. */
+.shell{width:min(1600px,100%,calc((100svh - 204px)*16/9))}
+@media(max-width:650px){.shell{width:100%}}
+.start{position:absolute;right:6%;bottom:9%;height:auto;min-height:58px;padding:16px 22px;background:#fff;color:#183c7a;border:0;box-shadow:0 8px 28px #0004;font-size:18px;font-weight:600;display:flex;align-items:center;gap:12px}.start:hover{background:#e6efff;color:#102c5b}.start[hidden]{display:none}.start svg{width:20px;height:20px;fill:currentColor}.audio-output{display:flex;align-items:center;gap:2px;height:20px;width:18px;--level:.12}.audio-output i{width:3px;height:17px;background:#91b9ff;transform:scaleY(var(--level));transform-origin:center}.audio-output i:nth-child(2){height:10px}.audio-output i:nth-child(3){height:20px}.audio-output i:nth-child(4){height:13px}@media(max-width:650px){.start{font-size:12px;min-height:36px;padding:9px 12px;gap:6px}.start svg{width:12px;height:12px}.audio-output{display:none}}
+</style>
+<style>.start{bottom:3%}.credits{font-size:12px;line-height:1.7;color:#aab8d1}.credits a{color:#b8d2ff}</style>
+<style>
+.end-actions{display:none;position:absolute;left:50%;bottom:5%;transform:translateX(-50%);gap:12px;padding:12px;border-radius:12px;background:#0a1428e8;border:1px solid #ffffff26;box-shadow:0 8px 32px #0004}
+.player:fullscreen .end-actions:not([hidden]){display:flex}
+.end-actions button{height:44px;padding:0 20px;font-weight:600;font-size:15px}
+.end-actions button:first-child{background:#e8f0ff;color:#183c7a;border-color:#e8f0ff}
+.end-actions button:first-child:hover{background:#cdddff}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="mast"><strong>P-HARNESS / OPENING FILM</strong><span>16 SEC · 16:9</span></header>
+  <section class="player" id="player" aria-label="P-Harness 교육 오프닝 애니메이션">
+    <canvas class="screen" id="film" width="1920" height="1080" aria-label="P-Harness의 모델, Skill, MCP와 업무 흐름을 소개하는 모션그래픽. 장면 설명은 아래에 있습니다."></canvas>
+    <div class="loader" id="loader" role="status">P-Harness<small>오프닝을 준비하고 있습니다.</small></div>
+    <button class="start" id="start" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l14 8-14 8z"/></svg>소리와 함께 재생</button>
+    <div class="end-actions" id="end-actions" role="group" aria-label="재생 완료" hidden>
+      <button id="end-replay" type="button">다시 재생</button>
+      <button id="end-exit" type="button">전체화면 나가기</button>
+    </div>
+  </section>
+  <div class="controls" aria-label="재생 컨트롤">
+    <button class="icon" id="play" type="button" aria-label="재생" disabled><svg viewBox="0 0 24 24"><path id="playIcon" d="M8 5l11 7-11 7z"/></svg></button>
+    <button class="icon" id="restart" type="button" aria-label="처음부터 재생" disabled><svg viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 7M4 4v6h6"/></svg></button>
+    <span class="time" id="time">00:00 / 00:16</span>
+    <input class="scrub" type="range" id="seek" min="0" max="16" step="0.01" value="0" aria-label="재생 위치" disabled>
+    <span class="audio-output" id="audio-output" aria-hidden="true" data-rms="0" data-state="idle"><i></i><i></i><i></i><i></i></span>
+    <button class="sound" type="button" id="sound" aria-pressed="true" disabled>소리 끄기</button>
+    <button type="button" id="fullscreen">전체화면</button>
+  </div>
+  <div class="subline"><p id="status" role="status">폰트를 불러오는 중입니다.</p><p>Space 재생·정지 · ← → 구간 이동 · 우클릭 / F 전체화면</p></div>
+  <details class="transcript"><summary>장면별 메시지</summary><ol>
+    <li>업무에 맞게 AI를 활용하는 하나의 공간.</li><li>정리와 분석, 문서 작성까지. 목적과 원하는 결과를 알려주세요.</li>
+    <li>업무에 맞는 기능을 한곳에. Model은 업무에 맞는 AI와 추론 수준 선택, Skill은 반복 업무의 절차와 기준, MCP는 필요한 도구와 정보 연결입니다.</li>
+    <li>활용 예: 사내외 정보로 빠르게 조사. 첨부 자료와 연결 가능한 정보를 활용해 보고서 작성과 검토로 이어집니다.</li>
+    <li>확인하고. 다듬고. 내 업무에 활용. 결과물을 검토하고 수정하며 다운로드할 수 있습니다.</li>
+    <li>선택부터 실행, 결과물까지. 당신의 AI 업무 공간. P-Harness. 지금, 함께 시작합니다.</li>
+  </ol><p>업무 흐름과 문서는 개념을 설명하기 위한 시각화입니다. 실제 제품 화면이나 실행 기록이 아닙니다.</p><p class="credits">음악: Tech Promo Intro · 사용자 제공 음원.</p></details>
+  <noscript>이 오프닝은 JavaScript가 필요합니다. 위 장면별 메시지에서 내용을 읽을 수 있습니다.</noscript>
+</main>
+<script>
+(() => {
+'use strict';
+const W=1920,H=1080,DURATION=16,STARTS=[0,1.875,3.375,6.375,9.375,12],RATES=[1.65,1.6,1.5,1.55,1.5,1.5];
+const C={navy:'#0a1428',deep:'#07101f',blue:'#2369ec',ice:'#91b9ff',mark:'#b8d1ff',paper:'#f3f5f8',ink:'#122441',muted:'#adbedb',line:'#293c5e',white:'#ffffff'};
+const canvas=document.querySelector('#film'),ctx=canvas.getContext('2d',{alpha:false});
+const $=s=>document.querySelector(s),seek=$('#seek'),playButton=$('#play'),status=$('#status');
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const mix=(a,b,p)=>a+(b-a)*p,expo=x=>x>=1?1:1-Math.pow(2,-10*clamp(x)),smooth=x=>{x=clamp(x);return x*x*(3-2*x)},out=x=>1-Math.pow(1-clamp(x),3);
+const p=(t,start,dur=.7)=>out((t-start)/dur);
+const font=(size,weight=800)=>`${weight} ${size}px Paperlogy, sans-serif`;
+const artCache=new Map();
+let g=ctx,bufferScale=1;
+
+// Render glyphs at the final transform, instead of enlarging cached text bitmaps.
+function text(str,x,y,size=60,color=C.white,weight=800,align='left'){
+  g.save();g.font=font(size,weight);g.textAlign='left';g.textBaseline='top';g.fillStyle=color;
+  const width=Math.ceil(g.measureText(str).width)+8;
+  if(align==='center')x-=width/2;if(align==='right')x-=width;
+  g.fillText(str,x,y);g.restore();
+}
+function reveal(str,x,y,size,color,t,start,opts={}){
+  const v=p(t,start,opts.duration||.7);if(v<=0)return;
+  g.save();g.beginPath();g.rect(x-8,y-8,opts.width||1750,size*1.38+15);g.clip();
+  text(str,x+(opts.dx||0)*(1-v),y+(1-v)*size*1.12,size,color,opts.weight||800);g.restore();
+}
+function rr(x,y,w,h,r=0,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;g.fill()}if(stroke){g.strokeStyle=stroke;g.lineWidth=2;g.stroke()}}
+function line(x1,y1,x2,y2,color=C.line,width=2,progress=1){g.beginPath();g.moveTo(x1,y1);g.lineTo(mix(x1,x2,progress),mix(y1,y2,progress));g.strokeStyle=color;g.lineWidth=width;g.stroke()}
+function dot(x,y,r,color){g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fillStyle=color;g.fill()}
+function arrow(x,y,length,color=C.ice,progress=1){line(x,y,x+length,y,color,5,progress);if(progress>.94){line(x+length-22,y-20,x+length,y,color,5);line(x+length-22,y+20,x+length,y,color,5)}}
+function save(x=0,y=0,s=1,rot=0){g.save();g.translate(x,y);g.rotate(rot);g.scale(s,s)}
+function background(theme){
+  const key='background-'+theme;
+  if(!artCache.has(key)){
+    const surface=document.createElement('canvas');surface.width=W;surface.height=H;const d=surface.getContext('2d');
+    const colours=theme==='light'?['#fafcff','#f0f5fd','#dce9ff']:theme==='blue'?['#1648a5','#2364d2','#285eca']:['#080f20','#102341','#153667'];
+    const wash=d.createLinearGradient(100,0,W,H);wash.addColorStop(0,colours[0]);wash.addColorStop(.53,colours[1]);wash.addColorStop(1,colours[2]);d.fillStyle=wash;d.fillRect(0,0,W,H);
+    const glow=d.createRadialGradient(1490,300,0,1490,300,1050);glow.addColorStop(0,theme==='light'?'#ffffffbb':theme==='blue'?'#76a1ff38':'#5186dc25');glow.addColorStop(1,'#ffffff00');d.fillStyle=glow;d.fillRect(0,0,W,H);
+    artCache.set(key,surface);
+  }
+  g.drawImage(artCache.get(key),0,0);
+}
+function base(light=false,t=0){
+  background(light?'light':'dark');
+  line(96,79,124,79,light?C.blue:C.ice,6);text('P-HARNESS',144,65,25,light?C.ink:'#dce7fa',600);
+  text('WORK, CONNECTED.',1824,65,22,light?'#526987':C.muted,400,'right');
+}
+let aiInkCenter=null;
+function aiGlyphCenter(){
+  if(aiInkCenter!==null)return aiInkCenter;
+  // Center the visible ink mass: the narrow I makes box-centering look right-heavy.
+  const sample=document.createElement('canvas');sample.width=256;sample.height=160;
+  const d=sample.getContext('2d',{willReadFrequently:true});
+  d.scale(8,8);d.font=font(17,800);d.textBaseline='top';d.fillText('AI',2,2);
+  const pixels=d.getImageData(0,0,256,160).data;let mass=0,weightedX=0;
+  for(let i=3;i<pixels.length;i+=4){mass+=pixels[i];weightedX+=((i-3)/4%256+.5)*pixels[i]}
+  aiInkCenter=weightedX/mass/8-2;return aiInkCenter;
+}
+function aiSkillMark(cx,cy,size,color=C.blue,progress=1){
+  progress=clamp(progress);if(progress<=0)return;
+  save(cx,cy,size/110);
+  const centerInk=color===C.white?C.blue:color===C.blue?C.white:C.navy;
+  if(color===C.ice)color=C.mark;
+  const satellites=[[0,-39],[39,0],[0,39],[-39,0]];
+  g.lineCap='round';g.lineJoin='round';
+  satellites.forEach(([x,y],i)=>line(0,0,x*26.5/39,y*26.5/39,color,2.6,clamp((progress-.08-i*.13)/.28)));
+  const core=out(progress/.3);
+  save(0,0,core);dot(0,0,18,color);
+  // Draw at the final canvas resolution; center the visible glyph bounds.
+  g.font=font(17,800);g.textAlign='left';g.textBaseline='alphabetic';g.fillStyle=centerInk;
+  const ink=g.measureText('AI');
+  g.fillText('AI',-aiGlyphCenter(),(ink.actualBoundingBoxAscent-ink.actualBoundingBoxDescent)/2);
+  g.restore();
+  satellites.forEach(([x,y],i)=>{
+    const appear=out((progress-.16-i*.14)/.25);if(appear<=0)return;
+    save(x,y,appear);g.strokeStyle=color;g.lineWidth=2.6;
+    g.beginPath();g.arc(0,0,12.5,0,Math.PI*2);g.stroke();
+    if(i===0){
+      g.lineWidth=2;g.beginPath();g.arc(-1.6,-1.8,3.8,0,Math.PI*2);g.stroke();line(1.2,1,5.1,5.1,color,2);
+    }else if(i===1){
+      [-5,0,5].forEach((x,j)=>line(x,5,x,[0,-5,-2][j],color,2.2));
+    }else if(i===2){
+      rr(-4.7,-6.1,9.4,12.2,1.1,null,color);line(-2.1,-2,2.1,-2,color,1.8);line(-2.1,1.5,2.1,1.5,color,1.8);
+    }else{
+      line(-5,0,-1.3,4,color,2.2);line(-1.3,4,5.2,-4.1,color,2.2);
+    }
+    g.restore();
+  });
+  g.restore();
+}
+function miniLabel(str,x,y,color=C.muted){text(str,x,y,27,color,600)}
+function glyph(kind,cx,cy,size,color){
+  save(cx,cy,size/100);g.strokeStyle=color;g.lineWidth=4;
+  if(kind===0){g.beginPath();g.arc(0,0,34,0,Math.PI*2);g.stroke();line(-15,0,15,0,color,4);line(0,-15,0,15,color,4);for(let a=0;a<4;a++){let q=a*Math.PI/2;dot(Math.cos(q)*48,Math.sin(q)*48,4,color)}}
+  if(kind===1){for(let i=0;i<3;i++){rr(-36,-33+i*27,13,13,2,null,color);line(-12,-27+i*27,39,-27+i*27,color,4)}}
+  if(kind===2){line(-32,-25,30,0,color,4);line(-32,25,30,0,color,4);dot(-32,-25,8,color);dot(-32,25,8,color);dot(30,0,10,color)}g.restore();
+}
+function paper(kind=0){
+  if(artCache.has('paper'+kind))return artCache.get('paper'+kind);
+  const im=document.createElement('canvas');im.width=Math.ceil(490*bufferScale);im.height=Math.ceil(615*bufferScale);const old=g;g=im.getContext('2d');g.scale(bufferScale,bufferScale);
+  rr(10,10,470,595,8,'#ffffff');rr(10,10,470,12,0,C.blue);
+  text(kind===0?'조사 보고서':kind===1?'외부 정보':'사내 자료',43,47,37,C.ink,800);
+  text('P-HARNESS  /  WORKSPACE',43,104,15,'#617495',600);line(43,147,447,147,'#dce4f1',2);
+  if(kind===0){
+    text('핵심 요약',43,181,24,C.ink,800);for(let i=0;i<3;i++)rr(43,231+i*24,350-i*37,8,3,'#ccd8eb');
+    rr(43,330,404,171,4,'#edf3ff');text('분석과 시사점',61,351,20,C.ink,600);
+    for(let i=0;i<5;i++)rr(72+i*70,470-[38,60,50,88,72][i],34,[38,60,50,88,72][i],2,i===3?C.blue:'#96b7ed');
+    text('기준일 · 수치 · 출처 확인',43,540,21,'#536886',600);
+  }else if(kind===1){
+    text('흐름을 읽고, 근거를 확인',43,181,23,C.ink,600);
+    for(let i=0;i<4;i++)line(48,270+i*52,442,270+i*52,'#e0e7f1',2);
+    const pts=[[52,410],[129,373],[206,384],[283,298],[361,325],[438,251]];
+    for(let i=1;i<pts.length;i++)line(...pts[i-1],...pts[i],C.blue,6);
+    pts.forEach(v=>dot(...v,7,C.blue));text('시장 동향',43,485,23,C.ink,600);text('원문과 함께 검토하는 분석',43,536,20,'#617495',400);
+  }else{
+    for(let i=0;i<6;i++){text(['목적','대상','기간','자료','분석','산출물'][i],43,178+i*59,21,C.ink,600);rr(155,187+i*59,250-(i%3)*32,8,3,'#ccd8eb')}
+  }
+  g=old;artCache.set('paper'+kind,im);return im;
+}
+function drawPaper(kind,x,y,scale=1,rotation=0,alpha=1){
+  save(x,y,scale,rotation);g.globalAlpha*=alpha;g.shadowColor='#00000024';g.shadowBlur=36;g.shadowOffsetY=18;
+  g.drawImage(paper(kind),-245,-307,490,615);g.restore();
+}
+
+function scene0(t){
+  base(false,t);miniLabel('P-HARNESS / AI WORKSPACE',132,177,C.ice);
+  const words=['업무에 맞게,','AI를 활용하는','하나의 공간.'];
+  words.forEach((v,i)=>reveal(v,128,298+i*169,109,i===2?C.ice:C.white,t,.08+i*.42,{width:1000}));
+  const enter=expo(t/1.15),drift=Math.sin(t*.8)*5;
+  drawPaper(1,1390+(1-enter)*580,565+drift,.78,-.16+(1-enter)*.4,enter);
+  drawPaper(2,1535+(1-enter)*720,518-drift,.72,.14-(1-enter)*.25,enter);
+  drawPaper(0,1395+(1-enter)*910,580,.77,-.025,enter);
+  line(132,947,835,947,'#3e5578',2,p(t,1.3,1));
+}
+function scene1(t){
+  base(true,t);
+  miniLabel('목적에 맞춰 일을 맡기세요',139,216,C.blue);
+  reveal('정리와 분석,',132,325,142,C.ink,t,.05);
+  const v=p(t,.28,.62);rr(132,493,1042*v,182,0,C.blue);
+  g.save();g.beginPath();g.rect(132,493,1042*v,182);g.clip();text('문서 작성까지.',159,527,117,C.white);g.restore();
+  reveal('목적과 원하는 결과를 알려주세요.',139,747,39,'#435c7f',t,.65,{weight:400});
+  save(1462,518,1+(1-p(t,.4))*.7,(1-p(t,.4))*.25);aiSkillMark(0,0,250,C.blue,p(t,.35));g.restore();
+  arrow(1344,737,337,C.blue,p(t,.9,.7));
+  text('CONNECT YOUR WORK',139,943,24,'#637a9d',600);
+}
+function scene2(t){
+  base(false,t);
+  reveal('업무에 맞는 기능을 한곳에.',133,153,79,C.white,t,.1);
+  const rows=[['Model','업무에 맞는 AI와 추론 수준'],['Skill','반복 업무의 절차와 기준'],['MCP','필요한 도구와 정보 연결']];
+  rows.forEach((r,i)=>{
+    const y=317+i*179,v=p(t,.38+i*.45,.75);
+    line(135,y+139,1510,y+139,'#3b5274',2,v);
+    g.save();g.globalAlpha=v;miniLabel('0'+(i+1),137,y+31,C.ice);g.restore();
+    reveal(r[0],235,y,100,i===1?C.ice:C.white,t,.4+i*.45,{width:520});
+    reveal(r[1],773,y+35,39,'#c2d1e8',t,.67+i*.45,{width:670,weight:600});
+    glyph(i,1420,y+54,69,C.ice);
+  });
+  const connect=p(t,2.15,1.2);line(1569,370,1569,728,C.mark,4,connect);
+  [370,549,728].forEach(y=>line(1510,y,1569,y,C.mark,4,connect));
+  line(1569,549,1652,549,C.mark,4,connect);aiSkillMark(1730,549,174,C.ice,p(t,2.75));
+  text('P-HARNESS',1820,935,31,C.white,600,'right');
+}
+function scene3(t){
+  base(true,t);
+  miniLabel('활용 예 / 정보 조사',136,153,C.blue);
+  reveal('사내외 정보로 빠르게 조사.',132,215,87,C.ink,t,.08);
+  const appear=p(t,.3,.7),core=p(t,.7,.9),result=p(t,1.65,1);
+  g.save();g.globalAlpha=appear;
+  const blocks=[['사내 자료',399,465],['외부 정보',351,597],['업무 요청',427,729]];
+  blocks.forEach(([label,x,y],i)=>{
+    const slide=(1-p(t,.25+i*.16))*(-190);rr(x-221+slide,y-43,332,86,5,i===1?'#dbe7fb':'#fff','#c4d4ed');
+    text(label,x-172+slide,y-18,31,C.ink,600);line(x+58+slide,y-12,x+80+slide,y,'#6889b8',3);line(x+80+slide,y,x+58+slide,y+12,'#6889b8',3);
+    line(x+111,y,738,597,'#a6bfe6',3,p(t,.65+i*.18,1));
+  });g.restore();
+  g.save();g.globalAlpha=core;dot(939,597,171,'#e0eafd');dot(939,597,137,'#c8dbfc');dot(939,597,108,C.blue);aiSkillMark(939,597,178,C.white);g.restore();
+  line(1120,597,1341,597,C.blue,4,p(t,1.35,.8));
+  if(t>1.1&&t<4.5){
+    for(let i=0;i<3;i++){const q=((t-1.1)*.6+i/3)%1;if(q>=0){dot(mix(650,813,q),mix(597+(i-1)*80,597,q),6,C.blue);dot(mix(1115,1340,q),597,6,C.blue)}}
+  }
+  drawPaper(0,1545+(1-result)*490,585,.79,(1-result)*.17,result);
+  const labels=['자료 연결','AI 조사','보고서 작성','확인과 수정'];
+  labels.forEach((v,i)=>{const x=146+i*444,active=t>=.65+i*.85;
+    line(x,900,x+355,900,active?C.blue:'#c7d5e9',5,active?p(t,.65+i*.85,.65):1);
+    text('0'+(i+1),x,930,23,active?C.blue:'#536a8a',600);text(v,x+53,921,34,active?C.ink:'#536a8a',600);
+  });
+  text('업무 흐름을 표현한 개념 시각화',1810,1010,22,'#5a6f8c',400,'right');
+}
+function scene4(t){
+  background('blue');
+  text('P-HARNESS',135,65,25,C.white,600);text('FROM INPUT TO OUTPUT',1815,65,22,'#e0ebff',400,'right');
+  reveal('확인하고.',130,253,132,C.white,t,.02);
+  reveal('다듬고.',130,419,132,C.white,t,.33);
+  reveal('내 업무에 활용.',130,615,85,C.white,t,.66);
+  reveal('검토 · 수정 · 다운로드',138,840,34,'#e4edff',t,1.2,{weight:600});
+  const v=expo((t-.2)/1.1);
+  drawPaper(1,1417+(1-v)*650,460,.86,.17-(1-v)*.25,v);
+  drawPaper(0,1318+(1-v)*500,682,.85,-.075+(1-v)*.28,v);
+  line(139,960,817,960,'#a8c7ff',2,p(t,1.3,.8));
+  text('문서 이미지는 설명용 예시입니다.',1811,1010,22,'#e0ebff',400,'right');
+}
+function scene5(t){
+  base(false,t);
+  reveal('선택부터 실행, 결과물까지.',287,237,76,C.white,t,.08);
+  reveal('당신의 AI 업무 공간.',287,359,91,C.ice,t,.36,{width:1380});
+  const v=p(t,.75,1);
+  g.save();g.globalAlpha=v;aiSkillMark(363,660,210,C.ice,v);g.restore();
+  reveal('P-Harness',496,578,170,C.white,t,.8,{width:1190});
+  line(289,817,1623,817,'#405b86',2,p(t,1.25,1));
+  reveal('지금, 함께 시작합니다.',291,865,49,C.white,t,1.75,{weight:600});
+  arrow(1413,902,210,C.ice,p(t,1.9,.8));
+  text('AI WORKSPACE',291,972,23,C.muted,600);text('교육 오프닝',1625,972,23,C.muted,400,'right');
+}
+const scenes=[scene0,scene1,scene2,scene3,scene4,scene5];
+function render(seconds){
+  const t=clamp(seconds,0,DURATION);g=ctx;g.setTransform(bufferScale,0,0,bufferScale,0,0);g.globalAlpha=1;
+  let idx=STARTS.findLastIndex(s=>s<=t);idx=Math.max(0,idx);const local=t-STARTS[idx];
+  if(idx>0&&local<.26){
+    scenes[idx-1]((STARTS[idx]-STARTS[idx-1])*RATES[idx-1]);
+    const edge=W*out(local/.26);g.save();g.beginPath();g.rect(0,0,edge,H);g.clip();scenes[idx](local*RATES[idx]);g.restore();
+    if(edge<W)rr(edge-12,0,28,H,0,idx%2?C.blue:C.ice);
+  }else scenes[idx](local*RATES[idx]);
+  return idx;
+}
+
+// User-provided Tech Promo Intro, embedded as base64 audio.
+// Full original soundtrack, embedded without trimming or added fade.
+const SOUNDTRACK_BASE64='__AUDIO_MP3__';
+let audioCtx=null,audioGain=null,audioSource=null,audioBuffer=null,audioLoading=null,analyser=null,audioSamples=null,soundOn=true,audioVersion=0;
+const audioOutput=$('#audio-output');
+async function createAudio(){
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('AudioContext unavailable');
+  audioCtx=audioCtx||new AC();
+  // Resume synchronously inside the user gesture, before asynchronous decoding.
+  const resumed=audioCtx.resume();
+  if(!audioGain){audioGain=audioCtx.createGain();audioGain.gain.value=.82;analyser=audioCtx.createAnalyser();analyser.fftSize=1024;audioSamples=new Float32Array(analyser.fftSize);audioGain.connect(analyser);analyser.connect(audioCtx.destination)}
+  if(!audioBuffer&&!audioLoading){
+    const bytes=Uint8Array.from(atob(SOUNDTRACK_BASE64),c=>c.charCodeAt(0));
+    audioLoading=audioCtx.decodeAudioData(bytes.buffer).then(buffer=>{audioBuffer=buffer;audioOutput.dataset.track='tech-promo-intro-v8-full';audioOutput.dataset.duration=buffer.duration.toFixed(3);return buffer}).catch(error=>{audioLoading=null;throw error});
+  }
+  await Promise.all([resumed,audioLoading]);
+}
+function meter(){let rms=0;if(analyser&&audioSource&&playing&&soundOn){analyser.getFloatTimeDomainData(audioSamples);for(const sample of audioSamples)rms+=sample*sample;rms=Math.sqrt(rms/audioSamples.length)}audioOutput.style.setProperty('--level',String(Math.min(1,Math.max(.12,rms*8))));audioOutput.dataset.rms=rms.toFixed(4);audioOutput.dataset.state=audioCtx?.state||'idle'}
+function soundUI(){$('#sound').setAttribute('aria-pressed',String(soundOn));$('#sound').textContent=soundOn?'소리 끄기':'소리 켜기'}
+function stopAudio(){audioVersion++;if(audioSource){try{audioSource.stop()}catch{}audioSource.disconnect();audioSource=null}meter()}
+async function syncAudio(){
+  stopAudio();if(!soundOn||!playing||position>=DURATION)return;
+  const version=audioVersion;await createAudio();if(!soundOn||!playing||version!==audioVersion)return;
+  if(audioCtx.state!=='running')throw Error('Audio context did not start');
+  audioSource=audioCtx.createBufferSource();audioSource.buffer=audioBuffer;audioSource.connect(audioGain);audioSource.start(0,Math.min(position,DURATION-.001));
+}
+let playing=false,position=0,origin=0,raf=0,ready=false,currentScene=-1,started=false,playVersion=0;
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+function ui(){
+  const showEnd=document.fullscreenElement===$('#player')&&!playing&&position>=DURATION;
+  const endActions=$('#end-actions'),wasHidden=endActions.hidden;
+  endActions.hidden=!showEnd;
+  if(showEnd&&wasHidden)$('#end-replay').focus({preventScroll:true});
+  else if(!showEnd&&endActions.contains(document.activeElement))document.activeElement.blur();
+  playButton.setAttribute('aria-label',playing?'일시정지':position>=DURATION?'다시 재생':'재생');
+  $('#playIcon').setAttribute('d',playing?'M8 5v14M16 5v14':'M8 5l11 7-11 7z');
+  seek.value=position.toFixed(2);seek.setAttribute('aria-valuetext',`${position.toFixed(1)}초 / ${DURATION}초`);
+  $('#time').textContent=`00:${String(Math.floor(position)).padStart(2,'0')} / 00:${DURATION}`;
+}
+function frame(now){
+  if(!playing)return;position=clamp((now-origin)/1000,0,DURATION);currentScene=render(position);ui();meter();
+  if(position>=DURATION){playing=false;stopAudio();ui();status.textContent='재생 완료 · 다시 재생하거나 구간을 이동할 수 있습니다.';return}
+  raf=requestAnimationFrame(frame);
+}
+function pause(){playVersion++;if(playing)position=clamp((performance.now()-origin)/1000,0,DURATION);playing=false;cancelAnimationFrame(raf);stopAudio();render(position);ui();status.textContent='일시정지 · 구간을 이동해 장면을 확인할 수 있습니다.'}
+async function play(){
+  if(!ready)return;const version=++playVersion;let audioFailed=false;
+  if(soundOn){try{await createAudio();if(audioCtx.state!=='running')throw Error('Audio context did not start')}catch{audioFailed=true;audioFailure()}}
+  if(version!==playVersion)return;if(position>=DURATION)position=0;
+  started=true;$('#start').hidden=true;playing=true;origin=performance.now()-position*1000;cancelAnimationFrame(raf);raf=requestAnimationFrame(frame);syncAudio().catch(audioFailure);ui();
+  if(!audioFailed)status.textContent=soundOn?'재생 중 · 소리 켜짐':'재생 중 · 소리 꺼짐';
+}
+function goTo(t){playVersion++;started=true;$('#start').hidden=true;position=clamp(t,0,DURATION);origin=performance.now()-position*1000;currentScene=render(position);ui();if(playing){if(position>=DURATION)pause();else syncAudio().catch(audioFailure)}else status.textContent=position>=DURATION?'재생 완료 · 다시 재생할 수 있습니다.':'일시정지 · 재생 버튼으로 이어 볼 수 있습니다.'}
+function audioFailure(){soundOn=false;stopAudio();soundUI();status.textContent='소리를 시작하지 못했습니다. 소리 켜기를 다시 눌러주세요.'}
+playButton.addEventListener('click',()=>playing?pause():play());
+$('#start').addEventListener('click',()=>{soundOn=true;soundUI();play()});
+function replay(){pause();goTo(0);play()}
+$('#restart').addEventListener('click',replay);
+$('#end-replay').addEventListener('click',replay);
+$('#end-exit').addEventListener('click',()=>{if(document.fullscreenElement)fullscreen()});
+let wasPlaying=false;
+seek.addEventListener('pointerdown',()=>{wasPlaying=playing;pause()});
+seek.addEventListener('input',()=>goTo(Number(seek.value)));
+seek.addEventListener('change',()=>{if(wasPlaying){wasPlaying=false;play()}});
+$('#sound').addEventListener('click',()=>{soundOn=!soundOn;soundUI();if(soundOn)play();else{stopAudio();status.textContent='소리 꺼짐'}});
+async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if($('#player').requestFullscreen)await $('#player').requestFullscreen();else throw Error('Unsupported')}catch{status.textContent='전체화면을 사용할 수 없는 환경입니다. 브라우저에서 파일을 직접 열어주세요.'}}
+$('#fullscreen').addEventListener('click',fullscreen);
+$('#player').addEventListener('contextmenu',e=>{e.preventDefault();fullscreen()});
+document.addEventListener('fullscreenchange',()=>{$('#fullscreen').textContent=document.fullscreenElement?'전체화면 나가기':'전체화면';ui()});
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey||e.altKey||e.metaKey)return;
+  if(!document.fullscreenElement&&(e.target instanceof HTMLInputElement||e.target instanceof HTMLButtonElement||e.target.tagName==='SUMMARY'))return;
+  if((e.code==='Space'||e.code==='Enter')&&$('#end-actions').contains(e.target))return;
+  if(e.code==='Space'){e.preventDefault();playing?pause():play()}
+  else if(e.code==='ArrowRight'){e.preventDefault();goTo(position+5)}else if(e.code==='ArrowLeft'){e.preventDefault();goTo(position-5)}
+  else if(e.key==='Escape'&&document.fullscreenElement)fullscreen();else if(e.key.toLowerCase()==='f')fullscreen();else if(e.key.toLowerCase()==='m')$('#sound').click();
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){playVersion++;if(playing)pause()}});
+reduced.addEventListener('change',e=>{if(e.matches){pause();goTo(DURATION);status.textContent='동작 줄이기 설정에 따라 정지 화면을 표시합니다. 재생 버튼으로 직접 시작할 수 있습니다.'}});
+function resize(){
+  const width=canvas.getBoundingClientRect().width,ratio=window.devicePixelRatio||1;
+  const pixelWidth=Math.max(1,Math.round(width*ratio));
+  const pixelHeight=Math.max(1,Math.round(pixelWidth*H/W));
+  if(canvas.width!==pixelWidth||canvas.height!==pixelHeight){
+    bufferScale=pixelWidth/W;canvas.width=pixelWidth;canvas.height=pixelHeight;artCache.clear();
+  }
+  if(ready)render(started?position:1.65);
+}
+window.addEventListener('resize',resize);
+// Moving between monitors can change the pixel ratio without changing CSS size.
+function watchPixelRatio(){
+  matchMedia(`(resolution: ${window.devicePixelRatio||1}dppx)`).addEventListener('change',()=>{resize();watchPixelRatio()},{once:true});
+}
+watchPixelRatio();
+new ResizeObserver(resize).observe(canvas);
+// Deterministic time access is also used for frame-by-frame editorial review.
+window.openingFilm={duration:DURATION,sceneStarts:[...STARTS],pause,play,seek:goTo,getState:()=>({position,playing,soundOn,ready,scene:currentScene,renderScale:bufferScale})};
+Promise.all([400,600,800].map(w=>document.fonts.load(`${w} 80px Paperlogy`))).then(()=>{
+  ready=true;resize();$('#loader').hidden=true;$('#loader').style.display='none';[playButton,$('#restart'),seek,$('#sound'),$('#start')].forEach(e=>e.disabled=false);
+  if(reduced.matches){goTo(DURATION);status.textContent='동작 줄이기 설정: 정지 화면입니다. 재생 버튼으로 시작할 수 있습니다.'}else{render(1.65);ui();status.textContent='소리와 함께 재생을 누르면 16초 오프닝이 시작됩니다.'}
+}).catch(()=>{$('#loader').textContent='폰트를 준비하지 못했습니다. 파일을 다시 열어주세요.';status.textContent='폰트 로드 실패'});
+})();
+</script>
+</body>
+</html>

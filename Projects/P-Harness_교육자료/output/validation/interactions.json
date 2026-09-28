@@ -1,0 +1,38 @@
+[
+  {
+    "name": "right click enters native Fullscreen API",
+    "pass": true
+  },
+  {
+    "name": "second right click exits",
+    "pass": true
+  },
+  {
+    "name": "button enters fullscreen",
+    "pass": true
+  },
+  {
+    "name": "Escape exits fullscreen in automated Chrome",
+    "pass": true
+  },
+  {
+    "name": "Shift right click leaves fullscreen off",
+    "pass": true
+  },
+  {
+    "name": "copied text matches template",
+    "pass": true
+  },
+  {
+    "name": "right click in image viewer fullscreen",
+    "pass": true
+  },
+  {
+    "name": "new chapter automatically indexed",
+    "pass": true
+  },
+  {
+    "name": "new content searchable",
+    "pass": true
+  }
+]

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="사내 AI Agent P-Harness의 핵심 기능, 화면 사용법, 모델·Effort 선택, Skill·MCP 활용과 실습 방법을 설명하는 교육 매뉴얼">
+  <title>P-Harness 사용법 매뉴얼</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <style>
+    :root{
+      --navy:#102a43;--navy2:#173f5f;--blue:#2878b5;--teal:#168b88;--mint:#eaf7f5;
+      --orange:#ef7a45;--red:#c94d5d;--purple:#6658a6;--ink:#172434;--muted:#607286;
+      --line:#d7e2ea;--soft:#f4f7fa;--paper:#fff;--bg:#eaf0f4;--shadow:0 14px 38px rgba(16,42,67,.09);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:17px;line-height:1.72;word-break:keep-all}
+    button,input{font:inherit}
+    a{color:var(--blue)}
+    code{font-family:Consolas,"D2Coding",monospace;background:#eef4f8;border:1px solid #d8e5ee;border-radius:4px;padding:.08em .34em;color:#17486b}
+    .topline{height:5px;background:linear-gradient(90deg,var(--blue),var(--teal),var(--purple))}
+    .layout{max-width:1480px;margin:0 auto;padding:24px;display:grid;grid-template-columns:255px minmax(0,1fr);gap:28px}
+    .side{position:sticky;top:18px;align-self:start;max-height:calc(100vh - 36px);overflow:auto;background:var(--navy);color:#fff;border-radius:7px;box-shadow:var(--shadow);padding:20px 16px}
+    .side .brand{font-size:15px;font-weight:900;letter-spacing:.15em;color:#72d5cc;margin-bottom:6px}
+    .side h2{margin:0 0 18px;color:#fff;font-size:23px;line-height:1.35;letter-spacing:-.02em}
+    .side .group{margin:18px 8px 5px;color:#92abc0;font-size:15px;font-weight:800;letter-spacing:.08em}
+    .side a{display:block;padding:7px 9px;border-left:2px solid transparent;text-decoration:none;color:#d5e2eb;font-size:15px;line-height:1.45}
+    .side a:hover,.side a:focus-visible,.side a.active{background:rgba(255,255,255,.08);border-left-color:#68d6cc;color:#fff;outline:none}
+    .progress{position:fixed;top:0;left:0;height:5px;background:#66c2a5;width:0;z-index:50}
+    .report{min-width:0;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+    .hero{position:relative;overflow:hidden;padding:64px 66px 56px;color:#fff;background:linear-gradient(130deg,#102a43 0%,#174d70 58%,#167a7d 100%)}
+    .hero:after{content:"";position:absolute;right:-80px;top:-120px;width:360px;height:360px;border:1px solid rgba(255,255,255,.16);border-radius:50%;box-shadow:0 0 0 58px rgba(255,255,255,.04),0 0 0 116px rgba(255,255,255,.025)}
+    .eyebrow{position:relative;z-index:1;font-size:15px;font-weight:900;letter-spacing:.18em;color:#7ee0d7}
+    h1{position:relative;z-index:1;margin:14px 0 18px;font-size:clamp(42px,6vw,68px);line-height:1.04;letter-spacing:-.055em}
+    .hero p{position:relative;z-index:1;max-width:820px;margin:0;color:#dceaf2;font-size:20px;line-height:1.65}
+    .meta{position:relative;z-index:1;display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;color:#bdd1de;font-size:15px}
+    .meta span{border-left:2px solid #61cbc2;padding-left:10px}
+    .body{padding:56px 66px 76px}
+    section{scroll-margin-top:24px;margin-bottom:74px}
+    .kicker{font-size:15px;font-weight:900;letter-spacing:.14em;color:var(--blue)}
+    h2{margin:7px 0 15px;color:var(--navy);font-size:32px;line-height:1.28;letter-spacing:-.04em}
+    h3{margin:30px 0 12px;color:var(--navy2);font-size:23px;line-height:1.4;letter-spacing:-.02em}
+    h4{margin:17px 0 7px;color:var(--navy);font-size:18px}
+    p{margin:8px 0 14px}
+    .lead{max-width:980px;color:#465b6e;font-size:18px}
+    .rule{height:1px;margin:22px 0 28px;background:linear-gradient(90deg,var(--blue),var(--line) 58%,transparent)}
+    .grid2,.grid3,.grid4{display:grid;gap:13px;margin:20px 0}
+    .grid2{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(4,1fr)}
+    .panel{border:1px solid var(--line);border-radius:6px;background:#fff;padding:21px}
+    .panel.dark{background:var(--navy);border-color:var(--navy);color:#fff}.panel.dark h3,.panel.dark h4{color:#fff}
+    .metric{border:1px solid var(--line);border-top:4px solid var(--blue);background:#fff;padding:18px}
+    .metric.teal{border-top-color:var(--teal)}.metric.orange{border-top-color:var(--orange)}.metric.purple{border-top-color:var(--purple)}
+    .metric b{display:block;margin-bottom:5px;color:var(--navy);font-size:18px}.metric small{display:block;color:var(--muted);font-size:15px;line-height:1.55}
+    .quote{margin:0;font-size:23px;font-weight:780;line-height:1.55;letter-spacing:-.02em}.quote strong{color:#77ddd4}
+    .callout{margin:21px 0;padding:18px 20px;border-left:4px solid var(--blue);background:#eaf4fb}
+    .callout.success{border-color:var(--teal);background:var(--mint)}.callout.warning{border-color:var(--orange);background:#fff4ed}.callout.danger{border-color:var(--red);background:#fff1f3}
+    .callout strong{color:var(--navy)}
+    .compare{width:100%;border-collapse:collapse;margin:17px 0;font-size:15px}
+    .compare th{padding:12px 13px;border:1px solid #244d6b;background:var(--navy);color:#fff;text-align:left;vertical-align:top}
+    .compare td{padding:12px 13px;border:1px solid var(--line);vertical-align:top}.compare tbody tr:nth-child(even) td{background:#f7f9fb}
+    .compare .em{font-weight:800;color:var(--navy)}
+    .key{display:inline-flex;align-items:center;justify-content:center;min-width:29px;padding:2px 7px;margin:0 2px;border:1px solid #a9bac7;border-bottom-width:2px;border-radius:4px;background:#fff;color:#21384b;font-family:Consolas,monospace;font-size:15px;line-height:1.4}
+    #input h2 .key{font-size:1em;line-height:1;vertical-align:.04em}
+    .shortcut{display:grid;grid-template-columns:108px 1fr;gap:13px;align-items:start;border:1px solid var(--line);background:#fff;padding:14px}.shortcut strong{color:var(--navy)}.shortcut span:last-child{color:var(--muted);font-size:15px}
+    .ui-map{display:grid;grid-template-columns:190px 1fr 245px;grid-template-rows:200px 120px;gap:8px;margin:23px 0;padding:8px;border:1px solid #c6d3dd;background:#dce6ed}
+    .ui-region{border:1px solid #bccbd6;background:#fff;padding:16px;color:var(--muted);font-size:15px}.ui-region b{display:block;margin-bottom:7px;color:var(--navy);font-size:17px}
+    .ui-left{grid-column:1;grid-row:1/3;background:#173f5f;border-color:#173f5f;color:#d8e6ee}.ui-left b{color:#fff}.ui-center{grid-column:2;grid-row:1}.ui-right{grid-column:3;grid-row:1/3}.ui-input{grid-column:2;grid-row:2;border:2px solid #65a5c8;background:#f4f9fb}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:23px 0}.step{position:relative;min-height:135px;padding:17px 12px;border:1px solid var(--line);background:var(--soft)}
+    .step:not(:last-child):after{content:"→";position:absolute;z-index:2;right:-11px;top:44%;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--blue);font-weight:900}.step small{color:var(--blue);font-weight:900}.step b{display:block;margin:7px 0 4px;color:var(--navy)}.step span{font-size:15px;color:var(--muted);line-height:1.5}
+    .chart-wrap{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(300px,.82fr);gap:16px;margin:20px 0;align-items:stretch}.chart-card{border:1px solid var(--line);background:#fff;padding:18px}.chart{width:100%;height:390px}.chart-note{display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);background:var(--soft);padding:22px}.chart-note ul{margin:8px 0;padding-left:22px}.chart-note li{margin:7px 0}
+    .ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:20px 0;align-items:end}.level{display:flex;flex-direction:column;justify-content:flex-end;min-height:120px;padding:14px 10px;border-bottom:5px solid var(--blue);background:#eff5f9;text-align:center}.level:nth-child(2){min-height:140px}.level:nth-child(3){min-height:165px}.level:nth-child(4){min-height:190px}.level:nth-child(5){min-height:220px;border-color:var(--orange)}.level b{color:var(--navy);font-size:16px}.level small{color:var(--muted);font-size:15px}
+    .prompt{margin:14px 0;padding:18px 20px;border-radius:5px;background:#142b42;color:#eaf4fa;font-family:Consolas,"D2Coding",monospace;font-size:15px;line-height:1.75;white-space:pre-wrap}.prompt .mark{color:#76ddd4;font-weight:800}
+    .icon-list{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:18px 0}.icon-item{border:1px solid var(--line);background:#fff;padding:15px}.symbol{display:grid;place-items:center;width:34px;height:34px;margin-bottom:9px;border-radius:5px;background:#e8f3fa;color:var(--blue);font-weight:900}.icon-item b{display:block;color:var(--navy);font-size:16px}.icon-item small{display:block;margin-top:4px;color:var(--muted);font-size:15px;line-height:1.5}
+    .two-col-list{columns:2;column-gap:34px}.two-col-list li{break-inside:avoid;margin:7px 0}
+    .skill-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:22px 0}.skill-step{position:relative;padding:17px;border:1px solid var(--line);background:#fff}.skill-step:not(:last-child):after{content:"→";position:absolute;right:-12px;top:44%;z-index:2;color:var(--blue);font-size:21px;font-weight:900}.skill-step b{display:block;color:var(--navy);margin-bottom:4px}.skill-step span{font-size:15px;color:var(--muted)}
+    .mcp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}.mcp{border:1px solid var(--line);border-left:4px solid var(--blue);padding:15px;background:#fff}.mcp:nth-child(3n+2){border-left-color:var(--teal)}.mcp:nth-child(3n){border-left-color:var(--purple)}.mcp b{display:block;color:var(--navy);font-family:Consolas,monospace;font-size:16px}.mcp span{display:block;color:var(--muted);font-size:15px;line-height:1.55}
+    .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin:18px 0}.check{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);background:#fff;padding:13px;font-size:15px}.check input{margin-top:6px;accent-color:var(--teal);width:17px;height:17px}
+    details{border:1px solid var(--line);background:#fff;padding:14px 16px}details+details{margin-top:8px}summary{cursor:pointer;color:var(--navy);font-weight:800}details p,details li{font-size:15px;color:var(--muted)}
+    .notice{display:flex;gap:12px;align-items:flex-start;margin:18px 0;padding:17px 19px;border:1px solid #fac6a9;background:#fff5ef}.notice .badge{flex:0 0 auto;padding:3px 8px;border-radius:3px;background:var(--orange);color:#fff;font-size:15px;font-weight:900}.notice p{margin:0}
+    .footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:25px 66px;background:var(--navy);color:#bfd0dc;font-size:15px}
+    .mobile{display:none}
+    @media(max-width:1080px){.layout{display:block;padding:0}.side{display:none}.report{border:0}.mobile{display:block;position:sticky;top:0;z-index:30;padding:10px 20px;background:var(--navy);color:#fff;font-size:15px;font-weight:800}.hero,.body{padding-left:30px;padding-right:30px}.grid4{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(3,1fr)}.step:nth-child(3):after{display:none}.chart-wrap{grid-template-columns:1fr}.ui-map{grid-template-columns:160px 1fr}.ui-right{grid-column:1/3;grid-row:auto}.icon-list{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:700px){body{font-size:16px}.hero{padding-top:44px}.body{padding:40px 18px}.grid2,.grid3,.grid4,.mcp-grid,.checklist{grid-template-columns:1fr}.steps,.skill-flow{grid-template-columns:1fr}.step:not(:last-child):after,.skill-step:not(:last-child):after{content:"↓";right:49%;top:auto;bottom:-17px}.ui-map{grid-template-columns:1fr;grid-template-rows:auto}.ui-left,.ui-center,.ui-right,.ui-input{grid-column:auto;grid-row:auto}.icon-list{grid-template-columns:1fr 1fr}.ladder{grid-template-columns:1fr}.level,.level:nth-child(n){min-height:auto;text-align:left}.two-col-list{columns:1}.compare{display:block;overflow-x:auto;white-space:normal}.footer{padding:22px 18px}h2{font-size:28px}.hero p{font-size:18px}}
+    @media print{body{background:#fff;font-size:10pt}.topline,.side,.mobile,.progress{display:none!important}.layout{display:block;max-width:none;padding:0}.report{border:0;box-shadow:none}.hero{padding:34px 40px;background:#173f5f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hero:after{display:none}.body{padding:30px 40px}.footer{padding:20px 40px;background:#173f5f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.panel,.metric,.callout,.chart-card,.chart-note,.mcp,.shortcut,.notice,details{break-inside:avoid}section{margin-bottom:44px}.chart{height:330px}@page{size:A4;margin:12mm}}
+  </style>
+</head>
+<body>
+<div class="progress" id="readingProgress" style="width: 5.61587%;"></div>
+<div class="topline"></div>
+<div class="mobile">P-Harness 사용법 · 강의 중심 실무 매뉴얼</div>
+<div class="layout">
+  <aside class="side" aria-label="매뉴얼 목차">
+    <div class="brand">P-HARNESS GUIDE</div>
+    <h2>사용법 매뉴얼</h2>
+    <div class="group">이해하기</div>
+    <a href="#intro" class="active">P-Harness란?</a>
+    <a href="#compare" class="">MyHarness와 비교</a>
+    <a href="#screen">화면 구성</a>
+    <div class="group">바로 쓰기</div>
+    <a href="#input">입력·단축키</a>
+    <a href="#model">모델·출력단가</a>
+    <a href="#effort">Effort 선택</a>
+    <a href="#document">문서·산출물</a>
+    <a href="#panels">대화·파일 관리</a>
+    <div class="group">확장하기</div>
+    <a href="#skill">Skill 이해·제작</a>
+    <a href="#mcp">MCP 이해·목록</a>
+    <a href="#practice">실습 시나리오</a>
+  </aside>
+
+  <main class="report">
+    <header class="hero">
+      <div class="eyebrow">P-HARNESS TRAINING MANUAL</div>
+      <h1>P-Harness 사용법</h1>
+      <p>별도 설치 없이 사용하는 사내 AI Agent를 이해하고, 자료 연결부터 모델 선택, Skill·MCP 활용, 문서 생성과 검증까지 한 번에 익히는 실무 매뉴얼입니다.</p>
+      <div class="meta"><span>대상 · 사무직 전 사용자</span><span>형태 · 강의＋실습</span><span>핵심 · @ · $ · Effort · Artifact</span><span>작성 기준 · 제공 강의안 중심</span></div>
+    </header>
+
+    <div class="body">
+      <section id="intro">
+        <div class="kicker">01 · OVERVIEW</div>
+        <h2>P-Harness는 사무계 업무 지원을 위한 AI Agent입니다</h2>
+        <p class="lead">P-Harness는 질문에 답하는 채팅을 넘어, 사용자가 제공한 문서와 연결된 데이터·업무 지식을 바탕으로 분석하고 실제 산출물을 만드는 업무 수행 환경입니다. 브라우저에서 접속하므로 개인 PC에 별도 프로그램을 설치할 필요가 없으며, 다수 사용자를 지원하는 분산 처리형 구조로 운영됩니다.</p>
+        <div class="grid3">
+          <div class="metric"><b>바로 접속</b><small>별도 설치 없이 사내 환경에서 사용할 수 있습니다.</small></div>
+          <div class="metric teal"><b>다수 사용자 지원</b><small>Google Cloud 기반 분산 처리형 시스템으로 운영됩니다.</small></div>
+          <div class="metric purple"><b>DRM 문서 인식</b><small>다운로드한 사내 DRM 문서를 첨부하여 분석할 수 있습니다.</small></div>
+        </div>
+        <div class="panel dark"><p class="quote">P-Harness를 잘 쓴다는 것은 “좋은 질문”만 하는 것이 아니라, <strong>적절한 자료 · Skill · MCP · 모델 · Effort를 함께 선택</strong>해 검증 가능한 결과물을 만드는 것입니다.</p></div>
+      </section>
+
+      <section id="compare">
+        <div class="kicker">02 · MYHARNESS VS P-HARNESS</div>
+        <h2>두 시스템의 방향은 같고, 운영 환경과 적용 범위가 다릅니다</h2>
+        <table class="compare">
+          <thead><tr><th>구분</th><th>MyHarness (PoC 버전, 2026. 4. 27 ~ )</th><th>P-Harness (정식 출시, 2026. 10. 1 ~ )</th></tr></thead>
+          <tbody>
+            <tr><td class="em">운영 위치</td><td>사무용 개인 PC에서 시험 가동</td><td>Google Cloud에서 구동</td></tr>
+            <tr><td class="em">운영 구조</td><td>개인·로컬 중심의 사용자 시스템</td><td>다수 사용자를 커버하는 분산 처리형 시스템</td></tr>
+            <tr><td class="em">업데이트</td><td>업데이트 빈도가 높고 신기능을 먼저 시험</td><td>검증된 기능을 안정적으로 점진 적용</td></tr>
+            <tr><td class="em">문서 활용</td><td>개인 PC 로컬 작업공간 중심</td><td>DRM이 적용된 사내 문서도 인식 가능</td></tr>
+            <tr><td class="em">관계</td><td>새 기능의 활용성과 사용성을 검증</td><td>MyHarness에서 검증된 기능을 순차적으로 반영</td></tr>
+          </tbody>
+        </table>
+        <div class="callout success"><strong>한 줄 정리</strong><br>MyHarness가 빠르게 기능을 시험하는 실험 환경이라면, P-Harness는 검증된 기능을 다수 사용자가 안정적으로 활용하는 사내 서비스입니다.</div>
+      </section>
+
+      <section id="screen">
+        <div class="kicker">03 · SCREEN MAP</div>
+        <h2>화면은 왼쪽·가운데·오른쪽의 세 영역으로 이해하세요</h2>
+        <div class="ui-map" role="img" aria-label="P-Harness 화면의 왼쪽 대화 기록, 가운데 채팅, 오른쪽 산출물 영역 구성도">
+          <div class="ui-region ui-left"><b>① 왼쪽 패널</b>대화 기록<br>제목 검색<br>좋아요 필터<br>상단 고정·이름 변경·삭제<br><br>좌측 하단<br>모델·Effort 설정</div>
+          <div class="ui-region ui-center"><b>② 가운데 채팅</b>요청과 답변<br>작업 진행 표시<br>긴 글 카드<br>답변 하단 동작 아이콘</div>
+          <div class="ui-region ui-right"><b>③ 오른쪽 패널</b>생성 파일 목록<br>즐겨찾기·이름 변경<br>삭제·다운로드<br><br>Artifact Viewer<br>본문 수정·소스 확인<br>확대·공유·다운로드</div>
+          <div class="ui-region ui-input"><b>④ 입력창</b></div>
+        </div>
+        <div class="callout"><strong>아이콘이 헷갈리면 마우스를 올려보세요.</strong><br>각 아이콘의 기능명이 툴팁으로 표시됩니다. 기능은 배포 버전에 따라 조금 달라질 수 있으므로 실제 화면의 안내 문구를 우선합니다.</div>
+      </section>
+
+      <section id="input">
+        <div class="kicker">04 · INPUT &amp; SHORTCUTS</div>
+        <h2><span class="key">@</span>와 <span class="key">$</span>, 두 기호부터 익히세요</h2>
+        <div class="grid2">
+          <div class="shortcut"><strong><span class="key">@</span> 파일</strong><span>분석하거나 수정할 산출물 파일을 링크합니다. 파일명을 글로만 쓰는 것보다 대상을 정확히 지정할 수 있습니다.</span></div>
+          <div class="shortcut"><strong><span class="key">$</span> 확장</strong><span>업무 처리 방식을 담은 Skill이나 외부 데이터 연결인 MCP를 호출합니다.</span></div>
+          <div class="shortcut"><strong><span class="key">Shift</span>＋<span class="key">Enter</span></strong><span>메시지를 보내지 않고 입력창에서 줄을 바꿉니다.</span></div>
+          <div class="shortcut"><strong><span class="key">Ctrl</span>＋<span class="key">Enter</span></strong><span>AI가 작업 중일 때 현재 작업을 방해하지 않고 다음 요청을 대기열에 추가합니다.</span></div>
+          <div class="shortcut"><strong><span class="key">Enter</span></strong><span>대기 중에는 질문을 전송합니다. 작업 중 그냥 전송하면 현재 답변의 방향에 영향을 주는 추가 지시가 됩니다.</span></div>
+          <div class="shortcut"><strong>20줄 초과</strong><span>긴 글을 붙여넣으면 입력창을 가득 채우지 않도록 별도의 카드 형태로 접혀 표시됩니다.</span></div>
+        </div>
+        <h3>자료를 연결하는 방법</h3>
+        <table class="compare">
+          <thead><tr><th>자료</th><th>현재 사용법</th><th>유의사항</th></tr></thead>
+          <tbody>
+            <tr><td class="em">워크스페이스 산출물</td><td><span class="key">@</span>를 입력한 뒤 파일 선택</td><td>수정 대상이라면 “기존 파일 수정”이라고 명시합니다.</td></tr>
+            <tr><td class="em">사진·화면 캡처</td><td>파일 첨부 또는 이미지 붙여넣기</td><td>오류 위치나 확인할 영역을 함께 설명합니다.</td></tr>
+            <tr><td class="em">ECM·메일 첨부 문서</td><td>먼저 PC로 다운로드한 뒤 채팅에 첨부</td><td>메일에서 첨부문서를 고르듯 ECM 목록을 직접 연결하는 기능은 아직 구현되지 않았습니다.</td></tr>
+            <tr><td class="em">DRM 문서</td><td>다운로드 후 그대로 업로드하여 분석</td><td>문서 열람 권한과 사내 보안 기준은 사용자가 먼저 확인해야 합니다.</td></tr>
+          </tbody>
+        </table>
+        <div class="prompt"><span class="mark">$[검토 스킬]</span>을 사용해서 <span class="mark">@투자계획서.pptx</span>와 <span class="mark">@경제성.xlsx</span>를 검토해줘.<br>경영층이 판단해야 할 사항, 수치 불일치, 누락 근거와 추가 확인 질문을 정리하고,<br>결과는 출처를 표시한 HTML 보고서로 만들어줘.</div>
+      </section>
+
+      <section id="model">
+        <div class="kicker">05 · MODEL &amp; COST</div>
+        <h2>비싼 모델보다 작업에 맞는 모델이 좋은 선택입니다</h2>
+        <p class="lead">아래 금액은 강의안에 제시된 출력단가 기준이며, 1M Token당 USD입니다. 괄호의 배수는 GPT-5.6-Luna를 1로 둔 상대 비교입니다. 실제 적용 모델과 단가는 운영 정책에 따라 달라질 수 있습니다.</p>
+        <div class="chart-wrap">
+          <div class="chart-card"><div id="costChart" class="chart" role="img" aria-label="모델별 1M 출력 토큰 단가 비교 막대차트" _echarts_instance_="ec_1790147485049" style="user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); position: relative;"><div style="position: relative; width: 547px; height: 390px; padding: 0px; margin: 0px; border-width: 0px;"><canvas data-zr-dom-id="zr_0" width="547" height="390" style="position: absolute; left: 0px; top: 0px; width: 547px; height: 390px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div class=""></div></div></div>
+          <div class="chart-note">
+            <h3 style="margin-top:0">선택 원칙</h3>
+            <ul>
+              <li><strong>상위 모델</strong>은 어려운 판단과 복잡한 코딩에 사용합니다.</li>
+              <li><strong>중급 모델</strong>은 웹 검색·분석·일반 보고서에 균형이 좋습니다.</li>
+              <li><strong>하위 모델</strong>도 Effort를 높이면 정리·초안 작업을 효율적으로 수행할 수 있습니다.</li>
+              <li>새 모델 표시는 “출시 정보”이며 P-GPT 적용 여부와 구분해야 합니다.</li>
+            </ul>
+          </div>
+        </div>
+        <table class="compare">
+          <thead><tr><th>상태</th><th>모델</th><th>출력단가 / 1M Token</th><th>상대비용</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="5">현재 강의 기준</td><td class="em">GPT-5.6-Astra</td><td>$50</td><td>×42</td></tr>
+            <tr><td class="em">GPT-5.6-Sol</td><td>$20</td><td>×17</td></tr>
+            <tr><td class="em">GPT-5.6-Terra</td><td>$12</td><td>×10</td></tr>
+            <tr><td class="em">GPT-5.6-Luna</td><td>$1.2</td><td><strong>×1</strong></td></tr>
+            <tr><td class="em">Gemini-3.8-Flash</td><td>$3.7</td><td>×3</td></tr>
+            <tr><td rowspan="3">글로벌 신규 출시<br><strong>P-GPT 미적용</strong></td><td class="em">GPT-6-Astra</td><td>$50</td><td>×42</td></tr>
+            <tr><td class="em">GPT-6-Sol</td><td>$10</td><td>×8</td></tr>
+            <tr><td class="em">GPT-6-Luna</td><td>$0.5</td><td>×0.4</td></tr>
+          </tbody>
+        </table>
+        <div class="callout danger"><strong>한 채팅 세션 안에서 모델 변경은 권장하지 않습니다.</strong><br>대화 중 모델을 바꾸면 기존 입력 토큰에 대해 저장된 계산값을 재사용하지 못해 처음부터 다시 계산할 수 있습니다. 이 경우 90% 입력 토큰 할인 효과가 사라져 입력 비용이 최대 10배 수준으로 증가할 수 있으므로, 모델을 바꿔야 한다면 새 채팅에서 시작하는 방식을 권장합니다.</div>
+      </section>
+
+      <section id="effort">
+        <div class="kicker">06 · EFFORT</div>
+        <h2>모델 등급과 Effort를 함께 조절하세요</h2>
+        <p class="lead">Effort는 AI가 답을 만들기 전에 얼마나 깊게 검토할지를 정하는 값입니다. 높을수록 항상 좋은 것이 아니며, 시간과 비용도 함께 늘어날 수 있습니다. 좌측 하단 설정에서 작업 난이도에 맞게 선택합니다.</p>
+        <table class="compare">
+          <thead><tr><th>모델 수준</th><th>권장 Effort</th><th>이유</th></tr></thead>
+          <tbody>
+            <tr><td class="em">상위 모델</td><td><strong>Low</strong></td><td>기본 성능이 높아 일반 사무 작업은 낮은 추론노력으로도 충분합니다.</td></tr>
+            <tr><td class="em">중급 모델</td><td><strong>Low ~ Medium</strong></td><td>검색·분석·보고서의 난이도에 따라 조절합니다.</td></tr>
+            <tr><td class="em">하위 모델</td><td><strong>Medium ~ High</strong></td><td>복잡한 지시를 안정적으로 처리하도록 검토 여유를 늘립니다.</td></tr>
+          </tbody>
+        </table>
+        <h3>작업 난이도는 대체로 다음 순서로 높아집니다</h3>
+        <div class="ladder" aria-label="작업 난이도 단계">
+          <div class="level"><b>질의응답</b><small>개념·요약</small></div>
+          <div class="level"><b>웹검색＋답변</b><small>자료 탐색·출처</small></div>
+          <div class="level"><b>세로형 웹 보고서</b><small>분석·차트·구성</small></div>
+          <div class="level"><b>가로 슬라이드 보고서</b><small>HTML·PDF·PPTX</small></div>
+          <div class="level"><b>코딩</b><small>구현·디버깅·검증</small></div>
+        </div>
+        <div class="callout success"><strong>실무 권장</strong><br>코딩을 제외한 일반 업무에서는 Effort를 무조건 높게 설정할 필요가 없습니다. 먼저 권장 범위에서 실행하고, 누락이나 논리 오류가 반복될 때 한 단계 높이는 방식이 효율적입니다.</div>
+      </section>
+
+      <section id="document">
+        <div class="kicker">07 · DOCUMENT &amp; ARTIFACT</div>
+        <h2>“보고서 만들어줘”라고 하면 HTML 보고서가 기본입니다</h2>
+        <p class="lead">별도 파일 형식을 지정하지 않고 “~에 대해 보고서 만들어줘”라고 요청하면 세로형 HTML 보고서 생성이 기본 트리거로 작동합니다. PPTX, PDF, Excel 등 원하는 형식이 있다면 요청에 명시하십시오.</p>
+        <div class="steps">
+          <div class="step"><small>STEP 1</small><b>자료 첨부</b><span>원본·기준 문서를 연결합니다.</span></div>
+          <div class="step"><small>STEP 2</small><b>목적 설명</b><span>독자와 의사결정 목적을 씁니다.</span></div>
+          <div class="step"><small>STEP 3</small><b>형식 지정</b><span>HTML·PDF·PPTX 등을 정합니다.</span></div>
+          <div class="step"><small>STEP 4</small><b>검증 요청</b><span>숫자·출처·누락을 확인시킵니다.</span></div>
+          <div class="step"><small>STEP 5</small><b>Viewer 확인</b><span>내용과 레이아웃을 검토합니다.</span></div>
+        </div>
+        <h3>AI가 생성하는 문서의 기본 표현</h3>
+        <div class="grid3">
+          <div class="metric"><b>ECharts</b><small>수치 비교, 추세, 비중 등 그래프를 표현하는 기본 차트 도구입니다.</small></div>
+          <div class="metric teal"><b>Mermaid Chart</b><small>Workflow, 절차, 관계와 의사결정 흐름을 표현하는 기본 다이어그램 도구입니다.</small></div>
+          <div class="metric purple"><b>출처 표시</b><small>외부 자료나 근거 문서를 활용한 주장에는 출처를 연결합니다.</small></div>
+        </div>
+        <div class="prompt"><span class="mark">@회의자료.pptx</span>와 <span class="mark">@실적.xlsx</span>를 중심으로 경영층 보고서를 만들어줘.<br>결론을 먼저 제시하고, 핵심 실적·원인·리스크·의사결정 요청 순서로 구성해줘.<br>정량 비교는 ECharts, 업무 절차는 Mermaid로 표현하고 모든 주요 사실에 출처를 표시해줘.<br>최종 결과는 세로형 HTML 파일로 작성해줘.</div>
+      </section>
+
+      <section id="panels">
+        <div class="kicker">08 · CHAT, HISTORY &amp; FILES</div>
+        <h2>답변·대화기록·파일을 각각 관리할 수 있습니다</h2>
+        <h3>채팅 답변 하단 아이콘</h3>
+        <div class="icon-list">
+          <div class="icon-item"><span class="symbol">⧉</span><b>원문 복사</b><small>답변 텍스트 전체를 클립보드에 복사합니다.</small></div>
+          <div class="icon-item"><span class="symbol">▣</span><b>본문 저장</b><small>현재 답변을 Markdown 산출물로 저장합니다.</small></div>
+          <div class="icon-item"><span class="symbol">⌯</span><b>채팅 링크 공유</b><small>현재 답변 위치의 공유 링크를 복사합니다. P-Harness 보안정책에 따라 제한될 수 있습니다.</small></div>
+          <div class="icon-item"><span class="symbol">⑂</span><b>여기서 분기</b><small>현재 답변까지의 맥락을 복사해 새 채팅으로 이어갑니다.</small></div>
+          <div class="icon-item"><span class="symbol">▥</span><b>토큰·비용</b><small>이번 답변과 세션 누적 토큰량·비용을 확인합니다.</small></div>
+        </div>
+        <h3>왼쪽 패널: 대화 기록 관리</h3>
+        <table class="compare">
+          <thead><tr><th>기능</th><th>사용 방법</th><th>활용 팁</th></tr></thead>
+          <tbody>
+            <tr><td class="em">제목 검색</td><td>검색창에서 대화 제목을 입력합니다.</td><td>업무명·회사명·보고서명을 제목에 남기면 찾기 쉽습니다.</td></tr>
+            <tr><td class="em">좋아요만 보기</td><td>좋아요 필터를 켭니다.</td><td>자주 재사용하는 모범 대화만 모아 볼 수 있습니다.</td></tr>
+            <tr><td class="em">좋아요 표시</td><td>채팅 세션 제목 왼쪽 아이콘을 누릅니다.</td><td>좋아요와 상단 고정은 목적이 다릅니다.</td></tr>
+            <tr><td class="em">작업 더보기</td><td>제목에 마우스를 올린 뒤 오른쪽 더보기 버튼을 누릅니다.</td><td>상단 고정, 좋아요, 세션명 변경, 삭제를 선택할 수 있습니다.</td></tr>
+            <tr><td class="em">삭제</td><td>더보기 메뉴에서 삭제합니다.</td><td>일반 사용자 화면에서는 숨김 처리이며 DB에서 즉시 영구 삭제되는 방식이 아닙니다.</td></tr>
+          </tbody>
+        </table>
+        <h3>오른쪽 패널: 파일 목록과 Artifact Viewer</h3>
+        <div class="grid2">
+          <div class="panel">
+            <h4>파일 목록에서</h4>
+            <ul><li>즐겨찾기 추가·해제</li><li>파일명 수정</li><li>파일 삭제</li><li>원본 파일 다운로드</li><li>파일 유형 필터와 정렬</li></ul>
+          </div>
+          <div class="panel">
+            <h4>Artifact Viewer에서</h4>
+            <ul><li>HTML 본문을 직접 선택·편집</li><li>소스코드 확인과 복사</li><li>미리보기 확대·축소</li><li>전체 이미지 복사 또는 다운로드</li><li>파일 다운로드</li></ul>
+          </div>
+        </div>
+        <div class="callout"><strong>본문 수정의 원칙</strong><br>오탈자나 짧은 문장은 Viewer에서 직접 편집할 수 있습니다. 섹션 재배치, 표 구조 변경, 차트 데이터 변경처럼 구조가 바뀌는 작업은 AI에게 수정 지시를 보내는 것이 안전합니다.</div>
+      </section>
+
+      <section id="skill">
+        <div class="kicker">09 · WHY AGENT SKILL?</div>
+        <h2>Skill은 도메인 전문가가 직접 만드는 업무 실행 방식입니다</h2>
+        <p class="lead">기존 시스템 개발에서는 도메인 전문가는 개발을 모르고 개발자는 업무의 세부 판단을 알기 어려워, 요구사항을 맞추기 위한 회의와 수정에 많은 시간과 비용이 들었습니다. Agent Skill은 업무 전문가가 AI와 대화하며 지식·절차·평가기준·산출물 형식을 직접 만들고 반복 개선하는 방식으로 이 간극을 줄입니다.</p>
+        <div class="grid2">
+          <div class="panel dark"><h3 style="margin-top:0">기존 맞춤 개발</h3><ul><li>Frontend와 Backend를 별도로 설계</li><li>업무 지식을 개발 요구사항으로 번역</li><li>개발·테스트·배포에 긴 리드타임</li><li>변경 시 다시 개발자와 협의</li></ul></div>
+          <div class="panel"><h3 style="margin-top:0">Harness AI＋Skill</h3><ul><li>공통 채팅 UI와 실행 프로그램 재사용</li><li>업무 전문가는 도메인 지식에 집중</li><li>대화로 기초 Skill을 빠르게 제작</li><li>결과물 테스트와 피드백으로 반복 개선</li></ul></div>
+        </div>
+        <div class="callout warning"><strong>장단점은 분명합니다.</strong><br>개별 Vibe Coding으로 독자적인 AI Agent를 만드는 것보다 화면과 기능의 자유도는 낮습니다. 반면 범용 채팅 UI로 처리 가능한 업무라면 Skill만 제작하는 방식이 개발비와 유지보수 측면에서 유리합니다.</div>
+        <h3>Skill 제작·수정 시연 절차</h3>
+        <div class="skill-flow">
+          <div class="skill-step"><b>1. 자료＋설명 제공</b><span>규정, 우수 사례, 판단기준과 원하는 결과물을 Agent에 전달합니다.</span></div>
+          <div class="skill-step"><b>2. 기초 Skill 제작</b><span>업무 목적, 입력, 절차, 금지사항과 출력 형식을 정의합니다.</span></div>
+          <div class="skill-step"><b>3. 성능 테스트</b><span>실제 또는 비식별 샘플로 보고서 등 결과물을 생성합니다.</span></div>
+          <div class="skill-step"><b>4. 피드백 반복</b><span>누락·오판·표현 문제를 반영해 Skill을 점진적으로 다듬습니다.</span></div>
+        </div>
+        <div class="prompt">첨부한 업무지침과 우수 보고서 예시를 바탕으로 이 업무 전용 Skill을 만들어줘.<br>입력자료 검증, 업무 절차, 판단기준, 반드시 물어볼 질문, 금지사항과 최종 보고서 형식을 포함해줘.<br>기초 Skill 작성 후 샘플 자료로 테스트하고 개선점도 정리해줘.</div>
+      </section>
+
+      <section id="mcp">
+        <div class="kicker">10 · WHAT IS MCP?</div>
+        <h2>MCP는 AI Agent가 데이터를 가져오는 표준 연결 방식입니다</h2>
+        <div class="grid2">
+          <div class="metric teal"><b>Skill = 어떻게 처리할지</b><small>업무 절차, 판단기준, 질문 방식과 결과물 형식을 정의합니다.</small></div>
+          <div class="metric purple"><b>MCP = 어디서 가져올지</b><small>외부 데이터, 공공기관 정보와 사내 업무 시스템을 연결합니다.</small></div>
+        </div>
+        <p>입력창에서 <span class="key">$</span>를 누르면 등록된 Skill과 MCP를 조회할 수 있으며, 목록에서 활성화·비활성화할 수 있습니다. 이름을 추측하기보다 설명을 읽고 업무 목적에 맞는 연결을 선택하십시오.</p>
+        <h3>공공 데이터·경제·무역</h3>
+        <div class="mcp-grid">
+          <div class="mcp"><b>company-disclosure</b><span>금융감독원 OpenDART, 미국 SEC EDGAR, 영국 Companies House의 기업 공시와 재무 데이터를 조회합니다.</span></div>
+          <div class="mcp"><b>comtrade</b><span>UN Comtrade에서 국가별·품목별·기간별 수출입 통계를 조회합니다.</span></div>
+          <div class="mcp"><b>trade-market</b><span>한국 관세청, 미국 Census Bureau, WTO, EU Eurostat COMEXT의 HS코드별 무역 데이터를 비교합니다.</span></div>
+          <div class="mcp"><b>ecos</b><span>한국은행 ECOS에서 환율, 금리, 물가와 주요 경제 시계열을 조회합니다.</span></div>
+          <div class="mcp"><b>kosis</b><span>통계청 KOSIS에서 인구, 산업, 고용과 지역경제 등 국가통계를 조회합니다.</span></div>
+          <div class="mcp"><b>worldbank</b><span>World Bank에서 국가별 경제·개발 지표의 장기 시계열을 조회합니다.</span></div>
+          <div class="mcp"><b>macro-finance</b><span>FRED, NY Fed, ECB, BIS, OECD, 일본 e-Stat의 금리·물가·고용·환율·산업생산 자료를 조회합니다.</span></div>
+          <div class="mcp"><b>eia</b><span>미국 EIA에서 WTI·Brent 원유, Henry Hub 천연가스 등 에너지 가격과 산업 지표를 조회합니다.</span></div>
+          <div class="mcp"><b>development-finance</b><span>ADB와 KIDB의 개발금융 및 경제개발 지표를 조회합니다.</span></div>
+          <div class="mcp"><b>environment-industry</b><span>EU PRODCOM 산업생산, 미국 EPA ECHO 환경준수, USDA ERS 농업경제 데이터를 조회합니다.</span></div>
+        </div>
+        <h3>법령·국회·특허·연구자료</h3>
+        <div class="mcp-grid">
+          <div class="mcp"><b>korean-law</b><span>국가법령정보센터의 법령, 판례, 행정규칙, 자치법규, 조약과 법령해석례를 조회합니다.</span></div>
+          <div class="mcp"><b>national-assembly</b><span>대한민국 국회의 계류법안, 의안, 위원회 심사, 회의자료와 입법예고를 조회합니다.</span></div>
+          <div class="mcp"><b>legislation-regulation</b><span>미국·EU·영국의 법안 진행, 행정명령, 관세·제재와 규제 변화를 조회합니다.</span></div>
+          <div class="mcp"><b>patent-tech</b><span>KIPRISPlus·EPO OPS의 특허와 OpenAlex·Crossref·Semantic Scholar의 논문 메타데이터를 조회합니다.</span></div>
+        </div>
+        <h3>POSCO 업무 시스템</h3>
+        <div class="grid2">
+          <div class="metric orange"><b>현재 문서 연결</b><small>투자관리그룹·사업관리그룹 문서 약 5,000건을 업무 근거로 활용합니다.</small></div>
+          <div class="metric purple"><b>예정된 플랫폼 연결</b><small>P-INVISION(투자관리그룹), AI-CONE(사업관리그룹) 연결이 예정되어 있습니다.</small></div>
+        </div>
+        <div class="callout warning"><strong>MCP 결과도 검증해야 합니다.</strong><br>조회 기준일, 단위, 국가·품목 코드, 기업 식별자와 원문 링크를 확인하십시오. 연결이 성공했다는 사실만으로 원하는 데이터가 정확히 조회되었다고 판단하면 안 됩니다.</div>
+      </section>
+
+      <section id="practice">
+        <div class="kicker">11 · DEMONSTRATION</div>
+        <h2>강의에서는 세 가지 흐름을 직접 시연합니다</h2>
+        <details open=""><summary>실습 1. ECM 문서 업로드와 분석</summary><ol><li>ECM에서 PPT 또는 Excel 파일을 PC로 다운로드합니다.</li><li>DRM이 적용된 상태로 P-Harness 채팅에 첨부합니다.</li><li>자료의 목적, 기준 시점, 확인할 항목을 지시합니다.</li><li>요약·수치 추출·슬라이드별 검토 등 결과를 확인합니다.</li><li>메일 첨부처럼 ECM 목록에서 직접 선택하는 연결 기능은 아직 없다는 점을 확인합니다.</li></ol></details>
+        <details open=""><summary>실습 2. HTML 보고서 생성</summary><ol><li>분석할 자료를 <span class="key">@</span> 또는 첨부로 연결합니다.</li><li>“~에 대해 보고서 만들어줘”라고 요청해 HTML 트리거를 확인합니다.</li><li>ECharts 그래프, Mermaid Workflow와 출처 표시를 확인합니다.</li><li>오른쪽 Artifact Viewer에서 확대·소스 확인·다운로드를 실행합니다.</li><li>문구는 직접 고치고 구조 변경은 AI에게 지시합니다.</li></ol></details>
+        <details open=""><summary>실습 3. Skill 제작과 개선</summary><ol><li>업무자료와 판단기준, 원하는 보고서 예시를 제공합니다.</li><li>Agent에게 기초 Skill 제작을 요청합니다.</li><li>샘플 입력으로 실제 보고서를 출력해 봅니다.</li><li>사용자가 누락·과장·형식 문제를 구체적으로 피드백합니다.</li><li>동일 샘플과 새로운 경계 사례로 다시 테스트합니다.</li></ol></details>
+        <h3>좋은 요청의 다섯 요소</h3>
+        <div class="grid4">
+          <div class="metric"><b>목적</b><small>누가 왜 쓰는가</small></div>
+          <div class="metric teal"><b>자료</b><small>어떤 파일·데이터인가</small></div>
+          <div class="metric purple"><b>작업</b><small>무엇을 분석·작성할까</small></div>
+          <div class="metric orange"><b>완료조건</b><small>형식·분량·검증 기준</small></div>
+        </div>
+        <div class="prompt"><span class="mark">[목적]</span> 부서장에게 이번 달 원가 상승 원인을 보고하려고 합니다.<br><span class="mark">[자료]</span> @전월_원가.xlsx와 @당월_원가.xlsx를 사용하세요.<br><span class="mark">[작업]</span> 품목별·공정별 증감액과 증감률을 계산하고 상위 5개 원인을 분석하세요.<br><span class="mark">[검증]</span> 합계를 원본과 대사하고 확인되지 않은 원인은 ‘가설’로 표시하세요.<br><span class="mark">[결과]</span> 경영진용 세로형 HTML 보고서로 만들고 표·차트·출처를 포함하세요.</div>
+      </section>
+
+    </div>
+
+    <footer class="footer"><span>P-Harness 사용법 매뉴얼</span><span>강의 중심 실무 가이드</span><span>작성 · MyHarness</span></footer>
+  </main>
+</div>
+<script>
+(function(){
+  const progress=document.getElementById('readingProgress');
+  const links=[...document.querySelectorAll('.side a')];
+  const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function update(){
+    const max=document.documentElement.scrollHeight-innerHeight;
+    progress.style.width=(max>0?Math.min(100,scrollY/max*100):0)+'%';
+    let current=sections[0];
+    sections.forEach(s=>{if(s.getBoundingClientRect().top<=140) current=s;});
+    links.forEach(a=>a.classList.toggle('active',current&&a.getAttribute('href')==='#'+current.id));
+  }
+  addEventListener('scroll',update,{passive:true});update();
+
+  const boxes=[...document.querySelectorAll('.checklist input[type="checkbox"]')];
+  boxes.forEach((box,index)=>{
+    const key='p-harness-manual-check-'+index;
+    try{box.checked=localStorage.getItem(key)==='1';}catch(e){}
+    box.addEventListener('change',()=>{try{localStorage.setItem(key,box.checked?'1':'0');}catch(e){}});
+  });
+
+  const chartEl=document.getElementById('costChart');
+  if(window.echarts&&chartEl){
+    const chart=echarts.init(chartEl);
+    const labels=['5.6 Astra','5.6 Sol','5.6 Terra','5.6 Luna','Gemini 3.8 Flash','6 Astra*','6 Sol*','6 Luna*'];
+    const values=[50,20,12,1.2,3.7,50,10,.5];
+    chart.setOption({
+      animationDuration:700,
+      grid:{left:126,right:34,top:22,bottom:42},
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},textStyle:{fontSize:15},formatter:(p)=>`${p[0].name}<br><b>$${p[0].value}</b> / 1M output tokens`},
+      xAxis:{type:'value',name:'USD / 1M 출력 Token',nameLocation:'middle',nameGap:30,nameTextStyle:{fontSize:15,color:'#607286'},axisLabel:{fontSize:15,color:'#607286'},splitLine:{lineStyle:{color:'#e4ebf0'}}},
+      yAxis:{type:'category',inverse:true,data:labels,axisLabel:{fontSize:15,color:'#243b53'},axisTick:{show:false},axisLine:{show:false}},
+      series:[{type:'bar',data:values.map((v,i)=>({value:v,itemStyle:{color:i>=5?'#6658a6':i===3?'#168b88':'#2878b5'}})),barWidth:19,label:{show:true,position:'right',formatter:'${c}',fontSize:15,color:'#172434'}}]
+    });
+    new ResizeObserver(()=>chart.resize()).observe(chartEl);
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<script data-myharness-scroll-script="true">
+(() => {
+  const messageType = "myharness:artifact-frame-scroll";
+  const artifactPath = "outputs/P-Harness_사용법_v1.html";
+  const restoreScroll = {"x":0,"y":0};
+  let sendTimer = 0;
+
+  const readScroll = () => ({
+    x: Math.max(0, Math.round(window.scrollX || document.documentElement?.scrollLeft || document.body?.scrollLeft || 0)),
+    y: Math.max(0, Math.round(window.scrollY || document.documentElement?.scrollTop || document.body?.scrollTop || 0)),
+  });
+
+  const sendScroll = () => {
+    const current = readScroll();
+    parent.postMessage({ type: messageType, path: artifactPath, x: current.x, y: current.y }, "*");
+  };
+
+  const scheduleScrollSend = () => {
+    window.clearTimeout(sendTimer);
+    sendTimer = window.setTimeout(sendScroll, 80);
+  };
+
+  const applyRestore = () => {
+    if (restoreScroll.x <= 0 && restoreScroll.y <= 0) {
+      scheduleScrollSend();
+      return;
+    }
+    const scrollToSavedPosition = () => {
+      window.scrollTo(restoreScroll.x, restoreScroll.y);
+      scheduleScrollSend();
+    };
+    requestAnimationFrame(scrollToSavedPosition);
+    window.setTimeout(scrollToSavedPosition, 40);
+    window.setTimeout(scrollToSavedPosition, 180);
+  };
+
+  window.addEventListener("scroll", scheduleScrollSend, { passive: true });
+  window.addEventListener("pagehide", sendScroll);
+  window.addEventListener("beforeunload", sendScroll);
+  window.addEventListener("load", applyRestore, { once: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", applyRestore, { once: true });
+  } else {
+    applyRestore();
+  }
+})();
+</script>
+<script data-myharness-resize-script="true">
+(() => {
+  const messageType = "myharness:artifact-frame-resize";
+  const artifactPath = "outputs/P-Harness_사용법_v1.html";
+  const dispatchResize = () => {
+    try {
+      window.dispatchEvent(new Event("resize"));
+    } catch {
+      const resizeEvent = document.createEvent("Event");
+      resizeEvent.initEvent("resize", true, true);
+      window.dispatchEvent(resizeEvent);
+    }
+  };
+  window.addEventListener("message", (event) => {
+    if (event.data?.type !== messageType || event.data.path !== artifactPath) return;
+    dispatchResize();
+    requestAnimationFrame(dispatchResize);
+  });
+})();
+</script>
+<script>
+(() => {
+  let pending = false;
+  const sendBack = (event) => {
+    if (event.button !== 3 && event.button !== 4) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (pending) return;
+    pending = true;
+    setTimeout(() => { pending = false; }, 900);
+    parent.postMessage({ type: "myharness:artifact-panel-back" }, "*");
+  };
+  window.addEventListener("mousedown", sendBack, true);
+  window.addEventListener("mouseup", sendBack, true);
+  window.addEventListener("auxclick", sendBack, true);
+})();
+</script>
+<script data-myharness-capture-script="true">
+(() => {
+  const requestType = "myharness:artifact-capture-request";
+  const snapshotType = "myharness:artifact-capture-snapshot";
+  const artifactPath = "outputs/P-Harness_사용법_v1.html";
+  let activeRequestId = "";
+
+  window.addEventListener("message", async (event) => {
+    if (event.data?.type !== requestType || event.data.path !== artifactPath) return;
+    const requestId = String(event.data.requestId || "");
+    if (!requestId || requestId === activeRequestId) return;
+    activeRequestId = requestId;
+    try {
+      if (document.fonts?.ready) await document.fonts.ready;
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const root = document.documentElement;
+      const body = document.body;
+      const width = Math.max(root?.scrollWidth || 0, body?.scrollWidth || 0, window.innerWidth || 0);
+      const height = Math.max(root?.scrollHeight || 0, body?.scrollHeight || 0, window.innerHeight || 0);
+      if (!width || !height) throw new Error("캡처할 보고서 크기를 확인할 수 없습니다.");
+      const snapshot = root.cloneNode(true);
+      snapshot.querySelectorAll("script").forEach((element) => element.remove());
+      const sourceCanvases = Array.from(document.querySelectorAll("canvas"));
+      const snapshotCanvases = Array.from(snapshot.querySelectorAll("canvas"));
+      sourceCanvases.forEach((canvas, index) => {
+        const target = snapshotCanvases[index];
+        if (!target) return;
+        try {
+          const rect = canvas.getBoundingClientRect();
+          const parentRect = canvas.parentElement?.getBoundingClientRect();
+          const relativeWidth = parentRect?.width
+            ? Math.min(100, (rect.width / parentRect.width) * 100)
+            : 100;
+          const image = document.createElement("img");
+          image.src = canvas.toDataURL("image/png");
+          image.alt = canvas.getAttribute("aria-label") || "";
+          image.setAttribute("style", canvas.getAttribute("style") || "");
+          image.style.width = `${relativeWidth}%`;
+          image.style.maxWidth = "100%";
+          image.style.minWidth = "0";
+          image.style.height = "auto";
+          image.style.display = "block";
+          image.style.objectFit = "contain";
+          target.replaceWith(image);
+          const rendererHost = image.parentElement;
+          const chartHost = rendererHost?.parentElement;
+          for (const host of [rendererHost, chartHost]) {
+            if (!host || host.tagName === "BODY" || host.tagName === "HTML") continue;
+            host.style.width = "100%";
+            host.style.maxWidth = "100%";
+            host.style.minWidth = "0";
+          }
+          let ancestor = image.parentElement;
+          while (ancestor && ancestor.tagName !== "BODY" && ancestor.tagName !== "HTML") {
+            ancestor.style.minWidth = "0";
+            ancestor = ancestor.parentElement;
+          }
+        } catch {
+          // Cross-origin canvas pixels cannot be serialized; keep the canvas element.
+        }
+      });
+      const doctype = document.doctype ? `<!DOCTYPE ${document.doctype.name}>` : "<!doctype html>";
+      parent.postMessage({
+        type: snapshotType,
+        requestId,
+        path: artifactPath,
+        html: `${doctype}\n${snapshot.outerHTML}`,
+        width,
+        height,
+        viewportHeight: window.innerHeight,
+      }, "*");
+    } catch (error) {
+      parent.postMessage({
+        type: snapshotType,
+        requestId,
+        path: artifactPath,
+        error: error instanceof Error ? error.message : String(error),
+      }, "*");
+    } finally {
+      activeRequestId = "";
+    }
+  });
+})();
+</script>
+
+
+<style data-myharness-mermaid-zoom-style="true">
+.myharness-mermaid-zoom-host{position:relative!important}
+.myharness-mermaid-expand-button{position:absolute;top:10px;right:10px;z-index:50;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid rgba(17,24,39,.16);border-radius:6px;background:rgba(255,255,255,.94);color:#17212f;box-shadow:0 8px 22px rgba(15,23,42,.14);cursor:pointer}
+.myharness-mermaid-expand-button:hover,.myharness-mermaid-expand-button:focus-visible{border-color:rgba(37,99,235,.48);color:#1d4ed8;outline:none}
+.myharness-mermaid-expand-button svg,.myharness-mermaid-zoom-control svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.myharness-mermaid-zoom-backdrop{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;background:rgba(248,250,252,.98);color:#17212f}
+.myharness-mermaid-zoom-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-bottom:1px solid rgba(17,24,39,.12);background:#fff;font:13px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.myharness-mermaid-zoom-title{font-weight:700}
+.myharness-mermaid-zoom-controls{display:flex;align-items:center;gap:6px}
+.myharness-mermaid-zoom-value{min-width:48px;text-align:center;color:#5d6877}
+.myharness-mermaid-zoom-control{position:relative;display:inline-flex;align-items:center;justify-content:center;width:30px;height:28px;border:1px solid rgba(17,24,39,.14);border-radius:6px;background:#fff;color:#17212f;font:700 13px/1 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer}
+.myharness-mermaid-zoom-control:hover,.myharness-mermaid-zoom-control:focus-visible{border-color:rgba(37,99,235,.48);color:#1d4ed8;outline:none}
+.myharness-mermaid-zoom-control[data-tooltip]::after{position:absolute;top:calc(100% + 7px);left:50%;z-index:10000;max-width:220px;padding:5px 7px;border-radius:6px;background:rgba(17,24,39,.94);color:#fff;content:attr(data-tooltip);font:12px/1.2 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;opacity:0;pointer-events:none;transform:translate(-50%,2px);transition:opacity 120ms ease,transform 120ms ease;white-space:nowrap}
+.myharness-mermaid-zoom-control:hover::after,.myharness-mermaid-zoom-control:focus-visible::after{opacity:1;transform:translate(-50%,0)}
+.myharness-mermaid-zoom-viewport{flex:1;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle,rgba(100,116,139,.24) 0 1px,transparent 1.2px),#eef0f2;background-size:18px 18px,auto;cursor:grab;touch-action:none;user-select:none}
+.myharness-mermaid-zoom-viewport.dragging{cursor:grabbing}
+.myharness-mermaid-zoom-canvas{transform-origin:0 0;transition:transform 120ms ease}
+.myharness-mermaid-zoom-canvas svg{display:block;max-width:none;height:auto}
+</style>
+<script data-myharness-mermaid-zoom-script="true">
+(() => {
+  const attachedAttribute = "data-myharness-mermaid-zoom-attached";
+  let activeViewer = null;
+  const icon = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 3H3v5"></path><path d="M3 3l7 7"></path><path d="M16 3h5v5"></path><path d="m21 3-7 7"></path><path d="M8 21H3v-5"></path><path d="m3 21 7-7"></path><path d="M16 21h5v-5"></path><path d="m21 21-7-7"></path></svg>';
+  const controlIcons = {
+    close: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>',
+    reset: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 7v5h5"></path><path d="M5.7 12A7 7 0 0 1 17 6.5"></path><path d="M18.3 12A7 7 0 0 1 7 17.5"></path></svg>',
+    zoomIn: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>',
+    zoomOut: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg>'
+  };
+  const classText = (element) => {
+    const raw = element?.className;
+    if (typeof raw === "string") return raw;
+    return String(raw?.baseVal || "");
+  };
+  const hasMermaidClass = (element) => /(^|\s)mermaid(?:-|\s|$)/i.test(classText(element));
+  const hasMermaidHostMarker = (element) => element?.hasAttribute?.("data-mermaid") || hasMermaidClass(element);
+  const findHost = (svg) => {
+    let fallback = svg.closest?.("[data-mermaid], .mermaid, .mermaid-chart") || svg.parentElement;
+    for (let node = svg.parentElement; node && node !== document.body; node = node.parentElement) {
+      if (hasMermaidHostMarker(node)) fallback = node;
+      const style = getComputedStyle(node);
+      const overflow = [style.overflow, style.overflowX, style.overflowY].join(" ");
+      if (/(auto|scroll)/i.test(overflow) && (node.scrollWidth > node.clientWidth + 8 || node.scrollHeight > node.clientHeight + 8)) return node;
+    }
+    return fallback;
+  };
+  const control = (label, tooltip, iconName, onClick) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "myharness-mermaid-zoom-control";
+    button.setAttribute("aria-label", label);
+    button.dataset.tooltip = tooltip;
+    button.innerHTML = controlIcons[iconName] || "";
+    button.addEventListener("click", onClick);
+    return button;
+  };
+  let viewport = null;
+  let canvas = null;
+  let zoomValue = null;
+  let zoom = 1;
+  let fitScale = 1;
+  let offsetX = 0;
+  let offsetY = 0;
+  let dragging = false;
+  let pointerId = -1;
+  let lastX = 0;
+  let lastY = 0;
+  const updateTransform = () => {
+    if (!canvas || !zoomValue) return;
+    canvas.style.transform = "translate(" + offsetX + "px, " + offsetY + "px) scale(" + (fitScale * zoom) + ")";
+    zoomValue.textContent = Math.round(zoom * 100) + "%";
+  };
+  const closeViewer = () => {
+    if (!activeViewer) return;
+    activeViewer.remove();
+    activeViewer = null;
+    window.removeEventListener("keydown", onKeyDown);
+    window.removeEventListener("pointermove", onPointerMove);
+    window.removeEventListener("pointerup", onPointerUp);
+  };
+  const onKeyDown = (event) => {
+    if (event.key === "Escape") closeViewer();
+  };
+  const svgNaturalSize = () => {
+    const svg = canvas?.querySelector("svg");
+    if (!svg) return { width: 0, height: 0 };
+    const viewBox = String(svg.getAttribute("viewBox") || "");
+    const parts = viewBox.split(/[\s,]+/).map((part) => Number(part));
+    const attrNumber = (name) => {
+      const raw = String(svg.getAttribute(name) || "");
+      const parsed = Number.parseFloat(raw);
+      return Number.isFinite(parsed) ? parsed : 0;
+    };
+    return {
+      width: parts.length >= 4 && Number.isFinite(parts[2]) && parts[2] > 0 ? parts[2] : attrNumber("width"),
+      height: parts.length >= 4 && Number.isFinite(parts[3]) && parts[3] > 0 ? parts[3] : attrNumber("height"),
+    };
+  };
+  const normalizeSvgSize = () => {
+    const svg = canvas?.querySelector("svg");
+    const size = svgNaturalSize();
+    if (!svg || !size.width || !size.height) return size;
+    svg.style.width = Math.ceil(size.width) + "px";
+    svg.style.height = Math.ceil(size.height) + "px";
+    svg.style.maxWidth = "none";
+    return size;
+  };
+  const fitView = () => {
+    if (!viewport || !canvas) return;
+    const size = normalizeSvgSize();
+    const rect = viewport.getBoundingClientRect();
+    const width = size.width || canvas.scrollWidth || 1;
+    const height = size.height || canvas.scrollHeight || 1;
+    const padding = Math.max(18, Math.min(rect.width, rect.height) * 0.035);
+    fitScale = Math.min(4, Math.max(0.05, Math.min(Math.max(1, rect.width - padding) / width, Math.max(1, rect.height - padding) / height)));
+    zoom = 1;
+    offsetX = (rect.width - width * fitScale) / 2;
+    offsetY = (rect.height - height * fitScale) / 2;
+    updateTransform();
+  };
+  const zoomAt = (nextZoom, clientX, clientY) => {
+    if (!viewport) return;
+    const clampedZoom = Math.min(4, Math.max(0.25, nextZoom));
+    const rect = viewport.getBoundingClientRect();
+    const centerX = Number.isFinite(clientX) ? clientX - rect.left : rect.width / 2;
+    const centerY = Number.isFinite(clientY) ? clientY - rect.top : rect.height / 2;
+    const currentScale = fitScale * zoom;
+    const nextScale = fitScale * clampedZoom;
+    const diagramX = (centerX - offsetX) / currentScale;
+    const diagramY = (centerY - offsetY) / currentScale;
+    zoom = clampedZoom;
+    offsetX = centerX - diagramX * nextScale;
+    offsetY = centerY - diagramY * nextScale;
+    updateTransform();
+  };
+  const onPointerMove = (event) => {
+    if (!dragging || event.pointerId !== pointerId) return;
+    event.preventDefault();
+    offsetX += event.clientX - lastX;
+    offsetY += event.clientY - lastY;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    updateTransform();
+  };
+  const onPointerUp = (event) => {
+    if (event.pointerId !== pointerId) return;
+    dragging = false;
+    pointerId = -1;
+    viewport?.classList.remove("dragging");
+  };
+  const openViewer = (svg) => {
+    closeViewer();
+    const backdrop = document.createElement("div");
+    backdrop.className = "myharness-mermaid-zoom-backdrop";
+    backdrop.setAttribute("role", "dialog");
+    backdrop.setAttribute("aria-modal", "true");
+    backdrop.setAttribute("aria-label", "Mermaid 다이어그램 확대 보기");
+    const header = document.createElement("div");
+    header.className = "myharness-mermaid-zoom-header";
+    const title = document.createElement("strong");
+    title.className = "myharness-mermaid-zoom-title";
+    title.textContent = "Mermaid";
+    const controls = document.createElement("div");
+    controls.className = "myharness-mermaid-zoom-controls";
+    zoomValue = document.createElement("span");
+    zoomValue.className = "myharness-mermaid-zoom-value";
+    zoomValue.textContent = "100%";
+    controls.append(
+      control("축소", "축소", "zoomOut", () => zoomAt(zoom / 1.2)),
+      zoomValue,
+      control("확대", "확대", "zoomIn", () => zoomAt(zoom * 1.2)),
+      control("이동 초기화", "Reset", "reset", fitView),
+      control("닫기", "닫기", "close", closeViewer)
+    );
+    header.append(title, controls);
+    viewport = document.createElement("div");
+    viewport.className = "myharness-mermaid-zoom-viewport";
+    canvas = document.createElement("div");
+    canvas.className = "myharness-mermaid-zoom-canvas";
+    canvas.append(svg.cloneNode(true));
+    viewport.append(canvas);
+    backdrop.append(header, viewport);
+    document.body.append(backdrop);
+    viewport.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      zoomAt(zoom * (event.deltaY < 0 ? 1.1 : 0.9), event.clientX, event.clientY);
+    }, { passive: false });
+    viewport.addEventListener("pointerdown", (event) => {
+      if (typeof event.button === "number" && event.button !== 0) return;
+      event.preventDefault();
+      window.getSelection()?.removeAllRanges?.();
+      dragging = true;
+      pointerId = event.pointerId;
+      lastX = event.clientX;
+      lastY = event.clientY;
+      viewport.classList.add("dragging");
+      viewport.setPointerCapture?.(event.pointerId);
+    });
+    backdrop.addEventListener("click", (event) => {
+      if (event.target === backdrop) closeViewer();
+    });
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    activeViewer = backdrop;
+    requestAnimationFrame(fitView);
+  };
+  const attachButton = (svg) => {
+    if (!svg || svg.closest(".myharness-mermaid-zoom-backdrop")) return;
+    const host = findHost(svg);
+    if (!host) return;
+    host.setAttribute(attachedAttribute, "true");
+    host.classList.add("myharness-mermaid-zoom-host");
+    if (host.querySelector(".myharness-mermaid-expand-button")) return;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "myharness-mermaid-expand-button";
+    button.setAttribute("aria-label", "Mermaid 다이어그램 크게 보기");
+    button.innerHTML = icon;
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openViewer(svg);
+    });
+    host.prepend(button);
+  };
+  const enhance = () => {
+    document.querySelectorAll("[data-mermaid] svg, .mermaid svg, .mermaid-chart svg, svg[id^='mermaid-']").forEach(attachButton);
+  };
+  const schedule = () => requestAnimationFrame(() => {
+    enhance();
+    setTimeout(enhance, 120);
+    setTimeout(enhance, 500);
+  });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", schedule, { once: true });
+  } else {
+    schedule();
+  }
+  window.addEventListener("load", schedule);
+  new MutationObserver(schedule).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script></body></html>

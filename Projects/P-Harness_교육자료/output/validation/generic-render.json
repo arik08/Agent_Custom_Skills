@@ -1,0 +1,58 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "scrollWidth": 1920,
+  "scrollHeight": 34685,
+  "horizontalOverflow": false,
+  "offenders": [
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": -70.625,
+        "right": 1840.859375,
+        "top": 7233.171875,
+        "bottom": 8308.375
+      }
+    },
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": -70.625,
+        "right": 1840.859375,
+        "top": 8170.515625,
+        "bottom": 9245.71875
+      }
+    },
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": 244.21875,
+        "right": 2155.703125,
+        "top": 13424.90625,
+        "bottom": 14500.109375
+      }
+    },
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": -70.625,
+        "right": 1840.859375,
+        "top": 22414.1875,
+        "bottom": 23489.390625
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "emptyImagesAtInitialViewport": 9
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-29",
+  "browser": "Codex in-app browser",
+  "durationSeconds": 15,
+  "sceneStarts": [0, 1.875, 3.375, 6.375, 9.375, 12],
+  "transitionSeconds": 0.26,
+  "audio": {
+    "activation": "User-activated playback; no silent autoplay",
+    "observedInitialContextState": "running",
+    "observedInitialOutputRms": 0.0770,
+    "observedRestartContextState": "running",
+    "observedRestartOutputRms": 0.1204,
+    "endedThenSoundOn": "Position returned to 0 and playback started with nonzero audio output",
+    "normalisedBufferPeak": 0.85,
+    "masterGain": 0.72,
+    "hardwareSpeakerListening": "Not independently verified"
+  },
+  "visual": {
+    "allSixSceneCaptures": "revision-15s-scene-1.png through revision-15s-scene-6.png",
+    "checked": ["Main copy and scene labels fit", "Final tagline is fully visible", "Gradient backgrounds replace repeated grid/diagonal patterns", "Source-to-report sequence matches updated message"],
+    "consoleWarningsAndErrors": []
+  },
+  "interactionEvidence": "Keyboard button activation and native range control",
+  "pointerAutomation": "No state change observed from automated pointer clicks in this browser session"
+}

@@ -1,0 +1,37 @@
+{
+  "models": [
+    [
+      "GPT-5.6-Astra",
+      "$50"
+    ],
+    [
+      "GPT-5.6-Sol",
+      "$20"
+    ],
+    [
+      "GPT-5.6-Terra",
+      "$12"
+    ],
+    [
+      "GPT-5.6-Luna",
+      "$1.2"
+    ],
+    [
+      "Gemini-3.8-Flash",
+      "$3.7"
+    ],
+    [
+      "GPT-6-Astra",
+      "$50"
+    ],
+    [
+      "GPT-6-Sol",
+      "$10"
+    ],
+    [
+      "GPT-6-Luna",
+      "$0.5"
+    ]
+  ],
+  "exactNameAndPriceMatch": true
+}
