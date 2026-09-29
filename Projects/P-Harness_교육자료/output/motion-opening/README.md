@@ -55,3 +55,8 @@ Canvas 내부 해상도를 표시 크기와 기기 배율에 맞추고 기존 �
 후속 요청에 따라 마지막 화면만 0.4265초 늘렸습니다. 장면 시작점·속도·25.5735초 원곡은 유지합니다. 기존 링크를 위해 파일명은 `p-harness-opening-25s.html` 그대로입니다.
 
 검증 자료의 `25s-*` 기록·미리보기와 이전 편집 음악은 중간 버전 기록입니다. 최종 상태는 `validation/26s-ending-checks.json`과 현재 HTML을 기준으로 확인하세요.
+
+## Vercel 자동 배포 구성
+배포 주소: https://p-harness-opening.vercel.app
+
+GitHub 연결 대상은 `arik08/Agent_Custom_Skills`의 `main`입니다. 프로젝트 루트는 `Projects/P-Harness_교육자료/output/motion-opening`, 빌드는 `node vercel/build.cjs`, 게시 폴더는 `vercel/public`입니다. 커밋한 최신 `p-harness-opening-25s.html`을 index.html로 복사하므로 클라우드에서 FFmpeg나 원본 음원 처리가 필요하지 않습니다.
