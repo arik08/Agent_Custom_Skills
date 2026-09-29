@@ -10,7 +10,7 @@
 @font-face{font-family:Paperlogy;src:url(data:font/woff2;base64,__FONT_600__) format('woff2');font-weight:600;font-display:block}
 @font-face{font-family:Paperlogy;src:url(data:font/woff2;base64,__FONT_800__) format('woff2');font-weight:800;font-display:block}
 :root{font-family:Paperlogy,system-ui,sans-serif;color:#eef3ff;background:#080e1a;color-scheme:dark;scrollbar-width:thin;scrollbar-color:#a8b3c166 transparent}
-*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #88b6ff;outline-offset:5px}button{color:inherit;background:transparent;border:1px solid #3d4b63;border-radius:5px;height:38px;padding:0 12px;white-space:nowrap}button:hover{background:#25354e;border-color:#6b88b6}button:disabled{opacity:.55;cursor:wait}button[aria-pressed=true]{background:#183761;color:#dbeaff;border-color:#6498e6}.shell{width:min(1600px,100%)}.mast{display:flex;justify-content:space-between;align-items:center;margin:0 0 13px;font-size:12px;letter-spacing:.12em;color:#aab8d1}.mast strong{color:#dfe9fc;font-weight:600}.player{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#080f20;box-shadow:0 22px 85px #0005;outline:1px solid #263148}.screen{width:100%;height:100%;display:block}.loader{position:absolute;inset:0;display:grid;place-content:center;text-align:center;background:#0b1428;font-size:20px;line-height:2}.loader small{font-size:13px;color:#b7c5dc}.controls{display:flex;gap:10px;align-items:center;padding:16px 0 10px}.icon{width:40px;padding:0;display:grid;place-items:center}.icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.time{font-size:12px;color:#b9c7de;font-variant-numeric:tabular-nums;min-width:82px;text-align:center}.scrub{flex:1;min-width:30px;height:22px;accent-color:#86afff;cursor:pointer}.subline{display:flex;justify-content:space-between;gap:20px;color:#8fa2bf;font-size:12px;line-height:1.6}.subline p{margin:0}.transcript{color:#bcc9df;font-size:14px;margin-top:18px;max-width:900px}.transcript summary{cursor:pointer;width:max-content}.transcript ol{line-height:1.9;padding-left:24px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.player:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;background:#000;display:flex;align-items:center;justify-content:center}.player:fullscreen canvas{width:min(100vw,177.7778vh);height:min(56.25vw,100vh)}::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:#a8b3c166;border-radius:9px}::-webkit-scrollbar-thumb:hover{background:#a8b3c188}::-webkit-scrollbar-track{background:transparent}@media(max-width:650px){body{padding:12px}.mast{font-size:10px;letter-spacing:.04em}.controls{gap:6px;flex-wrap:wrap}.scrub{order:2;flex-basis:100%}.controls .sound{margin-left:auto}button{font-size:12px;padding:0 8px}.subline{font-size:11px;display:block}.subline p+p{margin-top:3px}.time{min-width:68px}.transcript{font-size:13px}}@media print{body{background:white;color:#17294b}.controls,.subline,.transcript{display:none}.mast{color:#17294b}.player{box-shadow:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #88b6ff;outline-offset:5px}button{color:inherit;background:transparent;border:1px solid #3d4b63;border-radius:5px;height:38px;padding:0 12px;white-space:nowrap}button:hover{background:#25354e;border-color:#6b88b6}button:disabled{opacity:.55;cursor:wait}button[aria-pressed=true]{background:#183761;color:#dbeaff;border-color:#6498e6}.shell{width:min(1600px,100%)}.mast{display:flex;justify-content:space-between;align-items:center;margin:0 0 13px;font-size:12px;letter-spacing:.12em;color:#aab8d1}.mast strong{color:#dfe9fc;font-weight:600}.player{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#080f20;box-shadow:0 22px 85px #0005;outline:1px solid #263148}.screen{width:100%;height:100%;display:block}.loader{position:absolute;inset:0;display:grid;place-content:center;text-align:center;background:#0b1428;font-size:20px;line-height:2}.loader small{font-size:13px;color:#b7c5dc}.controls{display:flex;gap:10px;align-items:center;padding:16px 0 10px}.icon{width:40px;padding:0;display:grid;place-items:center}.icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8}.time{font-size:12px;color:#b9c7de;font-variant-numeric:tabular-nums;min-width:82px;text-align:center}.scrub{flex:1;min-width:30px;height:22px;accent-color:#86afff;cursor:pointer}.subline{display:flex;justify-content:space-between;gap:20px;color:#8fa2bf;font-size:12px;line-height:1.6}.subline p{margin:0}.transcript{color:#bcc9df;font-size:14px;margin-top:18px;max-width:900px}.transcript summary{cursor:pointer;width:max-content}.transcript ol{line-height:1.9;padding-left:24px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.player:fullscreen{width:100vw;height:100vh;aspect-ratio:auto;background:#080f20;display:flex;align-items:center;justify-content:center}.player:fullscreen canvas{width:100%;height:100%}::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:#a8b3c166;border-radius:9px}::-webkit-scrollbar-thumb:hover{background:#a8b3c188}::-webkit-scrollbar-track{background:transparent}@media(max-width:650px){body{padding:12px}.mast{font-size:10px;letter-spacing:.04em}.controls{gap:6px;flex-wrap:wrap}.scrub{order:2;flex-basis:100%}.controls .sound{margin-left:auto}button{font-size:12px;padding:0 8px}.subline{font-size:11px;display:block}.subline p+p{margin-top:3px}.time{min-width:68px}.transcript{font-size:13px}}@media print{body{background:white;color:#17294b}.controls,.subline,.transcript{display:none}.mast{color:#17294b}.player{box-shadow:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
 <style>
 /* Keep the playback controls visible on a projector or a short browser window. */
@@ -48,7 +48,7 @@
     <button class="sound" type="button" id="sound" aria-pressed="true" disabled>소리 끄기</button>
     <button type="button" id="fullscreen">전체화면</button>
   </div>
-  <div class="subline"><p id="status" role="status">폰트를 불러오는 중입니다.</p><p>Space 재생·정지 · ← → 구간 이동 · 우클릭 / F 전체화면</p></div>
+  <div class="subline"><p id="status" role="status">폰트를 불러오는 중입니다.</p><p>더블클릭 / Space 재생·정지 · ← → 구간 이동 · 우클릭 / F 전체화면</p></div>
   <details class="transcript"><summary>장면별 메시지</summary><ol>
     <li>업무에 맞게 AI를 활용하는 하나의 공간.</li><li>정리와 분석, 문서 작성까지. 목적과 원하는 결과를 알려주세요.</li>
     <li>업무에 맞는 기능을 한곳에. Model은 업무에 맞는 AI와 추론 수준 선택, Skill은 반복 업무의 절차와 기준, MCP는 필요한 도구와 정보 연결입니다.</li>
@@ -70,7 +70,7 @@ const mix=(a,b,p)=>a+(b-a)*p,expo=x=>x>=1?1:1-Math.pow(2,-10*clamp(x)),smooth=x=
 const p=(t,start,dur=.7)=>out((t-start)/dur);
 const font=(size,weight=800)=>`${weight} ${size}px Paperlogy, sans-serif`;
 const artCache=new Map();
-let g=ctx,bufferScale=1;
+let g=ctx,bufferScale=1,padX=0,padY=0;
 
 // Render glyphs at the final transform, instead of enlarging cached text bitmaps.
 function text(str,x,y,size=60,color=C.white,weight=800,align='left'){
@@ -87,18 +87,30 @@ function reveal(str,x,y,size,color,t,start,opts={}){
 function rr(x,y,w,h,r=0,fill,stroke){g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;g.fill()}if(stroke){g.strokeStyle=stroke;g.lineWidth=2;g.stroke()}}
 function line(x1,y1,x2,y2,color=C.line,width=2,progress=1){g.beginPath();g.moveTo(x1,y1);g.lineTo(mix(x1,x2,progress),mix(y1,y2,progress));g.strokeStyle=color;g.lineWidth=width;g.stroke()}
 function dot(x,y,r,color){g.beginPath();g.arc(x,y,r,0,Math.PI*2);g.fillStyle=color;g.fill()}
-function arrow(x,y,length,color=C.ice,progress=1){line(x,y,x+length,y,color,5,progress);if(progress>.94){line(x+length-22,y-20,x+length,y,color,5);line(x+length-22,y+20,x+length,y,color,5)}}
+function arrow(x,y,length,color=C.ice,progress=1){
+  const v=clamp(progress),travel=length*v;if(travel<=0)return;
+  const size=Math.min(1,travel/34),tip=x+travel,neck=tip-19*size;
+  // One filled silhouette: no overlapping strokes or disconnected arrowhead.
+  g.save();g.fillStyle=color;g.globalAlpha*=Math.min(1,v*8);g.beginPath();
+  g.moveTo(x,y-3*size);g.lineTo(neck,y-3*size);
+  g.lineTo(tip-29*size,y-15*size);g.quadraticCurveTo(tip-31*size,y-18*size,tip-27*size,y-20*size);
+  g.lineTo(tip-1*size,y-1*size);g.quadraticCurveTo(tip+size,y,tip-1*size,y+size);
+  g.lineTo(tip-27*size,y+20*size);g.quadraticCurveTo(tip-31*size,y+18*size,tip-29*size,y+15*size);
+  g.lineTo(neck,y+3*size);g.lineTo(x,y+3*size);
+  g.quadraticCurveTo(x-3*size,y,x,y-3*size);g.closePath();g.fill();g.restore();
+}
+function chevron(x,y,size,color){
+  g.save();g.strokeStyle=color;g.lineWidth=3;g.lineCap='round';g.lineJoin='round';
+  g.beginPath();g.moveTo(x-size,y-size*.55);g.lineTo(x,y);g.lineTo(x-size,y+size*.55);g.stroke();g.restore();
+}
 function save(x=0,y=0,s=1,rot=0){g.save();g.translate(x,y);g.rotate(rot);g.scale(s,s)}
 function background(theme){
-  const key='background-'+theme;
-  if(!artCache.has(key)){
-    const surface=document.createElement('canvas');surface.width=W;surface.height=H;const d=surface.getContext('2d');
-    const colours=theme==='light'?['#fafcff','#f0f5fd','#dce9ff']:theme==='blue'?['#1648a5','#2364d2','#285eca']:['#080f20','#102341','#153667'];
-    const wash=d.createLinearGradient(100,0,W,H);wash.addColorStop(0,colours[0]);wash.addColorStop(.53,colours[1]);wash.addColorStop(1,colours[2]);d.fillStyle=wash;d.fillRect(0,0,W,H);
-    const glow=d.createRadialGradient(1490,300,0,1490,300,1050);glow.addColorStop(0,theme==='light'?'#ffffffbb':theme==='blue'?'#76a1ff38':'#5186dc25');glow.addColorStop(1,'#ffffff00');d.fillStyle=glow;d.fillRect(0,0,W,H);
-    artCache.set(key,surface);
-  }
-  g.drawImage(artCache.get(key),0,0);
+  const colours=theme==='light'?['#fafcff','#f0f5fd','#dce9ff']:theme==='blue'?['#1648a5','#2364d2','#285eca']:['#080f20','#102341','#153667'];
+  // Extend the same gradient beyond the centered 16:9 composition without a seam.
+  const wash=g.createLinearGradient(100,0,W,H);wash.addColorStop(0,colours[0]);wash.addColorStop(.53,colours[1]);wash.addColorStop(1,colours[2]);
+  g.fillStyle=wash;g.fillRect(-padX,-padY,W+2*padX,H+2*padY);
+  const glow=g.createRadialGradient(1490,300,0,1490,300,1050);glow.addColorStop(0,theme==='light'?'#ffffffbb':theme==='blue'?'#76a1ff38':'#5186dc25');glow.addColorStop(1,'#ffffff00');
+  g.fillStyle=glow;g.fillRect(-padX,-padY,W+2*padX,H+2*padY);
 }
 function base(light=false,t=0){
   background(light?'light':'dark');
@@ -229,13 +241,20 @@ function scene3(t){
   const blocks=[['사내 자료',399,465],['외부 정보',351,597],['업무 요청',427,729]];
   blocks.forEach(([label,x,y],i)=>{
     const slide=(1-p(t,.25+i*.16))*(-190);rr(x-221+slide,y-43,332,86,5,i===1?'#dbe7fb':'#fff','#c4d4ed');
-    text(label,x-172+slide,y-18,31,C.ink,600);line(x+58+slide,y-12,x+80+slide,y,'#6889b8',3);line(x+80+slide,y,x+58+slide,y+12,'#6889b8',3);
-    line(x+111,y,738,597,'#a6bfe6',3,p(t,.65+i*.18,1));
+    text(label,x-172+slide,y-18,31,C.ink,600);chevron(x+80+slide,y,22,'#6889b8');
+    const startX=x+111+slide,joinX=738,flow=p(t,.65+i*.18,1);
+    // All branches arrive horizontally at one junction, avoiding a pointed overlap.
+    g.save();g.beginPath();g.rect(startX-2,420,(joinX-startX+8)*flow,350);g.clip();
+    g.strokeStyle='#a6bfe6';g.lineWidth=3;g.lineCap='round';g.lineJoin='round';
+    g.beginPath();g.moveTo(startX,y);g.bezierCurveTo(startX+62,y,joinX-62,597,joinX,597);g.stroke();g.restore();
   });g.restore();
+  g.save();g.globalAlpha=p(t,1.45,.45);g.lineCap='round';
+  line(738,597,768,597,'#a6bfe6',3,p(t,1.5,.55));
+  dot(738,597,5,'#a6bfe6');g.restore();
   g.save();g.globalAlpha=core;dot(939,597,171,'#e0eafd');dot(939,597,137,'#c8dbfc');dot(939,597,108,C.blue);aiSkillMark(939,597,178,C.white);g.restore();
   line(1120,597,1341,597,C.blue,4,p(t,1.35,.8));
   if(t>1.1&&t<4.5){
-    for(let i=0;i<3;i++){const q=((t-1.1)*.6+i/3)%1;if(q>=0){dot(mix(650,813,q),mix(597+(i-1)*80,597,q),6,C.blue);dot(mix(1115,1340,q),597,6,C.blue)}}
+    for(let i=0;i<3;i++){const q=((t-1.1)*.6+i/3)%1;if(q>=0){const sx=blocks[i][1]+111,sy=blocks[i][2],u=1-q; if(q<=p(t,.65+i*.18,1)){dot(u*u*u*sx+3*u*u*q*(sx+62)+3*u*q*q*676+q*q*q*738,u*u*u*sy+3*u*u*q*sy+3*u*q*q*597+q*q*q*597,4,C.blue)}dot(mix(1115,1340,q),597,6,C.blue)}}
   }
   drawPaper(0,1545+(1-result)*490,585,.79,(1-result)*.17,result);
   const labels=['자료 연결','AI 조사','보고서 작성','확인과 수정'];
@@ -272,12 +291,12 @@ function scene5(t){
 }
 const scenes=[scene0,scene1,scene2,scene3,scene4,scene5];
 function render(seconds){
-  const t=clamp(seconds,0,DURATION);g=ctx;g.setTransform(bufferScale,0,0,bufferScale,0,0);g.globalAlpha=1;
+  const t=clamp(seconds,0,DURATION);g=ctx;g.setTransform(bufferScale,0,0,bufferScale,padX*bufferScale,padY*bufferScale);g.globalAlpha=1;
   let idx=STARTS.findLastIndex(s=>s<=t);idx=Math.max(0,idx);const local=t-STARTS[idx];
   if(idx>0&&local<.26){
     scenes[idx-1]((STARTS[idx]-STARTS[idx-1])*RATES[idx-1]);
-    const edge=W*out(local/.26);g.save();g.beginPath();g.rect(0,0,edge,H);g.clip();scenes[idx](local*RATES[idx]);g.restore();
-    if(edge<W)rr(edge-12,0,28,H,0,idx%2?C.blue:C.ice);
+    const edge=-padX+(W+2*padX)*out(local/.26);g.save();g.beginPath();g.rect(-padX,-padY,edge+padX,H+2*padY);g.clip();scenes[idx](local*RATES[idx]);g.restore();
+    if(edge<W+padX)rr(edge-12,-padY,28,H+2*padY,0,idx%2?C.blue:C.ice);
   }else scenes[idx](local*RATES[idx]);
   return idx;
 }
@@ -337,6 +356,7 @@ async function play(){
 function goTo(t){playVersion++;started=true;$('#start').hidden=true;position=clamp(t,0,DURATION);origin=performance.now()-position*1000;currentScene=render(position);ui();if(playing){if(position>=DURATION)pause();else syncAudio().catch(audioFailure)}else status.textContent=position>=DURATION?'재생 완료 · 다시 재생할 수 있습니다.':'일시정지 · 재생 버튼으로 이어 볼 수 있습니다.'}
 function audioFailure(){soundOn=false;stopAudio();soundUI();status.textContent='소리를 시작하지 못했습니다. 소리 켜기를 다시 눌러주세요.'}
 playButton.addEventListener('click',()=>playing?pause():play());
+canvas.addEventListener('dblclick',e=>{e.preventDefault();playing?pause():play()});
 $('#start').addEventListener('click',()=>{soundOn=true;soundUI();play()});
 function replay(){pause();goTo(0);play()}
 $('#restart').addEventListener('click',replay);
@@ -362,11 +382,13 @@ document.addEventListener('keydown',e=>{
 document.addEventListener('visibilitychange',()=>{if(document.hidden){playVersion++;if(playing)pause()}});
 reduced.addEventListener('change',e=>{if(e.matches){pause();goTo(DURATION);status.textContent='동작 줄이기 설정에 따라 정지 화면을 표시합니다. 재생 버튼으로 직접 시작할 수 있습니다.'}});
 function resize(){
-  const width=canvas.getBoundingClientRect().width,ratio=window.devicePixelRatio||1;
+  const {width,height}=canvas.getBoundingClientRect(),ratio=window.devicePixelRatio||1;
   const pixelWidth=Math.max(1,Math.round(width*ratio));
-  const pixelHeight=Math.max(1,Math.round(pixelWidth*H/W));
+  const pixelHeight=Math.max(1,Math.round(height*ratio));
   if(canvas.width!==pixelWidth||canvas.height!==pixelHeight){
-    bufferScale=pixelWidth/W;canvas.width=pixelWidth;canvas.height=pixelHeight;artCache.clear();
+    bufferScale=Math.min(pixelWidth/W,pixelHeight/H);
+    padX=(pixelWidth/bufferScale-W)/2;padY=(pixelHeight/bufferScale-H)/2;
+    canvas.width=pixelWidth;canvas.height=pixelHeight;artCache.clear();
   }
   if(ready)render(started?position:1.65);
 }

@@ -56,7 +56,16 @@ Canvas 내부 해상도를 표시 크기와 기기 배율에 맞추고 기존 �
 
 검증 자료의 `25s-*` 기록·미리보기와 이전 편집 음악은 중간 버전 기록입니다. 최종 상태는 `validation/26s-ending-checks.json`과 현재 HTML을 기준으로 확인하세요.
 
-## Vercel 자동 배포 구성
+## Vercel 배포 구성
 배포 주소: https://p-harness-opening.vercel.app
 
 GitHub 연결 대상은 `arik08/Agent_Custom_Skills`의 `main`입니다. 프로젝트 루트는 `Projects/P-Harness_교육자료/output/motion-opening`, 빌드는 `node vercel/build.cjs`, 게시 폴더는 `vercel/public`입니다. 커밋한 최신 `p-harness-opening-25s.html`을 index.html로 복사하므로 클라우드에서 FFmpeg나 원본 음원 처리가 필요하지 않습니다.
+
+GitHub 자동 연동은 사용자 요청으로 중단한 상태입니다. 현재는 CLI로 수동 배포합니다.
+
+## 화면 및 재생 조작 개선
+전체화면 여백은 장면 그라데이션으로 자연스럽게 확장합니다. 화살표는 하나의 연결된 윤곽으로, 정보가 모이는 선은 곡선과 공통 접점으로 표시합니다.
+
+영상 영역을 더블클릭하면 재생·일시정지가 전환되고 종료 후에는 처음부터 재생합니다. 일반 화면과 전체화면에서 같은 동작을 사용합니다. 기존 버튼과 키보드 조작은 유지합니다.
+
+배포 페이지에서 더블클릭 재생·정지·재개를 확인했으며 게시 HTML과 로컬 산출물의 바이트가 일치합니다. 최신 게시 검증은 `validation/publication-checks.json`입니다.
