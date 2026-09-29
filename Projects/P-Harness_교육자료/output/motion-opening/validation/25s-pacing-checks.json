@@ -1,0 +1,42 @@
+{
+  "syntax": "passed",
+  "scene_timing": [
+    {
+      "scene": 1,
+      "duration": 3,
+      "last_animation_end_seconds": 2.71,
+      "end_hold_seconds": 0.29
+    },
+    {
+      "scene": 2,
+      "duration": 3,
+      "last_animation_end_seconds": 2.58,
+      "end_hold_seconds": 0.42
+    },
+    {
+      "scene": 3,
+      "duration": 5,
+      "last_animation_end_seconds": 4.6,
+      "end_hold_seconds": 0.4
+    },
+    {
+      "scene": 4,
+      "duration": 5,
+      "last_animation_end_seconds": 4.58,
+      "end_hold_seconds": 0.42
+    },
+    {
+      "scene": 5,
+      "duration": 5,
+      "last_animation_end_seconds": 4.2,
+      "end_hold_seconds": 0.8
+    },
+    {
+      "scene": 6,
+      "duration": 4,
+      "last_animation_end_seconds": 3.38,
+      "end_hold_seconds": 0.62
+    }
+  ],
+  "browser_file_verification": "blocked by file URL policy"
+}

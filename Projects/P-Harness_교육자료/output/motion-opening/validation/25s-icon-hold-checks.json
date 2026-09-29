@@ -1,0 +1,17 @@
+{
+  "duration": 25,
+  "starts": [
+    0,
+    3,
+    6,
+    11.8,
+    16.8,
+    21.8
+  ],
+  "connection_fully_complete_by": 10.933333333333334,
+  "next_scene": 11.8,
+  "minimum_completed_hold": 0.867,
+  "closing_animation_complete": 24.5,
+  "closing_hold": 0.5,
+  "syntax": "passed"
+}
