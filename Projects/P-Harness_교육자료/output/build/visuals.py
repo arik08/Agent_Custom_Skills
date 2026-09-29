@@ -49,11 +49,6 @@ def model_plate():
 <a class="effort-half" href="#model-effort"><span class="plate-label">선택 2 · EFFORT</span><h4>{glyph('search')}얼마나 깊게 검토할까?</h4><p>선택한 모델의 검토 수준을 조절합니다.</p><ol class="effort-track"><li><i></i><b>Low</b><span>낮은 수준</span></li><li><i></i><b>Medium</b><span>중간 수준</span></li><li><i></i><b>High</b><span>높은 수준</span></li></ol><small>제공되는 선택지는 모델에 따라 다릅니다 ↗</small></a>
 </div><p class="visual-takeaway"><b>모델 선택과 Effort 설정은 별개입니다.</b> 높은 설정을 고정하기보다 작업과 결과를 보고 조절합니다.</p>'''
 
-def skill_plate():
-    rows=[('file','문서·시각 자료','만들기','visual-artifact · pptx-writer'),('table','표·데이터','다루기','spreadsheet-analyst'),('screen','표현·브랜드','맞추기','design-md'),('search','산출물·지침','검토·개선','visual-review · skill-evaluator')]
-    items=''.join(f'<a class="skill-leaf" href="#skills-catalog">{glyph(g)}<span class="skill-subject">{a}</span><b>{b}</b><small>{c}</small></a>' for g,a,b,c in rows)
-    return f'''<div class="skill-workbench book-plate"><div class="skill-definition"><span class="plate-label">SKILL · 작업 방법과 기준</span><strong>무엇을, 어떤 방식으로<br> 처리할지 안내합니다.</strong><p>반복되는 절차와 판단 기준을<br> 재사용하는 실행 지침입니다.</p><a href="#skills-use"><code>/</code> 명령어 → 스킬 목록 ↗</a></div><div class="skill-shelves">{items}</div></div><p class="visual-takeaway"><b>모델이 작업을 수행하고, Skill은 수행 방법을 안내합니다.</b> 오른쪽은 MyHarness에서 확인한 등록 예시입니다.</p>'''
-
 def mcp_plate():
     rows=[('mcp-company','기업 공시','DART · SEC EDGAR · Companies House'),('mcp-economy','경제·통계','ECOS · KOSIS · FRED · World Bank'),('mcp-trade','무역·산업','UN Comtrade · EIA · Eurostat'),('mcp-law','법령·입법','법제처 · 국회 · 해외 의회·법령'),('mcp-tech','특허·연구','KIPRISPlus · EPO · OpenAlex')]
     branches=''.join(f'<a href="#{id}"><b>{label}</b><span>{names}</span><i aria-hidden="true">↗</i></a>' for id,label,names in rows)
@@ -74,7 +69,6 @@ def screen_map(data):
 def panels():
     return {
       'model': ('model-map','모델과 Effort: 두 가지 선택',model_plate()),
-      'skills': ('skills-map','Skill: 탑재된 작업 방식',skill_plate()),
       'mcp': ('mcp-map','MCP: 연결 가능한 정보원',mcp_plate()),
       'artifacts': ('artifacts-map','산출물의 종류와 확인 위치',output_plate()),
     }

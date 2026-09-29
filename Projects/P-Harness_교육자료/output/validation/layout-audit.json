@@ -5,7 +5,7 @@
       "nodes": 4,
       "textLines": 13,
       "width": 1082,
-      "height": 360,
+      "height": 222,
       "failures": []
     },
     {
@@ -13,7 +13,7 @@
       "nodes": 4,
       "textLines": 29,
       "width": 1082,
-      "height": 544,
+      "height": 440,
       "failures": []
     }
   ],
@@ -21,8 +21,8 @@
     {
       "width": 1920,
       "chapters": 13,
-      "sections": 62,
-      "checkedTextLines": 1266,
+      "sections": 60,
+      "checkedTextLines": 1204,
       "overflow": false,
       "missingImages": 0,
       "textFailures": [],
@@ -31,8 +31,8 @@
     {
       "width": 1440,
       "chapters": 13,
-      "sections": 62,
-      "checkedTextLines": 1301,
+      "sections": 60,
+      "checkedTextLines": 1238,
       "overflow": false,
       "missingImages": 0,
       "textFailures": [],
@@ -41,8 +41,8 @@
     {
       "width": 1280,
       "chapters": 13,
-      "sections": 62,
-      "checkedTextLines": 1341,
+      "sections": 60,
+      "checkedTextLines": 1277,
       "overflow": false,
       "missingImages": 0,
       "textFailures": [],
@@ -51,8 +51,8 @@
     {
       "width": 1024,
       "chapters": 13,
-      "sections": 62,
-      "checkedTextLines": 1513,
+      "sections": 60,
+      "checkedTextLines": 1445,
       "overflow": false,
       "missingImages": 0,
       "textFailures": [],
@@ -61,8 +61,8 @@
     {
       "width": 768,
       "chapters": 13,
-      "sections": 62,
-      "checkedTextLines": 1462,
+      "sections": 60,
+      "checkedTextLines": 1395,
       "overflow": false,
       "missingImages": 0,
       "textFailures": [],
@@ -71,8 +71,8 @@
     {
       "width": 390,
       "chapters": 13,
-      "sections": 62,
-      "checkedTextLines": 1985,
+      "sections": 60,
+      "checkedTextLines": 1905,
       "overflow": false,
       "missingImages": 0,
       "textFailures": [],

@@ -146,3 +146,6 @@
 .role-panel .flow-buttons button:focus-visible{outline-offset:-4px}
 .role-panel .flow-detail{margin:0;border:0;border-radius:0;min-height:110px}
 @media(max-width:700px){.role-panel .flow-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}.role-panel .flow-buttons button:nth-child(2n){border-right:0}.role-panel .flow-buttons button:nth-child(-n+2){border-bottom:1px solid #c7deee}}
+
+/* Full-width conceptual flows need no zoom control. */
+.flow-figure>img{display:block;width:100%;height:auto}
