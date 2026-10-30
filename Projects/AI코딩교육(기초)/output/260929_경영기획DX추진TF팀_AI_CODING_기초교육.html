@@ -6337,6 +6337,13 @@
 
     <!-- 후보 검토 표 -->
     <style id="candidate-table-styles">
+      .gui-content .mini-table {
+        display: grid;
+        gap: 0;
+      }
+      #gui-preview:not(.spaced) .mini-head {
+        column-gap: 8px;
+      }
       .gui-content .mini-head,
       .gui-content .mini-row {
         display: grid;
@@ -6348,6 +6355,18 @@
         font-size: 18px;
         color: var(--muted);
         padding: 0 0 5px;
+      }
+      #gui-preview.ordered .mini-head {
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--deep);
+        background: #e8f1f6;
+        padding: 10px 12px;
+        margin: 0;
+      }
+      #gui-preview.ordered .mini-table .mini-row {
+        padding-left: 12px;
+        padding-right: 12px;
       }
       .gui-content .mini-row b {
         margin-left: 0;
@@ -8182,6 +8201,7 @@ tetris.js   → 착지 계산 · 다음 블록 그리기 · 줄 삭제 효과</p
                 <p class="gui-date">마지막 변경 09.29</p>
                 <h3>검토할 후보 3건</h3>
                 <p class="gui-key">기준 점수 80점 · 2건 충족</p>
+                <div class="mini-table">
                 <div class="mini-head" aria-hidden="true">
                   <span>후보</span><span>담당</span><span>마감</span><span>점수</span
                   ><span>상태</span>
@@ -8194,6 +8214,7 @@ tetris.js   → 착지 계산 · 다음 블록 그리기 · 줄 삭제 효과</p
                 </div>
                 <div class="mini-row">
                   <span>후보 C</span><span>박사원</span><span>10.04</span><b>74</b><span>미달</span>
+                </div>
                 </div>
                 <div id="gui-feedback" aria-live="polite"></div>
               </div>

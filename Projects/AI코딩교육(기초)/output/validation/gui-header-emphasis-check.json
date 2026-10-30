@@ -1,0 +1,34 @@
+[
+  {
+    "addedMotionNodes": 0,
+    "alignedColumns": true,
+    "gap": 0,
+    "ordered": false,
+    "sameWidth": true,
+    "spacing": false
+  },
+  {
+    "addedMotionNodes": 0,
+    "alignedColumns": true,
+    "gap": 0,
+    "ordered": true,
+    "sameWidth": true,
+    "spacing": false
+  },
+  {
+    "addedMotionNodes": 0,
+    "alignedColumns": true,
+    "gap": 0,
+    "ordered": false,
+    "sameWidth": true,
+    "spacing": true
+  },
+  {
+    "addedMotionNodes": 0,
+    "alignedColumns": true,
+    "gap": 0,
+    "ordered": true,
+    "sameWidth": true,
+    "spacing": true
+  }
+]

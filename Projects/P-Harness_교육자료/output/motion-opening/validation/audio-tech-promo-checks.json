@@ -1,0 +1,15 @@
+{
+  "original_audio_byte_equal": true,
+  "audio_sha256": "bdb61fdddec1912d3e00e624601334e1785b5a5fc1ad7d862882ce6ef5a5cf45",
+  "film_seconds": 16,
+  "scene_starts": [
+    0,
+    1.875,
+    3.375,
+    6.375,
+    9.375,
+    12
+  ],
+  "last_scene_seconds": 4,
+  "javascript_syntax": "passed"
+}

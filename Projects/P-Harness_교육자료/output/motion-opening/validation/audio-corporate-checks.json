@@ -1,0 +1,14 @@
+{
+  "track": "corporate-v4",
+  "title": "Running Out of Time",
+  "author": "Ahjay Stelino",
+  "source_start_seconds": 15.94,
+  "duration_seconds": 15.0,
+  "sample_rate": 44100,
+  "channels": 2,
+  "peak_dbfs": -5.098203659057617,
+  "rms_dbfs": -17.034698486328125,
+  "clipped_samples": 0,
+  "file_bytes": 422328,
+  "speaker_listening_verified": false
+}

@@ -1,0 +1,90 @@
+{
+  "bytes": 1224843,
+  "imageReferences": 12,
+  "uniqueAssets": 11,
+  "markupImageSources": [],
+  "allReferencesResolve": true,
+  "assetsAtEnd": true,
+  "images": [
+    {
+      "id": "image-01.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-03.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-04.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-05.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-06.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-07.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-08.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-09.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-10.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "id": "image-11.webp",
+      "format": "WEBP",
+      "size": [
+        1920,
+        1080
+      ]
+    }
+  ]
+}

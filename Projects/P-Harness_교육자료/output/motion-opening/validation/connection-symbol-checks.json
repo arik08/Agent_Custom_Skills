@@ -1,0 +1,16 @@
+{
+  "symbol": "three connected nodes",
+  "replaced_mark_instances": 4,
+  "browser": "Codex in-app browser",
+  "reviewed_seconds": [
+    3.1,
+    6.1,
+    8.8,
+    14.6
+  ],
+  "visual_review": "All four marks rendered with three connected nodes; no overlap or clipping. Ending wordmark remains dominant.",
+  "console_errors_or_warnings": [],
+  "javascript_syntax": "passed",
+  "audio_sha256_unchanged": true,
+  "timeline_unchanged": true
+}

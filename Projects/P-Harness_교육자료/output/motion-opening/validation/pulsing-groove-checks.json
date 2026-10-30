@@ -1,0 +1,16 @@
+{
+  "original_audio_byte_equal": true,
+  "sha256": "653b767a78b9cc090e664c32e8de633257ce707a5694c1d93e20398336aa28c8",
+  "duration": 25.5735,
+  "scene_starts": [
+    0.0,
+    3.06882,
+    6.13764,
+    12.070692,
+    17.185392,
+    22.300092
+  ],
+  "icon_completed_hold_seconds": 0.886548001924937,
+  "syntax": "passed",
+  "browser_playback": "not verified - local file URL restricted"
+}

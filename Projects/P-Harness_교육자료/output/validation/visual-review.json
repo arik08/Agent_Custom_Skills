@@ -1,0 +1,59 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "scrollWidth": 1920,
+  "scrollHeight": 32673,
+  "horizontalOverflow": false,
+  "offenders": [
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": -68.09375,
+        "right": 1839.296875,
+        "top": 6615.296875,
+        "bottom": 7688.203125
+      }
+    },
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": -68.09375,
+        "right": 1839.296875,
+        "top": 7431.65625,
+        "bottom": 8504.5625
+      }
+    },
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": 246.0625,
+        "right": 2153.453125,
+        "top": 12348.890625,
+        "bottom": 13421.796875
+      }
+    },
+    {
+      "tag": "img",
+      "className": "",
+      "text": "",
+      "rect": {
+        "left": -68.09375,
+        "right": 1839.296875,
+        "top": 20652.40625,
+        "bottom": 21725.3125
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "emptyImageCountAtFirstViewport": 9,
+  "interpretation": "Generic checker flags intentionally clipped screenshot windows and lazy images outside initial viewport. Complete image loading and horizontal layout are covered by checks.json; all 9 figures loaded offline."
+}

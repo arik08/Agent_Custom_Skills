@@ -1,0 +1,9 @@
+{
+  "all_original_scripts_identical": true,
+  "script_blocks": 7,
+  "changed_style_blocks": [
+    "candidate-table-styles"
+  ],
+  "new_motion_removed": true,
+  "deployment_copy_matches": true
+}

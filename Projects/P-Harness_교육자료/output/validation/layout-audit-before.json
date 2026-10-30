@@ -1,0 +1,381 @@
+{
+  "diagrams": [
+    {
+      "title": "요청에서 검증까지의 업무 흐름",
+      "nodes": 4,
+      "textLines": 13,
+      "width": 1080,
+      "height": 360,
+      "failures": []
+    },
+    {
+      "title": "ECM 문서 활용 흐름",
+      "nodes": 4,
+      "textLines": 13,
+      "width": 1080,
+      "height": 360,
+      "failures": [
+        {
+          "text": "ECM에서 다운로드",
+          "type": "text outside card safe area",
+          "textBounds": {
+            "x": 62,
+            "y": 156,
+            "width": 212.34375,
+            "height": 33
+          },
+          "card": {
+            "x": 40,
+            "y": 95,
+            "width": 222,
+            "height": 188
+          }
+        }
+      ]
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1920,
+      "checkedTextLines": 977,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [
+        {
+          "owner": "path-number",
+          "text": "01",
+          "line": {
+            "x": 546.796875,
+            "y": 861.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 546.796875,
+            "y": 866.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "02",
+          "line": {
+            "x": 928.921875,
+            "y": 861.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 928.921875,
+            "y": 866.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "03",
+          "line": {
+            "x": 1311.0625,
+            "y": 861.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 1311.0625,
+            "y": 866.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        }
+      ],
+      "overlaps": []
+    },
+    {
+      "width": 1440,
+      "checkedTextLines": 995,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [
+        {
+          "owner": "path-number",
+          "text": "01",
+          "line": {
+            "x": 354.328125,
+            "y": 857.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 354.328125,
+            "y": 862.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "02",
+          "line": {
+            "x": 703.6875,
+            "y": 857.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 703.6875,
+            "y": 862.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "03",
+          "line": {
+            "x": 1053.046875,
+            "y": 857.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 1053.046875,
+            "y": 862.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        }
+      ],
+      "overlaps": []
+    },
+    {
+      "width": 1280,
+      "checkedTextLines": 1017,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [
+        {
+          "owner": "path-number",
+          "text": "01",
+          "line": {
+            "x": 333.453125,
+            "y": 857.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 333.453125,
+            "y": 862.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "02",
+          "line": {
+            "x": 638.5625,
+            "y": 857.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 638.5625,
+            "y": 862.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "03",
+          "line": {
+            "x": 943.6875,
+            "y": 857.28125,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 943.6875,
+            "y": 862.28125,
+            "w": 29.671875,
+            "h": 28
+          }
+        }
+      ],
+      "overlaps": []
+    },
+    {
+      "width": 1024,
+      "checkedTextLines": 1175,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [],
+      "overlaps": []
+    },
+    {
+      "width": 768,
+      "checkedTextLines": 1327,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [
+        {
+          "owner": "hero-copy",
+          "text": "업무 보고서까지.",
+          "line": {
+            "x": 202.984375,
+            "y": 312.96875,
+            "w": 269.890625,
+            "h": 51
+          },
+          "bounds": {
+            "x": 202.984375,
+            "y": 182.390625,
+            "w": 254.640625,
+            "h": 509.34375
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "01",
+          "line": {
+            "x": 202.984375,
+            "y": 1015.46875,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 202.984375,
+            "y": 1020.46875,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "02",
+          "line": {
+            "x": 386.078125,
+            "y": 1015.46875,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 386.078125,
+            "y": 1020.46875,
+            "w": 29.671875,
+            "h": 28
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "03",
+          "line": {
+            "x": 569.171875,
+            "y": 1015.46875,
+            "w": 29.671875,
+            "h": 37
+          },
+          "bounds": {
+            "x": 569.171875,
+            "y": 1020.46875,
+            "w": 29.671875,
+            "h": 28
+          }
+        }
+      ],
+      "overlaps": []
+    },
+    {
+      "width": 390,
+      "checkedTextLines": 1511,
+      "overflow": false,
+      "missingImages": 0,
+      "textFailures": [
+        {
+          "owner": "search-trigger",
+          "text": "Ctrl K",
+          "line": {
+            "x": 292,
+            "y": 16.5,
+            "w": 18.953125,
+            "h": 16
+          },
+          "bounds": {
+            "x": 260,
+            "y": 12.5,
+            "w": 36,
+            "h": 36
+          }
+        },
+        {
+          "owner": "search-trigger",
+          "text": "Ctrl K",
+          "line": {
+            "x": 297.921875,
+            "y": 28.5,
+            "w": 7.09375,
+            "h": 16
+          },
+          "bounds": {
+            "x": 260,
+            "y": 12.5,
+            "w": 36,
+            "h": 36
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "01",
+          "line": {
+            "x": 30.515625,
+            "y": 1271.390625,
+            "w": 26.484375,
+            "h": 33
+          },
+          "bounds": {
+            "x": 30.515625,
+            "y": 1275.390625,
+            "w": 28,
+            "h": 25
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "02",
+          "line": {
+            "x": 30.515625,
+            "y": 1340.078125,
+            "w": 26.484375,
+            "h": 33
+          },
+          "bounds": {
+            "x": 30.515625,
+            "y": 1344.078125,
+            "w": 28,
+            "h": 25
+          }
+        },
+        {
+          "owner": "path-number",
+          "text": "03",
+          "line": {
+            "x": 30.515625,
+            "y": 1408.765625,
+            "w": 26.484375,
+            "h": 33
+          },
+          "bounds": {
+            "x": 30.515625,
+            "y": 1412.765625,
+            "w": 28,
+            "h": 25
+          }
+        }
+      ],
+      "overlaps": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,14 @@
+{
+  "duration": 25,
+  "starts": [
+    0,
+    3,
+    6,
+    11,
+    16,
+    21
+  ],
+  "embedded_audio_matches": true,
+  "original_16s_preserved": true,
+  "syntax": "passed"
+}

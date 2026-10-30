@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-29",
+  "browser": "Codex in-app browser",
+  "track": "piano-v2",
+  "decoded_duration_seconds": 15.0,
+  "audio_context": "running",
+  "observed_output_rms": [
+    0.0063,
+    0.0077
+  ],
+  "right_click_enters_fullscreen": true,
+  "right_click_exits_fullscreen": true,
+  "escape_exits_fullscreen": true,
+  "fullscreen_hint_removed": true,
+  "normal_view_keyboard_hint_retained": true,
+  "console_errors_or_warnings": [],
+  "speaker_listening_verified": false,
+  "notes": "Fullscreen exit verified by coordinate right-click after locator right-click was ineffective. This revision confirms decoded audio playback; mute state changes were not confirmed through automation."
+}
