@@ -1,0 +1,104 @@
+{
+  "differences": [],
+  "pageColors": [
+    {
+      "page": 1,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 2,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 3,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 4,
+      "background": "rgb(243, 246, 248)",
+      "cards": [
+        "rgb(224, 239, 247)",
+        "rgb(255, 255, 255)",
+        "rgb(255, 255, 255)"
+      ]
+    },
+    {
+      "page": 5,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 6,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 7,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 8,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 9,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 10,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 11,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 12,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 13,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 14,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 15,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 16,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 17,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 18,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    },
+    {
+      "page": 19,
+      "background": "rgb(243, 246, 248)",
+      "cards": []
+    }
+  ]
+}

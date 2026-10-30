@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "time": 0,
+      "opacity": "0",
+      "transform": "matrix(0.718246, -0.0502247, 0.0502247, 0.718246, 0, 30)"
+    },
+    {
+      "time": 432,
+      "opacity": "1",
+      "transform": "matrix(1.04464, 0.0273549, -0.0273549, 1.04464, 0, -8)"
+    },
+    {
+      "time": 900,
+      "opacity": "1",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    }
+  ],
+  "checks": [
+    "embedded image decoded",
+    "exact alt text",
+    "entrance frames",
+    "step re-entry restarts",
+    "slide exit stops animation",
+    "reduced motion static",
+    "human result unchanged",
+    "sequential next reaches illustration",
+    "no page errors"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "results": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "page": 17,
+      "total": 21,
+      "footer": "18 / 21",
+      "clearBridge": true,
+      "stageFits": true,
+      "images": true,
+      "links": 7,
+      "nestedButtons": 0,
+      "overflow": []
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "page": 17,
+      "total": 21,
+      "footer": "18 / 21",
+      "clearBridge": true,
+      "stageFits": true,
+      "images": true,
+      "links": 7,
+      "nestedButtons": 0,
+      "overflow": []
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "page": 17,
+      "total": 21,
+      "footer": "18 / 21",
+      "clearBridge": true,
+      "stageFits": true,
+      "images": true,
+      "links": 7,
+      "nestedButtons": 0,
+      "overflow": []
+    },
+    {
+      "width": 2560,
+      "height": 1080,
+      "page": 17,
+      "total": 21,
+      "footer": "18 / 21",
+      "clearBridge": true,
+      "stageFits": true,
+      "images": true,
+      "links": 7,
+      "nestedButtons": 0,
+      "overflow": []
+    },
+    {
+      "width": 800,
+      "height": 1200,
+      "page": 17,
+      "total": 21,
+      "footer": "18 / 21",
+      "clearBridge": true,
+      "stageFits": true,
+      "images": true,
+      "links": 7,
+      "nestedButtons": 0,
+      "overflow": []
+    }
+  ],
+  "errors": [],
+  "linkDispatch": 7,
+  "navigation": "17 → 18 → 19; Home; End; hash; normal and reduced motion",
+  "notChecked": [
+    "Actual software installation",
+    "Account login",
+    "Full-deck revalidation of unrelated interactive demonstrations"
+  ]
+}

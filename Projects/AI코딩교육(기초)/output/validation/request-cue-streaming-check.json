@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "name": "Initial arrow",
+      "ok": true
+    },
+    {
+      "name": "color selection retains current arrow",
+      "ok": true
+    },
+    {
+      "name": "color hides arrow immediately",
+      "ok": true
+    },
+    {
+      "name": "color shows next arrow only after completion",
+      "ok": true
+    },
+    {
+      "name": "hud selection retains current arrow",
+      "ok": true
+    },
+    {
+      "name": "hud hides arrow immediately",
+      "ok": true
+    },
+    {
+      "name": "hud shows next arrow only after completion",
+      "ok": true
+    },
+    {
+      "name": "effects selection retains current arrow",
+      "ok": true
+    },
+    {
+      "name": "effects hides arrow immediately",
+      "ok": true
+    },
+    {
+      "name": "effects shows next arrow only after completion",
+      "ok": true
+    },
+    {
+      "name": "Streaming stages sampled",
+      "ok": true
+    },
+    {
+      "name": "Cancelled stream does not leave arrows hidden",
+      "ok": true
+    },
+    {
+      "name": "Empty request preserves visible arrow",
+      "ok": true
+    },
+    {
+      "name": "Reduced motion completion shows next arrow",
+      "ok": true
+    },
+    {
+      "name": "Shared build view also hides streaming arrow",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors",
+      "ok": true
+    }
+  ],
+  "samples": 40,
+  "phases": [
+    "tool-message is-streaming",
+    "assistant-message is-streaming"
+  ],
+  "errors": []
+}

@@ -1,0 +1,136 @@
+{
+  "passed": true,
+  "source": {
+    "bytes": 26336441,
+    "images": 16,
+    "bodyBytes": 464075
+  },
+  "downloadedSource": {
+    "bytes": 26324919,
+    "images": 16,
+    "bodyBytes": 452553
+  },
+  "slides": [
+    {
+      "slide": 1,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 2,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 3,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 4,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 5,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 6,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 7,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 8,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 9,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 10,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 11,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 12,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 13,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 14,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 15,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 16,
+      "identical": true,
+      "images": 7
+    },
+    {
+      "slide": 17,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 18,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 19,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 20,
+      "identical": true,
+      "images": 1
+    },
+    {
+      "slide": 21,
+      "identical": true,
+      "images": 0
+    },
+    {
+      "slide": 22,
+      "identical": true,
+      "images": 1
+    }
+  ],
+  "dynamicImage": true,
+  "cssImage": true,
+  "navigation": true,
+  "offline": true,
+  "coverState": {
+    "ready": true,
+    "loaded": true,
+    "time": 5.899999999999987
+  },
+  "errors": [],
+  "network": []
+}

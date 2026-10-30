@@ -1,0 +1,45 @@
+{
+  "results": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "gap": 63.734375,
+      "headingGap": 0,
+      "labelsGap": 20,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "gap": 47.80078125,
+      "headingGap": 0,
+      "labelsGap": 15,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "gap": 33.99169921875,
+      "headingGap": 0,
+      "labelsGap": 10.66668701171875,
+      "overflow": false
+    },
+    {
+      "width": 2560,
+      "height": 1080,
+      "gap": 63.734375,
+      "headingGap": 0,
+      "labelsGap": 20,
+      "overflow": false
+    },
+    {
+      "width": 720,
+      "height": 1280,
+      "gap": 23.900390625,
+      "headingGap": 0,
+      "labelsGap": 7.5,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

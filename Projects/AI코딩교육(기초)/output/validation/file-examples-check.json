@@ -1,0 +1,83 @@
+{
+  "tabs": [
+    {
+      "key": "html",
+      "width": 1720,
+      "height": 481,
+      "rows": 11,
+      "notes": 9,
+      "issues": [],
+      "noteLeft": [
+        1261
+      ]
+    },
+    {
+      "key": "css",
+      "width": 1720,
+      "height": 481,
+      "rows": 11,
+      "notes": 9,
+      "issues": [],
+      "noteLeft": [
+        1261
+      ]
+    },
+    {
+      "key": "js",
+      "width": 1720,
+      "height": 481,
+      "rows": 11,
+      "notes": 10,
+      "issues": [],
+      "noteLeft": [
+        1261
+      ]
+    },
+    {
+      "key": "agents",
+      "width": 1720,
+      "height": 481,
+      "rows": 10,
+      "notes": 10,
+      "issues": [],
+      "noteLeft": [
+        1261
+      ]
+    },
+    {
+      "key": "readme",
+      "width": 1720,
+      "height": 481,
+      "rows": 11,
+      "notes": 11,
+      "issues": [],
+      "noteLeft": [
+        1261
+      ]
+    }
+  ],
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 810,
+      "allTabsFit": true
+    },
+    {
+      "width": 1280,
+      "height": 960,
+      "allTabsFit": true
+    },
+    {
+      "width": 900,
+      "height": 1200,
+      "allTabsFit": true
+    }
+  ],
+  "exampleBehavior": {
+    "scoreUpdate": true,
+    "pauseStateToggle": true,
+    "cssSelectorMatches": true
+  },
+  "passed": true,
+  "errors": []
+}

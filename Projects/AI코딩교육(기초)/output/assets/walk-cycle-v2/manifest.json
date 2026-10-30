@@ -1,0 +1,150 @@
+{
+  "employee-a": [
+    {
+      "frame": 0,
+      "source": "male-right",
+      "index": 0,
+      "support": "right",
+      "phase": "contact",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 1,
+      "source": "male-right",
+      "index": 1,
+      "support": "right",
+      "phase": "weight",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 2,
+      "source": "male-right",
+      "index": 2,
+      "support": "right",
+      "phase": "passing",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 3,
+      "source": "male-right",
+      "index": 6,
+      "support": "right",
+      "phase": "swing",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 4,
+      "source": "male-left",
+      "index": 0,
+      "support": "left",
+      "phase": "contact",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 5,
+      "source": "male-left",
+      "index": 1,
+      "support": "left",
+      "phase": "weight",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 6,
+      "source": "male-left",
+      "index": 2,
+      "support": "left",
+      "phase": "passing",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 7,
+      "source": "male-left",
+      "index": 3,
+      "support": "left",
+      "phase": "swing",
+      "wholeBody": true,
+      "baseline": 244
+    }
+  ],
+  "employee-b": [
+    {
+      "frame": 0,
+      "source": "female-right",
+      "index": 0,
+      "support": "right",
+      "phase": "contact",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 1,
+      "source": "female-right",
+      "index": 1,
+      "support": "right",
+      "phase": "weight",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 2,
+      "source": "female-pass",
+      "index": 1,
+      "support": "right",
+      "phase": "passing",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 3,
+      "source": "female-right",
+      "index": 2,
+      "support": "right",
+      "phase": "swing",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 4,
+      "source": "female-left",
+      "index": 0,
+      "support": "left",
+      "phase": "contact",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 5,
+      "source": "female-left",
+      "index": 1,
+      "support": "left",
+      "phase": "weight",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 6,
+      "source": "female-left",
+      "index": 2,
+      "support": "left",
+      "phase": "passing",
+      "wholeBody": true,
+      "baseline": 244
+    },
+    {
+      "frame": 7,
+      "source": "female-left",
+      "index": 3,
+      "support": "left",
+      "phase": "swing",
+      "wholeBody": true,
+      "baseline": 244
+    }
+  ]
+}

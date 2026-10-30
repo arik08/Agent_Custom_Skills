@@ -1,0 +1,64 @@
+{
+  "errors": [],
+  "checks": [
+    {
+      "mode": "html",
+      "height": 540,
+      "overflow": false,
+      "bodyOverflow": false,
+      "exampleBottom": 868.953125,
+      "windowBottom": 889.578125
+    },
+    {
+      "mode": "python",
+      "height": 540,
+      "overflow": false,
+      "bodyOverflow": false,
+      "exampleBottom": 865.171875,
+      "windowBottom": 889.578125
+    },
+    {
+      "mode": "hybrid",
+      "height": 540,
+      "overflow": false,
+      "bodyOverflow": false,
+      "exampleBottom": 874.46875,
+      "windowBottom": 889.578125
+    },
+    {
+      "mode": "hybrid-open",
+      "overflow": false,
+      "browserVisible": true
+    },
+    {
+      "mode": "html",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "mode": "python",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "mode": "hybrid",
+      "width": 1280,
+      "overflow": false
+    },
+    {
+      "mode": "html",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "mode": "python",
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "mode": "hybrid",
+      "width": 1024,
+      "overflow": false
+    }
+  ]
+}

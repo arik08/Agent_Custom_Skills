@@ -1,0 +1,114 @@
+{
+  "scripts": 5,
+  "checks": [
+    {
+      "name": "No initial cue",
+      "ok": true
+    },
+    {
+      "name": "Waits until request typing finishes",
+      "ok": true
+    },
+    {
+      "name": "Page 2 pulse and ring",
+      "ok": true
+    },
+    {
+      "name": "Sending stops cue and disables button",
+      "ok": true
+    },
+    {
+      "name": "Navigation clears previous cue",
+      "ok": true
+    },
+    {
+      "name": "Page 3 pulse",
+      "ok": true
+    },
+    {
+      "name": "Empty input clears cue",
+      "ok": true
+    },
+    {
+      "name": "Manual input cues send",
+      "ok": true
+    },
+    {
+      "name": "Keyboard submission stops cue",
+      "ok": true
+    },
+    {
+      "name": "Leave clears all cues",
+      "ok": true
+    },
+    {
+      "name": "Leaving during typing clears pending cue",
+      "ok": true
+    },
+    {
+      "name": "color cue without motion",
+      "ok": true
+    },
+    {
+      "name": "color applies and clears cue",
+      "ok": true
+    },
+    {
+      "name": "hud cue without motion",
+      "ok": true
+    },
+    {
+      "name": "hud applies and clears cue",
+      "ok": true
+    },
+    {
+      "name": "effects cue without motion",
+      "ok": true
+    },
+    {
+      "name": "effects applies and clears cue",
+      "ok": true
+    },
+    {
+      "name": "All improvements apply",
+      "ok": true
+    },
+    {
+      "name": "Already-applied request stops cue",
+      "ok": true
+    },
+    {
+      "name": "Unsupported request stops cue",
+      "ok": true
+    },
+    {
+      "name": "Button fits 1920x1080",
+      "ok": true
+    },
+    {
+      "name": "Button fits 1024x768",
+      "ok": true
+    },
+    {
+      "name": "Button fits 800x1200",
+      "ok": true
+    },
+    {
+      "name": "Button fits 1920x800",
+      "ok": true
+    },
+    {
+      "name": "Reset has no cue",
+      "ok": true
+    },
+    {
+      "name": "Page 2 still builds",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

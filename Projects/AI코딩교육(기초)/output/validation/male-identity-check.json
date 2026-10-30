@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "walkingAtlas": "base",
+  "standingAtlas": "base",
+  "gaitFrames": {
+    "employee-a": 4,
+    "employee-b": 8,
+    "ai": 8
+  },
+  "errors": []
+}

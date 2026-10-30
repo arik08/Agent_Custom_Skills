@@ -1,0 +1,227 @@
+[
+  {
+    "viewport": [
+      1280,
+      720
+    ],
+    "dpr": 1,
+    "ready": true,
+    "buffer": [
+      2070,
+      1220
+    ],
+    "css": [
+      1035,
+      610
+    ],
+    "draws": [
+      {
+        "text": "CODING AGENT  /  만들 것을 요청",
+        "font": "bold 38px sans-serif",
+        "width": 2048,
+        "height": 800
+      },
+      {
+        "text": "PERSON → AGENT",
+        "font": "bold 44px monospace",
+        "width": 2048,
+        "height": 800
+      },
+      {
+        "text": "테트리스를 만들어줘",
+        "font": "bold 44px monospace",
+        "width": 2048,
+        "height": 800
+      }
+    ],
+    "fit": [
+      {
+        "index": 0,
+        "heading": 615.9970703125,
+        "longest": 425.734375,
+        "limit": 994
+      },
+      {
+        "index": 1,
+        "heading": 691.9970703125,
+        "longest": 501.1875,
+        "limit": 994
+      },
+      {
+        "index": 2,
+        "heading": 691.9970703125,
+        "longest": 432.609375,
+        "limit": 994
+      },
+      {
+        "index": 3,
+        "heading": 653.9970703125,
+        "longest": 469.734375,
+        "limit": 740
+      },
+      {
+        "index": 4,
+        "heading": 729.9970703125,
+        "longest": 318.3125,
+        "limit": 994
+      },
+      {
+        "index": 5,
+        "heading": 653.9970703125,
+        "longest": 412.97265625,
+        "limit": 740
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "dpr": 1,
+    "ready": true,
+    "buffer": [
+      2070,
+      1220
+    ],
+    "css": [
+      1035,
+      610
+    ],
+    "draws": [
+      {
+        "text": "CODING AGENT  /  만들 것을 요청",
+        "font": "bold 38px sans-serif",
+        "width": 2048,
+        "height": 800
+      },
+      {
+        "text": "PERSON → AGENT",
+        "font": "bold 44px monospace",
+        "width": 2048,
+        "height": 800
+      },
+      {
+        "text": "테트리스를 만들어줘",
+        "font": "bold 44px monospace",
+        "width": 2048,
+        "height": 800
+      }
+    ],
+    "fit": [
+      {
+        "index": 0,
+        "heading": 615.9970703125,
+        "longest": 425.734375,
+        "limit": 994
+      },
+      {
+        "index": 1,
+        "heading": 691.9970703125,
+        "longest": 501.1875,
+        "limit": 994
+      },
+      {
+        "index": 2,
+        "heading": 691.9970703125,
+        "longest": 432.609375,
+        "limit": 994
+      },
+      {
+        "index": 3,
+        "heading": 653.9970703125,
+        "longest": 469.734375,
+        "limit": 740
+      },
+      {
+        "index": 4,
+        "heading": 729.9970703125,
+        "longest": 318.3125,
+        "limit": 994
+      },
+      {
+        "index": 5,
+        "heading": 653.9970703125,
+        "longest": 412.97265625,
+        "limit": 740
+      }
+    ],
+    "errors": []
+  },
+  {
+    "viewport": [
+      1440,
+      810
+    ],
+    "dpr": 2,
+    "ready": true,
+    "buffer": [
+      2070,
+      1220
+    ],
+    "css": [
+      1035,
+      610
+    ],
+    "draws": [
+      {
+        "text": "CODING AGENT  /  만들 것을 요청",
+        "font": "bold 38px sans-serif",
+        "width": 2048,
+        "height": 800
+      },
+      {
+        "text": "PERSON → AGENT",
+        "font": "bold 44px monospace",
+        "width": 2048,
+        "height": 800
+      },
+      {
+        "text": "테트리스를 만들어줘",
+        "font": "bold 44px monospace",
+        "width": 2048,
+        "height": 800
+      }
+    ],
+    "fit": [
+      {
+        "index": 0,
+        "heading": 615.9970703125,
+        "longest": 425.734375,
+        "limit": 994
+      },
+      {
+        "index": 1,
+        "heading": 691.9970703125,
+        "longest": 501.1875,
+        "limit": 994
+      },
+      {
+        "index": 2,
+        "heading": 691.9970703125,
+        "longest": 432.609375,
+        "limit": 994
+      },
+      {
+        "index": 3,
+        "heading": 653.9970703125,
+        "longest": 469.734375,
+        "limit": 740
+      },
+      {
+        "index": 4,
+        "heading": 729.9970703125,
+        "longest": 318.3125,
+        "limit": 994
+      },
+      {
+        "index": 5,
+        "heading": 653.9970703125,
+        "longest": 412.97265625,
+        "limit": 740
+      }
+    ],
+    "errors": []
+  }
+]

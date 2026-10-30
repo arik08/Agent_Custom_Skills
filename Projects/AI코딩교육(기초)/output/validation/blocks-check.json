@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "firstRevision": 1,
+  "nextRevision": 19,
+  "dropBefore": 150,
+  "dropAfter": 500,
+  "pauseVerified": true,
+  "errors": []
+}

@@ -1,0 +1,65 @@
+{
+  "results": [
+    {
+      "mode": "html",
+      "box": {
+        "x": 75,
+        "y": 262.18359375,
+        "width": 618.75,
+        "height": 405
+      },
+      "fits": true
+    },
+    {
+      "mode": "python",
+      "box": {
+        "x": 75,
+        "y": 262.18359375,
+        "width": 618.75,
+        "height": 405
+      },
+      "fits": true
+    },
+    {
+      "mode": "hybrid",
+      "box": {
+        "x": 75,
+        "y": 262.18359375,
+        "width": 618.75,
+        "height": 405
+      },
+      "fits": true
+    },
+    {
+      "mode": "localhost",
+      "box": {
+        "x": 75,
+        "y": 262.18359375,
+        "width": 618.75,
+        "height": 405
+      },
+      "fits": true
+    },
+    {
+      "mode": "192.168.0.10",
+      "box": {
+        "x": 75,
+        "y": 262.18359375,
+        "width": 618.75,
+        "height": 405
+      },
+      "fits": true
+    },
+    {
+      "mode": "html",
+      "box": {
+        "x": 75,
+        "y": 262.18359375,
+        "width": 618.75,
+        "height": 405
+      },
+      "fits": true
+    }
+  ],
+  "errors": []
+}

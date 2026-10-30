@@ -1,0 +1,89 @@
+{
+  "checks": [
+    {
+      "name": "Initial arrow points to color",
+      "ok": true
+    },
+    {
+      "name": "Click does not advance",
+      "ok": true
+    },
+    {
+      "name": "Typed request retains arrow and pulses send",
+      "ok": true
+    },
+    {
+      "name": "Send immediately advances to hud",
+      "ok": true
+    },
+    {
+      "name": "Send pulse stops",
+      "ok": true
+    },
+    {
+      "name": "hud selection retains arrow",
+      "ok": true
+    },
+    {
+      "name": "hud reselection retains arrow",
+      "ok": true
+    },
+    {
+      "name": "hud submission advances",
+      "ok": true
+    },
+    {
+      "name": "effects selection retains arrow",
+      "ok": true
+    },
+    {
+      "name": "effects reselection retains arrow",
+      "ok": true
+    },
+    {
+      "name": "effects submission advances",
+      "ok": true
+    },
+    {
+      "name": "All three improvements applied",
+      "ok": true
+    },
+    {
+      "name": "Reset returns first arrow",
+      "ok": true
+    },
+    {
+      "name": "Selecting later item does not skip first",
+      "ok": true
+    },
+    {
+      "name": "Empty send does not advance",
+      "ok": true
+    },
+    {
+      "name": "Unsupported send does not advance",
+      "ok": true
+    },
+    {
+      "name": "Edited text advances the submitted operation",
+      "ok": true
+    },
+    {
+      "name": "Duplicate request does not skip a step",
+      "ok": true
+    },
+    {
+      "name": "Send during typing advances only submitted request",
+      "ok": true
+    },
+    {
+      "name": "Navigation clears send animation",
+      "ok": true
+    },
+    {
+      "name": "No runtime errors",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

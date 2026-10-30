@@ -1,0 +1,47 @@
+{
+  "bridgeUnchanged": true,
+  "results": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "over": [],
+      "overlap": false,
+      "imageLoaded": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "over": [],
+      "overlap": false,
+      "imageLoaded": true
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "over": [],
+      "overlap": false,
+      "imageLoaded": true
+    },
+    {
+      "width": 2560,
+      "height": 1080,
+      "over": [],
+      "overlap": false,
+      "imageLoaded": true
+    },
+    {
+      "width": 720,
+      "height": 1280,
+      "over": [],
+      "overlap": false,
+      "imageLoaded": true
+    }
+  ],
+  "tooltipTerms": [
+    "서버",
+    "DB 인덱스",
+    "실행 계획"
+  ],
+  "navigation": "6 -> 7 -> 6",
+  "errors": []
+}

@@ -1,0 +1,16 @@
+{
+  "current": 19,
+  "total": 20,
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "transparent": 1063483,
+  "opaque": 438941,
+  "partial": 70440,
+  "clearHeader": true,
+  "clearFooter": true,
+  "alt": "서서 질문하는 참석자와 답변하는 진행자, 옆에서 경청하는 동료",
+  "errors": [],
+  "viewports": 5
+}

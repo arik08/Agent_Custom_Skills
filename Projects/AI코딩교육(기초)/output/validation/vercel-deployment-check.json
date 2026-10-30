@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-09-23T17:10:51.373Z",
+  "url": "https://ai-coding-workshop-v3.vercel.app",
+  "status": 200,
+  "sha256": "714566e3a5914bec953666a8d39deb3026e2c8003a5388c5e5eca611fa3f1c68",
+  "bytes": 28539380,
+  "matchesLocal": true,
+  "slides": 23,
+  "motivationSlide": true,
+  "annotatedExamples": true,
+  "fourSpaceIndentation": true,
+  "softenedClosing": true,
+  "navigation": true,
+  "coverLoaded": true,
+  "errors": [],
+  "deploymentId": "dpl_AMdQzj3Xu1sjifsL5BeLF1aWsszS",
+  "deploymentUrl": "https://ai-coding-workshop-v3-ecla928dv-arik1988-1398s-projects.vercel.app",
+  "previousDeploymentId": "dpl_BQruHwPEhe81t73C4FjYBg47Brj5"
+}

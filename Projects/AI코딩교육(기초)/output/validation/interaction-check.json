@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "samples": 254,
+  "maxBubbles": 1,
+  "turns": [
+    "request",
+    "clarify",
+    "criteria",
+    "accept",
+    "handoff",
+    "feedback",
+    "propose",
+    "approve-change",
+    "revised-handoff",
+    "verdict",
+    "signoff",
+    "complete"
+  ],
+  "screenshots": [
+    "request",
+    "implement",
+    "feedback",
+    "verdict"
+  ],
+  "hiddenPaused": true,
+  "returnResumes": true,
+  "reducedMotionStatic": true,
+  "errors": []
+}

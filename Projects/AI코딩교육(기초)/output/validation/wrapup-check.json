@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "clear": true,
+      "fits": true,
+      "label": "21 / 22"
+    },
+    {
+      "viewport": [
+        1280,
+        800
+      ],
+      "clear": true,
+      "fits": true,
+      "label": "21 / 22"
+    },
+    {
+      "viewport": [
+        1024,
+        768
+      ],
+      "clear": true,
+      "fits": true,
+      "label": "21 / 22"
+    },
+    {
+      "viewport": [
+        2560,
+        1080
+      ],
+      "clear": true,
+      "fits": true,
+      "label": "21 / 22"
+    },
+    {
+      "viewport": [
+        800,
+        1200
+      ],
+      "clear": true,
+      "fits": true,
+      "label": "21 / 22"
+    }
+  ],
+  "errors": [],
+  "navigation": "wrap-up 21 → Q&A 22 → wrap-up 21"
+}

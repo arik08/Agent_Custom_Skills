@@ -1,0 +1,77 @@
+{
+  "originalBytes": 35258727,
+  "finalBytes": 26172684,
+  "imageReferences": 15,
+  "styleReferences": 1,
+  "dynamicReferences": 1,
+  "uniqueImages": 16,
+  "fonts": 3,
+  "deferredScripts": 2,
+  "sourceBytesBeforeAssetFooter": 300322,
+  "assets": {
+    "assets/image-7ac29e00cd66.png": {
+      "sha256": "7ac29e00cd66e549acc2ea6a99a813f92cb23a6d165293be6959845670f0c5a4",
+      "dataUriBytes": 153274
+    },
+    "assets/workshop.webp": {
+      "sha256": "1189613ceaba6a4dd5448a1b10f6eb5d981d01b6ce0a7308d250bb9c0664a9fc",
+      "dataUriBytes": 265751
+    },
+    "assets/slide06-foundations.png": {
+      "sha256": "30435ca8bde9f7db3221b45444da55a0c5727feb3ed6ec144f03a593b470f148",
+      "dataUriBytes": 1978710
+    },
+    "assets/image-6baf5c58f993.png": {
+      "sha256": "6baf5c58f993ac6a564ac851b90e154816f4245d2e36cb5e6da99393350b6161",
+      "dataUriBytes": 17982
+    },
+    "assets/image-2ce1c57dd3b3.png": {
+      "sha256": "2ce1c57dd3b312417106a487815ab1235bddce17e1fa9b32a2f048bd71ee25d3",
+      "dataUriBytes": 14650
+    },
+    "assets/image-00446b52fa5f.png": {
+      "sha256": "00446b52fa5fe7550f8618f5fe8a8dbba6d1b241fecb01490dc9ac4c90da04ac",
+      "dataUriBytes": 6974
+    },
+    "assets/image-8d5575ee667f.png": {
+      "sha256": "8d5575ee667ff715cd3e3074d5296edc68d5aadd89720d203e13131b68b22a04",
+      "dataUriBytes": 2478
+    },
+    "assets/image-bb471012989f.png": {
+      "sha256": "bb471012989f8309826369d2d20415aced04fb98336d755a1c53a9123e5e7a6f",
+      "dataUriBytes": 9866
+    },
+    "assets/image-880c0be216cc.png": {
+      "sha256": "880c0be216cc652383b1997d319b4fb31410d7303dd83bbea7603e8a3b948617",
+      "dataUriBytes": 5066
+    },
+    "assets/image-3113d214c039.png": {
+      "sha256": "3113d214c0396e4783a0baf0afa3b33317bfa075775efa39f6b708d41acb25f3",
+      "dataUriBytes": 1530
+    },
+    "assets/api-key-thief-transparent-v2.png": {
+      "sha256": "27c3d661401b6b79f6a7dfc6627f009cac8192d9f34053476cb6e329ff06a82d",
+      "dataUriBytes": 2635558
+    },
+    "assets/python-project-preparation.png": {
+      "sha256": "ff24c6e134562af75f9ac23d2d87aeddd4b0f15dbf6f3db9081861185a9d8aae",
+      "dataUriBytes": 1530614
+    },
+    "assets/planning-together-transparent.png": {
+      "sha256": "520117bef2b2ecbf2289af9f42867c8a7e8fe65243c0d14ed03f96b7500e12d4",
+      "dataUriBytes": 2334650
+    },
+    "assets/qa-discussion-transparent.webp": {
+      "sha256": "9902551479c2d9a55d20ac2ab6b1d4659e0679b400f10da1bc369cdf5410d75f",
+      "dataUriBytes": 470526
+    },
+    "assets/architecture-webtoon-spaced.png": {
+      "sha256": "056958a4d5982f5916fc477c6dda09869a535018b50b06005eb43cc610308918",
+      "dataUriBytes": 1436978
+    },
+    "assets/bob-ross-easy-v2.png": {
+      "sha256": "842d082c6f5806c4bf48f7123193c78fc4980ed6f870736b663fcf32e8b7a4a8",
+      "dataUriBytes": 2489754
+    }
+  }
+}
