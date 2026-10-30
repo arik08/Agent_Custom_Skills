@@ -4,6 +4,8 @@
 
 Produce a full-color comic that feels as dense and deliberate as a high-quality black-and-white manga: decisive darks, tactile ink detail, dramatic focal lighting, varied panel rhythm, environmental storytelling, readable dialogue, and controlled color. The result must not look like a pale corporate webtoon or an infographic with character stickers.
 
+The outcome above and section 2 describe default `dense-ink` rendering. When `rough-anime` is selected, use `style-options.md` instead for linework, detail density, proportions, lighting, and color. The integrated-text, identity, and requested-layout rules still apply.
+
 ## 1. Script and dialogue lock
 
 Before generating, prepare a panel ledger with:
@@ -21,7 +23,7 @@ The dialogue is part of the composition, not post-production copy. The model mus
 
 ## 2. Single-pass color, monochrome-manga logic
 
-Do not render a monochrome page and colorize it later. Instead, plan the final color image as though an expert manga artist had already solved the page in ink:
+For `rough-anime`, skip the dense-rendering prescription in this section and use its selected style profile. For default `dense-ink`: do not render a monochrome page and colorize it later. Instead, plan the final color image as though an expert manga artist had already solved the page in ink:
 
 - establish three clear value bands: deep blacks, structural midtones, and protected whites;
 - reserve the darkest masses for focal depth, night interiors, clothing, furniture, machinery, or dramatic backgrounds;
@@ -87,13 +89,13 @@ STORY PURPOSE
 [One-sentence message and emotional turn.]
 
 STYLE
-[Use the ink-forward full-color manga phrasing above.]
-This is a direct final-color generation. Internally use black-and-white manga value logic, but do not output a monochrome intermediate and do not colorize a previous grayscale page.
+[Name the selected style and insert its rendering prompt; use the ink-forward phrasing only for dense-ink.]
+This is a direct final-color generation. Use the selected style's value and shading rules; do not output a monochrome intermediate or colorize a previous grayscale page.
 
 REFERENCES
 - Image 1: [character] identity reference.
 - Image 2: [character] supporting cast reference.
-- Image 3: approved dense-color comic style reference.
+- Image 3: selected-style reference (do not attach dense-ink samples for rough-anime).
 - Image 4: two-page layout reference.
 
 LAYOUT
@@ -111,7 +113,7 @@ CHARACTER ACTING AND REGISTER
 [Identity, relationship, posture, emotional subtext, honorific/casual register.]
 
 AVOID
-[Project-specific prohibitions, factual inventions, character drift, gutter crossing, washed-out color, photorealism, and text overlays.]
+[Project-specific prohibitions, factual inventions, character drift, gutter crossing, selected-style exclusions, photorealism, and text overlays.]
 ```
 
 ## 7. Visual QA
@@ -123,7 +125,7 @@ Inspect every spread at full size and as a thumbnail.
 - Reading flow: the left page finishes before the right page; panel order is obvious.
 - Layout expressiveness: panel sizes vary, diagonals have a story reason, and selective internal frame-breaking adds emphasis without becoming a repeated gimmick.
 - Gutter: no contact or crossing at the center.
-- Density: hero panels contain meaningful environment and evidence detail; small panels add reaction or progression.
+- Density: match the selected style. Dense-ink uses meaningful environment detail; rough-anime uses quiet space and only necessary setting/evidence cues. Small panels add reaction or progression in either style.
 - Value: the story remains readable when mentally reduced to grayscale.
 - Color: accents guide attention without flattening the ink hierarchy.
 - Identity: face, hair, age, build, and clothing remain consistent.

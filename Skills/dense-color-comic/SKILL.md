@@ -1,13 +1,13 @@
 ---
 name: dense-color-comic
-description: Create or revise dense full-color instructional comics and 16:9 two-page comic spreads using ink-forward manga composition, integrated speech-bubble text, and consistent recurring characters. Includes bundled character sheets, panel-layout and style references. Use for 만화, 코믹, 교육 만화, comic slide, 양면 펼침, or v9-color-dialogue style requests; do not use for ordinary non-comic slides.
+description: Create or revise dense full-color instructional comics and 16:9 two-page comic spreads using ink-forward manga composition, integrated speech-bubble text, and consistent recurring characters. Includes bundled character sheets, panel-layout and selectable style references, including 러프 애니 (rough-anime). Use for 만화, 코믹, 교육 만화, comic slide, 양면 펼침, or v9-color-dialogue style requests; do not use for ordinary non-comic slides.
 metadata:
   short-description: Dense color comics with integrated dialogue
 ---
 
 # Dense Color Comic
 
-Create finished color comics with the information density and dramatic value structure of a carefully inked black-and-white manga. Do not create a monochrome intermediate; apply that design logic inside each final-color generation.
+Create finished color comics with integrated dialogue and consistent characters. The default rendering is ink-forward, dense full-color manga; select an alternative through [references/style-options.md](references/style-options.md). Generate final color directly, without a monochrome intermediate.
 
 ## Self-contained reference package
 
@@ -17,6 +17,10 @@ This folder includes the current 10-character cast, two layout/rhythm references
 2. Read [references/inchangwon-profile.md](references/inchangwon-profile.md) for the bundled default cast, visual references and relationship-sensitive Korean dialogue. Follow its image-opening instructions before generation.
 3. Current user instructions and supplied script take priority. For a different requested cast, style or format, replace only those defaults; do not impose the lecture story on unrelated work.
 4. [references/asset-manifest.json](references/asset-manifest.json) records source paths and SHA-256 for the bundled images. Source paths are provenance, not runtime dependencies. Preserve approval statuses in the cast and preferred-selection indexes.
+
+## Rendering style selection
+
+Read [references/style-options.md](references/style-options.md) when choosing or changing the drawing style. Keep `dense-ink` as the default; `rough-anime` / `러프 애니` is an additional option. Record the selected style in the panel ledger and generation prompt. An explicit selection overrides conflicting default rendering instructions in this skill, the visual workflow, and the Inchangwon profile. Use only that option's style images, while retaining the requested cast, story, integrated text, and layout contract. Do not combine opposing density instructions or silently change an ongoing series' style.
 
 ## Generation and delivery
 
@@ -28,10 +32,10 @@ Save the panel ledger, exact generation prompt and versioned final image in the 
 
 1. Lock the message, exact dialogue, speaker, register, and reading order before image generation. Shorten wording only with the user's consent or when meaning is preserved and no exact wording was supplied.
 2. Design each 16:9 spread as two independent pages with a hard center gutter. Use rectangular panels as a readable baseline, not a rigid box grid: vary panel size, use motivated diagonals, and allow limited internal frame-breaking by a character, prop, effect, or balloon when it strengthens the scene. Give each page one dominant scene and supporting action, reaction, evidence, or detail panels. Vary the rhythm across spreads.
-3. Build a value-first scene plan: clear black/white separation, ink texture, environmental detail, selective speed lines, and strong focal lighting. Then assign a restrained color script without weakening the value hierarchy.
+3. Apply the selected rendering profile. For default `dense-ink`, use value-first planning, ink texture, environmental detail, and strong focal lighting. For `rough-anime`, use the sparse background, fine lines, and shallow cel shading in the style options. Keep story and dialogue readable in either style.
 4. Generate each spread directly as finished color artwork. Generate artwork, characters, speech balloons, exact dialogue, captions, labels, and sound effects together in the same image operation.
-5. Use character sheets as identity references and prior approved comic pages as style references. State each reference's role explicitly in the generation prompt.
-6. Inspect the actual output at full size. Check dialogue accuracy, speaker attribution, page order, gutter clearance, character identity, density, and legibility.
+5. Use character sheets as identity references and samples matching the selected rendering as style references. State each reference's role explicitly in the generation prompt.
+6. Inspect the actual output at full size. Check dialogue accuracy, speaker attribution, page order, gutter clearance, character identity, selected-style fidelity, and legibility.
 7. If text is wrong, regenerate the affected spread or redraw the affected panel with its art, balloon, and text together. Never patch a blank balloon with a later text layer and never place replacement text over existing artwork.
 
 ## Non-negotiable constraints

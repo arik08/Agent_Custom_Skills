@@ -136,5 +136,23 @@
     "source": "reference/preferred-materials/slides/preferred-007-agent-business-profit-task.png",
     "role": "user-selected visual reference",
     "sha256": "2c92c286b02b9c0a8881df710706890f0b6a196803f7f60e6690ec2e1c19928c"
+  },
+  {
+    "path": "assets/style/rough-anime/dc1504417-example-01.png",
+    "source": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1504417",
+    "source_image_index": 1,
+    "retrieved_on": "2026-10-31",
+    "role": "style reference only; rough-anime option",
+    "approval": "user requested style option; not character identity approval",
+    "sha256": "5885cc987e7431ddd339af83353fe7b37ab22b479bd4ef5efb2552ee1a520c22"
+  },
+  {
+    "path": "assets/style/rough-anime/dc1504417-example-07.png",
+    "source": "https://gall.dcinside.com/mgallery/board/view/?id=thesingularity&no=1504417",
+    "source_image_index": 7,
+    "retrieved_on": "2026-10-31",
+    "role": "style reference only; rough-anime option",
+    "approval": "user requested style option; not character identity approval",
+    "sha256": "7f268f6d9b29e10c78cdf7b86a892b4a85e600e91af23a078ab75ad75858f4dc"
   }
 ]

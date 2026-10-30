@@ -6,6 +6,8 @@ Use this bundled office-comic cast and visual profile by default, including outs
 
 Read `references/characters.md`, `references/layout.md`, and `references/preferred-selections.md`. For new or revised character sheets, also read `references/character-prompts.md`.
 
+For an explicit alternative style, `style-options.md` controls rendering and the style images to open; do not attach the v9 or preferred images as competing style references. Preserve the current cast and dialogue hierarchy. The visual/color defaults below apply to `dense-ink`.
+
 Before generation, actually open:
 - The CAST-00 current sheet in `assets/characters/` and the current sheet for each appearing supporting character, as named in `references/characters.md`.
 - Both images in `assets/layout/`: the FHD spread controls page geometry; the portrait source controls reaction and dialogue rhythm only.
